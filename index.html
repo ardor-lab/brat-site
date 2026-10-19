@@ -9,13 +9,12 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300&display=swap" rel="stylesheet">
+  <!-- Folha de Estilos Externa (CSS Separado) -->
+  <link rel="stylesheet" href="style.css">
   <script>
     tailwind.config = {
       theme: {
         extend: {
-          fontFamily: {
-            sans: ['Montserrat', 'sans-serif'],
-          },
           colors: {
             brat: {
               gold: '#D4AF37',
@@ -28,9 +27,6 @@
       }
     }
   </script>
-  <style>
-    body { font-family: 'Montserrat', sans-serif; background-color: #08080A; }
-  </style>
 </head>
 <body class="text-zinc-100 antialiased selection:bg-amber-400 selection:text-black">
 
@@ -85,7 +81,7 @@
     </div>
   </section>
 
-  <!-- 3. IDENTIDADE GASTRONÔMICA (CARDS APRIMORADOS) -->
+  <!-- 3. IDENTIDADE GASTRONÔMICA -->
   <section class="py-20 max-w-5xl mx-auto px-5 border-t border-zinc-900">
     <div class="text-center max-w-xl mx-auto mb-14 space-y-3">
       <span class="text-xs uppercase tracking-[0.25em] text-amber-400 font-bold">Identidade Gastronômica</span>
@@ -128,7 +124,7 @@
     </div>
   </section>
 
-  <!-- 4. A EXPERIÊNCIA DO SALÃO (COM A FOTO REAL) -->
+  <!-- 4. A EXPERIÊNCIA DO SALÃO -->
   <section class="py-16 max-w-5xl mx-auto px-5 border-t border-zinc-900">
     <div class="bg-zinc-900/50 border border-zinc-800 rounded-3xl p-6 sm:p-12 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
       <div class="space-y-4">
@@ -144,9 +140,9 @@
         </div>
       </div>
       
-      <!-- FOTO REAL DO SALÃO (salao.jpg) -->
-      <div>
-        <img src="salao.jpg" alt="Salão da Brat Burger" class="w-full h-64 sm:h-72 object-cover rounded-2xl border border-zinc-800 shadow-xl">
+      <!-- FOTO REAL DO SALÃO COM EFEITO DE MOVIMENTO -->
+      <div class="overflow-hidden rounded-2xl border border-zinc-800 shadow-xl group">
+        <img src="salao-brat.jpg.jpeg" alt="Salão da Brat Burger" class="w-full h-64 sm:h-72 object-cover transition-all duration-700 ease-out group-hover:scale-105">
       </div>
     </div>
   </section>
@@ -182,35 +178,4 @@
       </div>
       <div class="bg-brat-card border border-brat-border p-5 rounded-2xl space-y-2">
         <div class="text-amber-400">★★★★★</div>
-        <p class="italic text-zinc-400 font-light">"O Matilda Cake com a ganache quente é uma experiência à parte. Nota 10 em tudo."</p>
-        <div class="font-bold text-zinc-200">— Cliente Verificado no Google</div>
-      </div>
-      <div class="bg-brat-card border border-brat-border p-5 rounded-2xl space-y-2">
-        <div class="text-amber-400">★★★★★</div>
-        <p class="italic text-zinc-400 font-light">"Cortes excelentes, ponto da carne perfeito e o provolone melt é sensacional. Vale cada centavo."</p>
-        <div class="font-bold text-zinc-200">— Cliente Verificado no Google</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 7. RODAPÉ DE CONVERSÃO -->
-  <footer class="py-16 border-t border-zinc-900 bg-black/40 text-center text-xs text-zinc-400 space-y-4">
-    <div class="max-w-xl mx-auto px-5 space-y-2">
-      <div class="font-bold text-white text-base tracking-widest">BRAT BURGER</div>
-      <p class="text-zinc-300">📍 Rua Amazonas, 1652 — São Caetano do Sul, SP</p>
-      <p class="text-zinc-500">Quarta a Domingo, a partir das 18h</p>
-    </div>
-
-    <div class="pt-4">
-      <a href="https://wa.me/5511977889397?text=Olá!%20Gostaria%20de%20fazer%20uma%20reserva%20e%20garantir%20as%20taças%20de%20vinho%20de%20boas-vindas." target="_blank" class="inline-block bg-amber-400 hover:bg-amber-300 text-black font-bold px-8 py-3.5 rounded-full uppercase tracking-wider transition shadow-lg shadow-amber-500/10">
-        Reservar Minha Mesa Agora
-      </a>
-    </div>
-
-    <div class="border-t border-zinc-900/80 pt-8 text-[11px] text-zinc-600">
-      © Brat Burger. Todos os direitos reservados. Isso é Brat.
-    </div>
-  </footer>
-
-</body>
-</html>
+        <p class="italic text-zinc-400 font-light">"O Matilda Cake com a ganache quente é uma experiência
