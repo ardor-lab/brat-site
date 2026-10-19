@@ -9,8 +9,6 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300&display=swap" rel="stylesheet">
-  <!-- Biblioteca AOS para animação suave ao rolar a página -->
-  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
   <!-- Folha de Estilos Externa (CSS Separado) -->
   <link rel="stylesheet" href="style.css">
   <script>
@@ -58,7 +56,7 @@
   <section class="min-h-[85vh] flex flex-col justify-center items-center text-center px-5 pt-32 pb-16 relative overflow-hidden">
     <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-amber-950/15 via-transparent to-transparent -z-10"></div>
 
-    <div class="max-w-2xl mx-auto space-y-6" data-aos="fade-up" data-aos-duration="1000">
+    <div class="max-w-2xl mx-auto space-y-6">
       <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-amber-500/30 bg-amber-500/5 text-amber-400 text-[11px] font-semibold tracking-[0.2em] uppercase">
         <span>O burger elevado a alta gastronomia</span>
       </div>
@@ -85,7 +83,7 @@
 
   <!-- 3. IDENTIDADE GASTRONÔMICA -->
   <section class="py-20 max-w-5xl mx-auto px-5 border-t border-zinc-900">
-    <div class="text-center max-w-xl mx-auto mb-14 space-y-3" data-aos="fade-up">
+    <div class="text-center max-w-xl mx-auto mb-14 space-y-3">
       <span class="text-xs uppercase tracking-[0.25em] text-amber-400 font-bold">Identidade Gastronômica</span>
       <h2 class="text-2xl sm:text-4xl font-extrabold text-white tracking-tight">Tempo, técnica e obsessão.</h2>
       <p class="text-zinc-400 text-xs sm:text-sm font-light leading-relaxed">
@@ -96,9 +94,9 @@
     <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
       
       <!-- Card 1: Brat Rei do Churrasco -->
-      <div class="bg-brat-card border border-brat-border rounded-3xl p-6 relative overflow-hidden group hover:border-amber-500/40 transition flex flex-col justify-between" data-aos="fade-up" data-aos-delay="100">
+      <div class="bg-brat-card border border-brat-border rounded-3xl p-6 relative overflow-hidden group hover:border-amber-500/40 transition flex flex-col justify-between">
         <div>
-          <div class="h-52 rounded-2xl bg-zinc-900 border border-zinc-800 mb-5 flex items-center justify-center text-zinc-600 text-xs relative overflow-hidden">
+          <div class="aspect-video rounded-2xl bg-zinc-900 border border-zinc-800 mb-5 flex items-center justify-center text-zinc-600 text-xs relative overflow-hidden">
             [ Espaço para Foto / Vídeo: Brat Rei do Churrasco ]
             <span class="absolute top-3 right-3 bg-amber-400 text-black text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider">Assinatura</span>
           </div>
@@ -110,9 +108,9 @@
       </div>
 
       <!-- Card 2: Matilda Cake -->
-      <div class="bg-brat-card border border-brat-border rounded-3xl p-6 relative overflow-hidden group hover:border-amber-500/40 transition flex flex-col justify-between" data-aos="fade-up" data-aos-delay="200">
+      <div class="bg-brat-card border border-brat-border rounded-3xl p-6 relative overflow-hidden group hover:border-amber-500/40 transition flex flex-col justify-between">
         <div>
-          <div class="h-52 rounded-2xl bg-zinc-900 border border-zinc-800 mb-5 flex items-center justify-center text-zinc-600 text-xs relative overflow-hidden">
+          <div class="aspect-video rounded-2xl bg-zinc-900 border border-zinc-800 mb-5 flex items-center justify-center text-zinc-600 text-xs relative overflow-hidden">
             [ Espaço para Foto / Vídeo: Matilda Cake ]
             <span class="absolute top-3 right-3 bg-zinc-800 text-amber-400 border border-amber-500/30 text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider">Autoral</span>
           </div>
@@ -126,10 +124,12 @@
     </div>
   </section>
 
-  <!-- 4. A EXPERIÊNCIA DO SALÃO -->
-  <section class="py-16 max-w-5xl mx-auto px-5 border-t border-zinc-900">
-    <div class="bg-zinc-900/50 border border-zinc-800 rounded-3xl p-6 sm:p-12 grid grid-cols-1 md:grid-cols-2 gap-8 items-center" data-aos="fade-up">
-      <div class="space-y-4">
+  <!-- 4. A EXPERIÊNCIA DO SALÃO (PROPORÇÃO REAL SEM DISTORÇÃO + EFEITO LENTE) -->
+  <section class="py-24 max-w-5xl mx-auto px-5 border-t border-zinc-900">
+    <div class="bg-zinc-900/40 border border-zinc-800/80 rounded-3xl p-6 sm:p-12 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+      
+      <!-- Texto ocupando 5 colunas no desktop -->
+      <div class="lg:col-span-5 space-y-4">
         <span class="text-xs uppercase tracking-[0.2em] text-amber-400 font-bold">O Refúgio Local</span>
         <h2 class="text-2xl sm:text-3xl font-extrabold text-white">Um espaço para desacelerar.</h2>
         <p class="text-zinc-300 text-xs sm:text-sm leading-relaxed font-light">
@@ -142,15 +142,18 @@
         </div>
       </div>
       
-      <!-- FOTO REAL DO SALÃO COM ANIMAÇÃO DE ENTRADA E ZOOM -->
-      <div class="overflow-hidden rounded-2xl border border-zinc-800 shadow-xl group" data-aos="zoom-in" data-aos-delay="150">
-        <img src="salao.jpg" alt="Salão da Brat Burger" class="w-full h-64 sm:h-72 object-cover">
+      <!-- FOTO REAL DO SALÃO ocupando 7 colunas, proporção original intacta e efeito de foco no scroll -->
+      <div class="lg:col-span-7">
+        <div class="scroll-focus-wrapper rounded-2xl border border-zinc-800 shadow-2xl overflow-hidden bg-black">
+          <img src="salao.jpg" alt="Salão da Brat Burger" class="scroll-focus-img w-full h-auto block">
+        </div>
       </div>
+
     </div>
   </section>
 
   <!-- 5. VISÃO GERAL DO CARDÁPIO -->
-  <section id="cardapio" class="py-16 max-w-5xl mx-auto px-5 border-t border-zinc-900 text-center" data-aos="fade-up">
+  <section id="cardapio" class="py-16 max-w-5xl mx-auto px-5 border-t border-zinc-900 text-center">
     <div class="max-w-xl mx-auto space-y-3 mb-8">
       <span class="text-xs uppercase tracking-[0.2em] text-amber-400 font-bold">Variedade & Rigor</span>
       <h2 class="text-2xl sm:text-3xl font-extrabold text-white">Nosso Cardápio</h2>
@@ -158,60 +161,4 @@
         Burgers artesanais de cortes nobres, pratos à la carte, coquetelaria autoral (como o Brat Kiss) e entradas pensadas para compartilhar.
       </p>
     </div>
-    <a href="https://wa.me/5511977889397?text=Olá!%20Gostaria%20de%20ver%20o%20cardápio%20completo." target="_blank" class="inline-block border border-amber-500/40 bg-amber-500/10 hover:bg-amber-500/20 text-amber-400 font-bold px-8 py-3.5 rounded-full text-xs tracking-widest uppercase transition">
-      Acessar Cardápio Digital Completo
-    </a>
-  </section>
-
-  <!-- 6. PROVA SOCIAL (GOOGLE 4.9) -->
-  <section class="py-16 max-w-5xl mx-auto px-5 border-t border-zinc-900" data-aos="fade-up">
-    <div class="text-center max-w-xl mx-auto mb-10 space-y-2">
-      <div class="inline-flex items-center gap-2 bg-zinc-900 border border-zinc-800 px-4 py-1.5 rounded-full text-xs text-amber-400 font-bold">
-        <span>★★★★★</span> <span>4.9 no Google • +350 Avaliações</span>
-      </div>
-      <h2 class="text-xl sm:text-2xl font-bold text-white">A escolha sem risco em São Caetano.</h2>
-    </div>
-
-    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs text-zinc-300">
-      <div class="bg-brat-card border border-brat-border p-5 rounded-2xl space-y-2">
-        <div class="text-amber-400">★★★★★</div>
-        <p class="italic text-zinc-400 font-light">"Melhor hambúrguer da região disparado. O atendimento e o ambiente são impecáveis para jantar a dois."</p>
-        <div class="font-bold text-zinc-200">— Cliente Verificado no Google</div>
-      </div>
-      <div class="bg-brat-card border border-brat-border p-5 rounded-2xl space-y-2">
-        <div class="text-amber-400">★★★★★</div>
-        <p class="italic text-zinc-400 font-light">"O Matilda Cake com a ganache quente é uma experiência à parte. Nota 10 em tudo."</p>
-        <div class="font-bold text-zinc-200">— Cliente Verificado no Google</div>
-      </div>
-      <div class="bg-brat-card border border-brat-border p-5 rounded-2xl space-y-2">
-        <div class="text-amber-400">★★★★★</div>
-        <p class="italic text-zinc-400 font-light">"Cortes excelentes, ponto da carne perfeito e o provolone melt é sensacional. Vale cada centavo."</p>
-        <div class="font-bold text-zinc-200">— Cliente Verificado no Google</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 7. RODAPÉ DE CONVERSÃO -->
-  <footer class="py-16 border-t border-zinc-900 bg-black/40 text-center text-xs text-zinc-400 space-y-4" data-aos="fade-up">
-    <div class="max-w-xl mx-auto px-5 space-y-2">
-      <div class="font-bold text-white text-base tracking-widest">BRAT BURGER</div>
-      <p class="text-zinc-300">📍 Rua Amazonas, 1652 — São Caetano do Sul, SP</p>
-      <p class="text-zinc-500">Quarta a Domingo, a partir das 18h</p>
-    </div>
-
-    <div class="pt-4">
-      <a href="https://wa.me/5511977889397?text=Olá!%20Gostaria%20de%20fazer%20uma%20reserva%20e%20garantir%20as%20taças%20de%20vinho%20de%20boas-vindas." target="_blank" class="inline-block bg-amber-400 hover:bg-amber-300 text-black font-bold px-8 py-3.5 rounded-full uppercase tracking-wider transition shadow-lg shadow-amber-500/10">
-        Reservar Minha Mesa Agora
-      </a>
-    </div>
-
-    <div class="border-t border-zinc-900/80 pt-8 text-[11px] text-zinc-600">
-      © Brat Burger. Todos os direitos reservados. Isso é Brat.
-    </div>
-  </footer>
-
-  <!-- Scripts Externos -->
-  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-  <script src="script.js"></script>
-</body>
-</html>
+    <a href="
