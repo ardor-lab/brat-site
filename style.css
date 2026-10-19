@@ -6,33 +6,12 @@ body {
   overflow-x: hidden;
 }
 
-/* Transições suaves gerais */
+/* Transições suaves para imagens */
 img {
-  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1), filter 0.7s ease;
+  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 /* Efeito de zoom elegante ao passar o mouse no PC */
 .group:hover img {
   transform: scale(1.05);
-}
-
-/* Animação de revelação suave (Fade + Zoom) ao rolar a página */
-@keyframes revealImage {
-  0% {
-    opacity: 0;
-    transform: scale(0.95) translateY(20px);
-    filter: blur(4px);
-  }
-  100% {
-    opacity: 1;
-    transform: scale(1) translateY(0);
-    filter: blur(0);
-  }
-}
-
-/* Aplicando a animação de entrada com rolagem (Scroll-driven animation) */
-.animate-on-scroll {
-  animation: revealImage linear forwards;
-  animation-timeline: view();
-  animation-range: entry 0% cover 30%;
 }
