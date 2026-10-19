@@ -6,9 +6,10 @@
 document.addEventListener('DOMContentLoaded', () => {
   if (typeof AOS !== 'undefined') {
     AOS.init({
-      once: true,     // Anima apenas na primeira vez que o elemento aparece
+      once: false,    // Permite que a animação ocorra sempre que rolar para cima e para baixo
+      mirror: true,   // Faz o efeito reverso suave ao sair da tela
       duration: 800,  // Velocidade da transição em milissegundos
-      offset: 100,    // Distância de ativação antes de entrar na tela
+      offset: 80,     // Distância de ativação antes de entrar na tela
     });
   }
 });
