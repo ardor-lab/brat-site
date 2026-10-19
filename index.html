@@ -9,13 +9,12 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300&display=swap" rel="stylesheet">
+  <!-- Folha de Estilos Separada -->
+  <link rel="stylesheet" href="style.css">
   <script>
     tailwind.config = {
       theme: {
         extend: {
-          fontFamily: {
-            sans: ['Montserrat', 'sans-serif'],
-          },
           colors: {
             brat: {
               gold: '#D4AF37',
@@ -28,11 +27,6 @@
       }
     }
   </script>
-  <style>
-    body { font-family: 'Montserrat', sans-serif; background-color: #08080A; }
-    img { transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1); }
-    .group:hover img { transform: scale(1.05); }
-  </style>
 </head>
 <body class="text-zinc-100 antialiased selection:bg-amber-400 selection:text-black">
 
@@ -146,9 +140,9 @@
         </div>
       </div>
       
-      <!-- FOTO REAL DO SALÃO (COM O NOME EXATO DO GITHUB) -->
+      <!-- FOTO REAL DO SALÃO COM O NOME CERTO salao.jpg -->
       <div class="overflow-hidden rounded-2xl border border-zinc-800 shadow-xl group">
-        <img src="salao-brat.jpg.jpeg" alt="Salão da Brat Burger" class="w-full h-64 sm:h-72 object-cover">
+        <img src="salao.jpg" alt="Salão da Brat Burger" class="w-full h-64 sm:h-72 object-cover">
       </div>
     </div>
   </section>
