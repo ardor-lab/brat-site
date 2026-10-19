@@ -1,4 +1,7 @@
-/* Estilos Globais & Tipografia da Brat */
+/* ========================================================
+   BRAT BURGER — ESTILOS & MOTOR VISUAL DE FOCO
+   ======================================================== */
+
 body {
   font-family: 'Montserrat', sans-serif;
   background-color: #08080A;
@@ -6,12 +9,22 @@ body {
   overflow-x: hidden;
 }
 
-/* Transições suaves para imagens */
-img {
-  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+/* Container da imagem com perspectiva suave */
+.scroll-focus-wrapper {
+  will-change: transform, opacity;
+  transition: transform 0.15s ease-out, box-shadow 0.4s ease;
 }
 
-/* Efeito de zoom elegante ao passar o mouse no PC */
-.group:hover img {
-  transform: scale(1.05);
+/* Imagem com aceleração de hardware para foco/desfoque sedoso */
+.scroll-focus-img {
+  will-change: filter, transform, opacity;
+  transition: filter 0.12s linear, transform 0.25s ease-out, opacity 0.15s linear;
+  transform-origin: center center;
+}
+
+/* Quando o usuário passa o mouse no PC enquanto a foto está no centro, dá um toque extra de aproximação */
+.scroll-focus-wrapper:hover .scroll-focus-img {
+  transform: scale(1.04) !important;
+  filter: blur(0px) brightness(1.05) !important;
+  opacity: 1 !important;
 }
