@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Brat Burger | Cortes Nobres & Experiência Urbana</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Fonte Montserrat -->
+  <!-- Montserrat para um visual tech, limpo e sofisticado -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300&display=swap" rel="stylesheet">
@@ -31,7 +31,6 @@
   </script>
 
   <style>
-    /* Garantir que a página role livremente sem cortes */
     html, body {
       font-family: 'Montserrat', sans-serif;
       background-color: #08080A;
@@ -43,7 +42,7 @@
       overflow-x: hidden;
     }
 
-    /* Moldura Óptica da Foto (Sem cortar e sem distorcer) */
+    /* Moldura Óptica da Foto do Salão */
     .optical-frame {
       position: relative;
       width: 100%;
@@ -53,13 +52,33 @@
       box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.85);
     }
 
-    /* A Imagem controlada pelo Scroll */
     .optical-lens-img {
       width: 100%;
       height: auto;
       display: block;
       transform-origin: center center;
       will-change: filter, transform, opacity;
+    }
+
+    /* Moldura para o GIF Vertical (Rei do Churrasco) */
+    .vertical-media-frame {
+      position: relative;
+      width: 100%;
+      height: 380px; /* Altura ideal para destacar o formato Reel no card */
+      border-radius: 1rem;
+      overflow: hidden;
+      background-color: #000;
+    }
+
+    .vertical-media-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .vertical-media-frame:hover img {
+      transform: scale(1.05);
     }
   </style>
 </head>
@@ -116,7 +135,7 @@
     </div>
   </section>
 
-  <!-- 3. IDENTIDADE GASTRONÔMICA -->
+  <!-- 3. IDENTIDADE GASTRONÔMICA (COM O REI.GIF EM DESTAQUE) -->
   <section class="py-20 max-w-5xl mx-auto px-5 border-t border-zinc-900">
     <div class="text-center max-w-xl mx-auto mb-14 space-y-3">
       <span class="text-xs uppercase tracking-[0.25em] text-amber-400 font-bold">Identidade Gastronômica</span>
@@ -128,13 +147,15 @@
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
       
-      <!-- Card 1: Brat Rei do Churrasco -->
+      <!-- Card 1: Brat Rei do Churrasco (Com o GIF do Queijo Derretendo) -->
       <div class="bg-brat-card border border-brat-border rounded-3xl p-6 relative overflow-hidden group hover:border-amber-500/40 transition flex flex-col justify-between">
         <div>
-          <div class="aspect-video rounded-2xl bg-zinc-900 border border-zinc-800 mb-5 flex items-center justify-center text-zinc-500 text-xs relative overflow-hidden">
-            [ Espaço para Foto / Vídeo: Brat Rei do Churrasco ]
-            <span class="absolute top-3 right-3 bg-amber-400 text-black text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider">Assinatura</span>
+          <!-- Mídia Vertical (Rei.gif) -->
+          <div class="vertical-media-frame mb-5 border border-zinc-800">
+            <img src="rei.gif" alt="Brat Rei do Churrasco">
+            <span class="absolute top-3 right-3 bg-amber-400 text-black text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider z-10 shadow-lg">Assinatura</span>
           </div>
+
           <h3 class="text-xl font-bold text-white mb-2">Brat Rei do Churrasco</h3>
           <p class="text-xs sm:text-sm text-zinc-300 leading-relaxed font-light">
             Tiras suculentas de baby beef grelhadas no ponto, coroadas pelo nosso Melt de provolone artesanal. O equilíbrio exato entre a intensidade da defumação e a fusão perfeita do queijo tostado na frigideira de ferro, servido no pão brioche selado na manteiga. A máxima expressão da nossa cozinha.
@@ -146,7 +167,7 @@
       <div class="bg-brat-card border border-brat-border rounded-3xl p-6 relative overflow-hidden group hover:border-amber-500/40 transition flex flex-col justify-between">
         <div>
           <div class="aspect-video rounded-2xl bg-zinc-900 border border-zinc-800 mb-5 flex items-center justify-center text-zinc-500 text-xs relative overflow-hidden">
-            [ Espaço para Foto / Vídeo: Matilda Cake ]
+            [ Espaço para Foto do Matilda Cake ]
             <span class="absolute top-3 right-3 bg-zinc-800 text-amber-400 border border-amber-500/30 text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider">Autoral</span>
           </div>
           <h3 class="text-xl font-bold text-white mb-2">Matilda Cake</h3>
@@ -159,11 +180,10 @@
     </div>
   </section>
 
-  <!-- 4. A EXPERIÊNCIA DO SALÃO (COM MOTOR DE FOCO BIDIRECIONAL) -->
+  <!-- 4. A EXPERIÊNCIA DO SALÃO (COM MOTOR DE FOCO ÓPTICO) -->
   <section class="py-24 max-w-5xl mx-auto px-5 border-t border-zinc-900">
     <div class="bg-zinc-900/40 border border-zinc-800/80 rounded-3xl p-6 sm:p-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
       
-      <!-- Coluna de Texto (5 colunas no PC) -->
       <div class="lg:col-span-5 space-y-4">
         <span class="text-xs uppercase tracking-[0.2em] text-amber-400 font-bold">O Refúgio Local</span>
         <h2 class="text-2xl sm:text-3xl font-extrabold text-white leading-tight">Um espaço para desacelerar.</h2>
@@ -177,7 +197,6 @@
         </div>
       </div>
       
-      <!-- Coluna da Foto (7 colunas no PC, 100% proporcional, sem cortes) -->
       <div class="lg:col-span-7">
         <div class="optical-frame border border-zinc-800">
           <img src="salao.jpg" alt="Salão da Brat Burger" class="optical-lens-img">
@@ -260,13 +279,9 @@
         images.forEach((img) => {
           const rect = img.getBoundingClientRect();
           const imgCenter = rect.top + (rect.height / 2);
-
-          // Distância entre o centro da imagem e o centro da tela
           const dist = Math.abs(screenCenter - imgCenter);
 
-          // Zona central onde a imagem fica 100% focada (12% da tela)
           const focusZone = vh * 0.12;
-          // Limite até onde o desfoque vai aumentando (65% da tela)
           const maxBlurZone = vh * 0.65;
 
           let ratio = 0;
@@ -275,14 +290,9 @@
             ratio = Math.max(0, Math.min(1, ratio));
           }
 
-          // Curva progressiva suave
           const ease = Math.pow(ratio, 1.35);
-
-          // 1. Desfoque: 0px no centro -> até 14px quando entra/sai da tela
           const blurPx = (ease * 14).toFixed(2);
-          // 2. Movimento de câmera: 1.00 no centro -> 1.14 nas bordas (nunca deixa borda cortada)
           const scaleVal = (1 + (ease * 0.14)).toFixed(3);
-          // 3. Fade de luz: 1.00 no centro -> 0.25 nas bordas
           const opacityVal = (1 - (ease * 0.75)).toFixed(2);
 
           img.style.filter = `blur(${blurPx}px)`;
@@ -291,7 +301,6 @@
         });
       }
 
-      // Atualiza continuamente ao rolar (para baixo ou para cima) e ao redimensionar
       window.addEventListener('scroll', () => {
         window.requestAnimationFrame(renderOpticalFocus);
       }, { passive: true });
