@@ -11,7 +11,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300&display=swap" rel="stylesheet">
   
   <!-- Apontando para o seu arquivo estilo.css -->
-  <link rel="stylesheet" href="estilo.css">
+  <link rel="stylesheet" href="style.css">
 
   <script>
     tailwind.config = {
@@ -69,10 +69,17 @@
     .vertical-media-frame {
       position: relative;
       width: 100%;
-      height: 380px; 
+      height: 320px; /* Altura ideal para telemóveis */
       border-radius: 1rem;
       overflow: hidden;
       background-color: #000;
+    }
+
+    /* Ajuste de altura para PC: mais compacto para o texto e vídeo aparecerem juntos */
+    @media (min-width: 768px) {
+      .vertical-media-frame {
+        height: 260px; 
+      }
     }
 
     .vertical-media-frame img {
@@ -160,10 +167,10 @@
             <img src="rei.gif" alt="Brat Rei do Churrasco">
           </div>
 
-          <!-- Título + Selo reposicionado -->
+          <!-- Título + Selo Padronizado -->
           <div class="flex items-center justify-between mb-3">
             <h3 class="text-xl font-bold text-white">Brat Rei do Churrasco</h3>
-            <span class="bg-amber-400 text-black text-[9px] font-bold px-2 py-1 rounded uppercase tracking-wider">Assinatura</span>
+            <span class="bg-zinc-900 border border-amber-500/40 text-amber-400 text-[9px] font-bold px-2 py-1 rounded uppercase tracking-wider">Assinatura</span>
           </div>
 
           <p class="text-xs sm:text-sm text-zinc-300 leading-relaxed font-light">
@@ -172,7 +179,7 @@
         </div>
       </div>
 
-      <!-- Card 2: Matilda Cake (AGORA COM O MATILDA.GIF) -->
+      <!-- Card 2: Matilda Cake -->
       <div class="bg-brat-card border border-brat-border rounded-3xl p-6 relative overflow-hidden group hover:border-amber-500/40 transition flex flex-col justify-between">
         <div>
           <!-- Mídia Vertical em GIF (matilda.gif) -->
@@ -180,10 +187,10 @@
             <img src="matilda.gif" alt="Matilda Cake">
           </div>
 
-          <!-- Título + Selo reposicionado -->
+          <!-- Título + Selo Padronizado -->
           <div class="flex items-center justify-between mb-3">
             <h3 class="text-xl font-bold text-white">Matilda Cake</h3>
-            <span class="bg-zinc-800 text-amber-400 border border-amber-500/30 text-[9px] font-bold px-2 py-1 rounded uppercase tracking-wider">Autoral</span>
+            <span class="bg-zinc-900 border border-amber-500/40 text-amber-400 text-[9px] font-bold px-2 py-1 rounded uppercase tracking-wider">Autoral</span>
           </div>
 
           <p class="text-xs sm:text-sm text-zinc-300 leading-relaxed font-light">
@@ -258,4 +265,32 @@
       <div class="bg-brat-card border border-brat-border p-5 rounded-2xl space-y-2">
         <div class="text-amber-400">★★★★★</div>
         <p class="italic text-zinc-400 font-light">"Cortes excelentes, ponto da carne perfeito e o provolone melt é sensacional. Vale cada centavo."</p>
-        <div class="font-bold text-zinc-200">— Cliente Ver
+        <div class="font-bold text-zinc-200">— Cliente Verificado no Google</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. RODAPÉ DE CONVERSÃO -->
+  <footer class="py-16 border-t border-zinc-900 bg-black/40 text-center text-xs text-zinc-400 space-y-4">
+    <div class="max-w-xl mx-auto px-5 space-y-2">
+      <div class="font-bold text-white text-base tracking-widest">BRAT BURGER</div>
+      <p class="text-zinc-300">📍 Rua Amazonas, 1652 — São Caetano do Sul, SP</p>
+      <p class="text-zinc-500">Quarta a Domingo, a partir das 18h</p>
+    </div>
+
+    <div class="pt-4">
+      <a href="https://wa.me/5511977889397?text=Olá!%20Gostaria%20de%20fazer%20uma%20reserva%20e%20garantir%20as%20taças%20de%20vinho%20de%20boas-vindas." target="_blank" class="inline-block bg-amber-400 hover:bg-amber-300 text-black font-bold px-8 py-3.5 rounded-full uppercase tracking-wider transition shadow-lg shadow-amber-500/10">
+        Reservar Minha Mesa Agora
+      </a>
+    </div>
+
+    <div class="border-t border-zinc-900/80 pt-8 text-[11px] text-zinc-600">
+      © Brat Burger. Todos os direitos reservados. Isso é Brat.
+    </div>
+  </footer>
+
+  <!-- MOTOR DE LENTE ÓPTICA (SCROLL BIDIRECIONAL) -->
+  <script src="script.js"></script>
+
+</body>
+</html>
