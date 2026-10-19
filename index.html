@@ -10,8 +10,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300&display=swap" rel="stylesheet">
   
-  <!-- Apontando para o seu arquivo style.css correto -->
-  <link rel="stylesheet" href="style.css">
+  <!-- Apontando para o seu arquivo estilo.css -->
+  <link rel="stylesheet" href="estilo.css">
 
   <script>
     tailwind.config = {
@@ -65,7 +65,7 @@
       will-change: filter, transform, opacity;
     }
 
-    /* Moldura para o GIF Vertical (Rei do Churrasco) */
+    /* Moldura para os GIFs Verticais (Rei do Churrasco e Matilda) */
     .vertical-media-frame {
       position: relative;
       width: 100%;
@@ -140,7 +140,7 @@
     </div>
   </section>
 
-  <!-- 3. IDENTIDADE GASTRONÔMICA (COM O REI.GIF) -->
+  <!-- 3. IDENTIDADE GASTRONÔMICA (COM OS 2 GIFs) -->
   <section class="py-20 max-w-5xl mx-auto px-5 border-t border-zinc-900">
     <div class="text-center max-w-xl mx-auto mb-14 space-y-3">
       <span class="text-xs uppercase tracking-[0.25em] text-amber-400 font-bold">Identidade Gastronômica</span>
@@ -152,30 +152,40 @@
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
       
-      <!-- Card 1: Brat Rei do Churrasco (Com o GIF) -->
+      <!-- Card 1: Brat Rei do Churrasco -->
       <div class="bg-brat-card border border-brat-border rounded-3xl p-6 relative overflow-hidden group hover:border-amber-500/40 transition flex flex-col justify-between">
         <div>
           <!-- Mídia Vertical em GIF (rei.gif) -->
           <div class="vertical-media-frame mb-5 border border-zinc-800">
             <img src="rei.gif" alt="Brat Rei do Churrasco">
-            <span class="absolute top-3 right-3 bg-amber-400 text-black text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider z-10 shadow-lg">Assinatura</span>
           </div>
 
-          <h3 class="text-xl font-bold text-white mb-2">Brat Rei do Churrasco</h3>
+          <!-- Título + Selo reposicionado -->
+          <div class="flex items-center justify-between mb-3">
+            <h3 class="text-xl font-bold text-white">Brat Rei do Churrasco</h3>
+            <span class="bg-amber-400 text-black text-[9px] font-bold px-2 py-1 rounded uppercase tracking-wider">Assinatura</span>
+          </div>
+
           <p class="text-xs sm:text-sm text-zinc-300 leading-relaxed font-light">
             Tiras suculentas de baby beef grelhadas no ponto, coroadas pelo nosso Melt de provolone artesanal. O equilíbrio exato entre a intensidade da defumação e a fusão perfeita do queijo tostado na frigideira de ferro, servido no pão brioche selado na manteiga. A máxima expressão da nossa cozinha.
           </p>
         </div>
       </div>
 
-      <!-- Card 2: Matilda Cake -->
+      <!-- Card 2: Matilda Cake (AGORA COM O MATILDA.GIF) -->
       <div class="bg-brat-card border border-brat-border rounded-3xl p-6 relative overflow-hidden group hover:border-amber-500/40 transition flex flex-col justify-between">
         <div>
-          <div class="aspect-video rounded-2xl bg-zinc-900 border border-zinc-800 mb-5 flex items-center justify-center text-zinc-500 text-xs relative overflow-hidden">
-            [ Espaço para Foto do Matilda Cake ]
-            <span class="absolute top-3 right-3 bg-zinc-800 text-amber-400 border border-amber-500/30 text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider">Autoral</span>
+          <!-- Mídia Vertical em GIF (matilda.gif) -->
+          <div class="vertical-media-frame mb-5 border border-zinc-800">
+            <img src="matilda.gif" alt="Matilda Cake">
           </div>
-          <h3 class="text-xl font-bold text-white mb-2">Matilda Cake</h3>
+
+          <!-- Título + Selo reposicionado -->
+          <div class="flex items-center justify-between mb-3">
+            <h3 class="text-xl font-bold text-white">Matilda Cake</h3>
+            <span class="bg-zinc-800 text-amber-400 border border-amber-500/30 text-[9px] font-bold px-2 py-1 rounded uppercase tracking-wider">Autoral</span>
+          </div>
+
           <p class="text-xs sm:text-sm text-zinc-300 leading-relaxed font-light">
             Uma década aperfeiçoando a massa e a densidade do chocolate. Fatia generosa e aveludada, servida com cascata de ganache quente direto à mesa e bolas de sorvete para o contraste perfeito. Feito para encerrar a sua noite sem concessões.
           </p>
@@ -185,7 +195,7 @@
     </div>
   </section>
 
-  <!-- 4. A EXPERIÊNCIA DO SALÃO -->
+  <!-- 4. A EXPERIÊNCIA DO SALÃO (COM MOTOR DE FOCO BIDIRECIONAL) -->
   <section class="py-24 max-w-5xl mx-auto px-5 border-t border-zinc-900">
     <div class="bg-zinc-900/40 border border-zinc-800/80 rounded-3xl p-6 sm:p-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
       
@@ -193,3 +203,59 @@
         <span class="text-xs uppercase tracking-[0.2em] text-amber-400 font-bold">O Refúgio Local</span>
         <h2 class="text-2xl sm:text-3xl font-extrabold text-white leading-tight">Um espaço para desacelerar.</h2>
         <p class="text-zinc-300 text-xs sm:text-sm leading-relaxed font-light">
+          Esqueça o barulho das praças de alimentação. Na Rua Amazonas, criamos um refúgio com iluminação acolhedora, taças de cristal, mesa posta e som na medida certa. O cenário perfeito para dates, casais e conversas que merecem tempo.
+        </p>
+        <div class="pt-3">
+          <a href="https://wa.me/5511977889397?text=Olá!%20Gostaria%20de%20garantir%20minha%20mesa%20com%20as%20taças%20de%20vinho." target="_blank" class="inline-block bg-white hover:bg-zinc-200 text-black text-xs font-bold px-6 py-3.5 rounded-full transition uppercase tracking-wider">
+            Reservar Mesa no Salão
+          </a>
+        </div>
+      </div>
+      
+      <div class="lg:col-span-7">
+        <div class="optical-frame border border-zinc-800">
+          <img src="salao.jpg" alt="Salão da Brat Burger" class="optical-lens-img">
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 5. VISÃO GERAL DO CARDÁPIO -->
+  <section id="cardapio" class="py-20 max-w-5xl mx-auto px-5 border-t border-zinc-900 text-center">
+    <div class="max-w-xl mx-auto space-y-3 mb-8">
+      <span class="text-xs uppercase tracking-[0.2em] text-amber-400 font-bold">Variedade & Rigor</span>
+      <h2 class="text-2xl sm:text-3xl font-extrabold text-white">Nosso Cardápio</h2>
+      <p class="text-zinc-400 text-xs sm:text-sm font-light">
+        Burgers artesanais de cortes nobres, pratos à la carte, coquetelaria autoral (como o Brat Kiss) e entradas pensadas para compartilhar.
+      </p>
+    </div>
+    <a href="https://wa.me/5511977889397?text=Olá!%20Gostaria%20de%20ver%20o%20cardápio%20completo." target="_blank" class="inline-block border border-amber-500/40 bg-amber-500/10 hover:bg-amber-500/20 text-amber-400 font-bold px-8 py-3.5 rounded-full text-xs tracking-widest uppercase transition">
+      Acessar Cardápio Digital Completo
+    </a>
+  </section>
+
+  <!-- 6. PROVA SOCIAL (GOOGLE 4.9) -->
+  <section class="py-20 max-w-5xl mx-auto px-5 border-t border-zinc-900">
+    <div class="text-center max-w-xl mx-auto mb-10 space-y-2">
+      <div class="inline-flex items-center gap-2 bg-zinc-900 border border-zinc-800 px-4 py-1.5 rounded-full text-xs text-amber-400 font-bold">
+        <span>★★★★★</span> <span>4.9 no Google • +350 Avaliações</span>
+      </div>
+      <h2 class="text-xl sm:text-2xl font-bold text-white">A escolha sem risco em São Caetano.</h2>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs text-zinc-300">
+      <div class="bg-brat-card border border-brat-border p-5 rounded-2xl space-y-2">
+        <div class="text-amber-400">★★★★★</div>
+        <p class="italic text-zinc-400 font-light">"Melhor hambúrguer da região disparado. O atendimento e o ambiente são impecáveis para jantar a dois."</p>
+        <div class="font-bold text-zinc-200">— Cliente Verificado no Google</div>
+      </div>
+      <div class="bg-brat-card border border-brat-border p-5 rounded-2xl space-y-2">
+        <div class="text-amber-400">★★★★★</div>
+        <p class="italic text-zinc-400 font-light">"O Matilda Cake com a ganache quente é uma experiência à parte. Nota 10 em tudo."</p>
+        <div class="font-bold text-zinc-200">— Cliente Verificado no Google</div>
+      </div>
+      <div class="bg-brat-card border border-brat-border p-5 rounded-2xl space-y-2">
+        <div class="text-amber-400">★★★★★</div>
+        <p class="italic text-zinc-400 font-light">"Cortes excelentes, ponto da carne perfeito e o provolone melt é sensacional. Vale cada centavo."</p>
+        <div class="font-bold text-zinc-200">— Cliente Ver
