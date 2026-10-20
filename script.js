@@ -1,67 +1,95 @@
 /* ========================================================
-   BRAT BURGER — ENGINE DE FOCO ÓPTICO NO SCROLL
+   BRAT BURGER — ENGINE CINEMATOGRÁFICA & FOCO ÓPTICO
    ======================================================== */
 
 document.addEventListener('DOMContentLoaded', () => {
-  const focusElements = document.querySelectorAll('.scroll-focus-img');
 
-  function updateScrollFocus() {
-    const viewportHeight = window.innerHeight;
-    const viewportCenter = viewportHeight / 2;
+  // --------------------------------------------------------
+  // 1. A INTRODUÇÃO CINEMATOGRÁFICA (SPLASH SCREEN)
+  // --------------------------------------------------------
+  const splashScreen = document.getElementById('splash-screen');
+  
+  if(splashScreen) {
+    const col1 = document.getElementById('splash-col-1');
+    const col2 = document.getElementById('splash-col-2');
+    const col3 = document.getElementById('splash-col-3');
+    const colsContainer = document.getElementById('splash-cols');
+    const dot = document.getElementById('splash-dot');
 
-    focusElements.forEach((img) => {
+    // Remove o scroll da página enquanto passa a intro
+    document.body.style.overflow = 'hidden';
+
+    // A. Revelar as 3 colunas em sequência (Batida Cardiaca)
+    setTimeout(() => { col1.style.opacity = '1'; col1.style.transform = 'translateY(0)'; }, 300);
+    setTimeout(() => { col2.style.opacity = '1'; col2.style.transform = 'translateY(0)'; }, 1100);
+    setTimeout(() => { col3.style.opacity = '1'; col3.style.transform = 'translateY(0)'; }, 1900);
+
+    // B. Apagar colunas e chamar o Mascote (O Ponto Amarelo)
+    setTimeout(() => {
+      colsContainer.style.opacity = '0';
+      
+      setTimeout(() => {
+        dot.style.opacity = '1';
+        dot.style.transform = 'translate(-50%, -50%) scale(1)';
+      }, 400); // Entra mal as colunas começam a apagar
+    }, 3200);
+
+    // C. O Mascote explode / expande para revelar o site
+    setTimeout(() => {
+      dot.style.transform = 'translate(-50%, -50%) scale(150)';
+      dot.style.opacity = '0';
+    }, 4500);
+
+    // D. O ecrã preto da Intro dissolve-se e devolve o scroll ao utilizador
+    setTimeout(() => {
+      splashScreen.style.opacity = '0';
+      setTimeout(() => { 
+        splashScreen.style.display = 'none'; 
+        document.body.style.overflow = 'auto'; // Devolve o scroll!
+      }, 800);
+    }, 4800);
+  }
+
+  // --------------------------------------------------------
+  // 2. MOTOR DE FOCO ÓPTICO NO SCROLL (SALÃO)
+  // --------------------------------------------------------
+  const images = document.querySelectorAll('.optical-lens-img');
+
+  function renderOpticalFocus() {
+    const vh = window.innerHeight;
+    const screenCenter = vh / 2;
+
+    images.forEach((img) => {
       const rect = img.getBoundingClientRect();
-      const elementCenter = rect.top + rect.height / 2;
+      const imgCenter = rect.top + (rect.height / 2);
+      const dist = Math.abs(screenCenter - imgCenter);
 
-      // Distância do centro da foto até o centro exato da tela
-      const distanceFromCenter = Math.abs(viewportCenter - elementCenter);
+      const focusZone = vh * 0.12;
+      const maxBlurZone = vh * 0.65;
 
-      // Raio de tolerância no centro onde a foto fica 100% focada e nítida (18% da altura da tela)
-      const sweetSpot = viewportHeight * 0.18;
-      // Distância máxima para cálculo do efeito (75% da altura da tela)
-      const maxDistance = viewportHeight * 0.75;
-
-      let progress = 0;
-
-      if (distanceFromCenter > sweetSpot) {
-        progress = (distanceFromCenter - sweetSpot) / (maxDistance - sweetSpot);
-        progress = Math.min(Math.max(progress, 0), 1); // Trava entre 0 e 1
+      let ratio = 0;
+      if (dist > focusZone) {
+        ratio = (dist - focusZone) / (maxBlurZone - focusZone);
+        ratio = Math.max(0, Math.min(1, ratio));
       }
 
-      // Curva suave (easeInOut) para a lente focar/desfocar organicamente
-      const smoothCurve = Math.pow(progress, 1.4);
+      const ease = Math.pow(ratio, 1.35);
+      const blurPx = (ease * 14).toFixed(2);
+      const scaleVal = (1 + (ease * 0.14)).toFixed(3);
+      const opacityVal = (1 - (ease * 0.75)).toFixed(2);
 
-      // Cálculo dos 3 parâmetros cinematográficos:
-      // 1. Blur: 0px no centro -> até 10px nas extremidades (entrando ou saindo)
-      const blurValue = (smoothCurve * 10).toFixed(2);
-
-      // 2. Escala: 1.00 no centro -> 0.90 nas pontas (efeito de aproximação ao focar)
-      const scaleValue = (1 - smoothCurve * 0.10).toFixed(3);
-
-      // 3. Opacidade/Brilho: 1.00 no centro -> 0.35 nas pontas (fade de entrada e saída)
-      const opacityValue = (1 - smoothCurve * 0.65).toFixed(2);
-
-      // Aplica na imagem em tempo real
-      img.style.filter = `blur(${blurValue}px)`;
-      img.style.transform = `scale(${scaleValue})`;
-      img.style.opacity = opacityValue;
+      img.style.filter = `blur(${blurPx}px)`;
+      img.style.transform = `scale(${scaleVal})`;
+      img.style.opacity = opacityVal;
     });
   }
 
-  // Otimização a 60fps com requestAnimationFrame para funcionar liso no PC e no Celular
-  let isTicking = false;
   window.addEventListener('scroll', () => {
-    if (!isTicking) {
-      window.requestAnimationFrame(() => {
-        updateScrollFocus();
-        isTicking = false;
-      });
-      isTicking = true;
-    }
+    window.requestAnimationFrame(renderOpticalFocus);
   }, { passive: true });
 
-  window.addEventListener('resize', updateScrollFocus);
+  window.addEventListener('resize', renderOpticalFocus);
+  window.addEventListener('load', renderOpticalFocus);
+  renderOpticalFocus();
 
-  // Dispara o cálculo assim que a página abre
-  updateScrollFocus();
 });
