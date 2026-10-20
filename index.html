@@ -10,7 +10,6 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300&display=swap" rel="stylesheet">
   
-  <!-- Apontando para o seu arquivo style.css correto -->
   <link rel="stylesheet" href="style.css">
 
   <script>
@@ -34,7 +33,6 @@
   </script>
 
   <style>
-    /* Garantir que a página role livremente sem cortes */
     html, body {
       font-family: 'Montserrat', sans-serif;
       background-color: #08080A;
@@ -46,79 +44,100 @@
       overflow-x: hidden;
     }
 
-    /* Moldura Óptica da Foto (Sem cortar e sem distorcer) */
+    /* MOLDURAS */
     .optical-frame {
-      position: relative;
-      width: 100%;
-      border-radius: 1rem;
-      overflow: hidden;
-      background-color: #08080A;
-      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.85);
+      position: relative; width: 100%; border-radius: 1rem; overflow: hidden;
+      background-color: #08080A; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.85);
     }
-
-    /* A Imagem controlada pelo Scroll */
     .optical-lens-img {
-      width: 100%;
-      height: auto;
-      display: block;
-      transform-origin: center center;
+      width: 100%; height: auto; display: block; transform-origin: center center;
       will-change: filter, transform, opacity;
     }
-
-    /* Moldura para os GIFs Verticais (Rei do Churrasco e Matilda) */
     .vertical-media-frame {
-      position: relative;
-      width: 100%;
-      height: 320px; 
-      border-radius: 1rem;
-      overflow: hidden;
-      background-color: #000;
+      position: relative; width: 100%; height: 320px; border-radius: 1rem;
+      overflow: hidden; background-color: #000;
     }
-
-    /* Ajuste de altura para PC: mais compacto para o texto e vídeo aparecerem juntos */
     @media (min-width: 768px) {
-      .vertical-media-frame {
-        height: 260px; 
-      }
+      .vertical-media-frame { height: 260px; }
     }
-
     .vertical-media-frame img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
+      width: 100%; height: 100%; object-fit: cover;
       transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
     }
+    .vertical-media-frame:hover img { transform: scale(1.05); }
 
-    .vertical-media-frame:hover img {
-      transform: scale(1.05);
+    /* ESTILOS DA INTRODUÇÃO CINEMATOGRÁFICA (SPLASH) */
+    #splash-screen {
+      transition: opacity 0.8s ease-out;
+    }
+    #splash-cols {
+      transition: opacity 0.4s ease-in-out;
+    }
+    .splash-col {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+    /* O Ícone/Mascote: Quadrado com cantos arredondados (squircle) */
+    #splash-dot {
+      opacity: 0;
+      transform: translate(-50%, -50%) scale(0);
+      /* Curva de animação para dar aquele efeito de "pulso" explosivo */
+      transition: transform 0.9s cubic-bezier(0.85, 0, 0.15, 1), opacity 0.5s ease;
     }
   </style>
 </head>
 <body class="text-zinc-100 antialiased selection:bg-amber-400 selection:text-black">
 
+  <!-- ========================================== -->
+  <!-- INTRODUÇÃO CINEMATOGRÁFICA (CORTINA)       -->
+  <!-- ========================================== -->
+  <div id="splash-screen" class="fixed inset-0 z-[100] bg-[#08080A] flex flex-col justify-center items-center overflow-hidden">
+    
+    <!-- As 3 Colunas -->
+    <div id="splash-cols" class="absolute inset-0 flex flex-row w-full h-full">
+      <!-- Coluna 1: Rei do Churrasco -->
+      <div id="splash-col-1" class="splash-col w-1/3 h-full border-r border-zinc-900/50 relative">
+        <div class="absolute inset-0 bg-black/30 z-10"></div> <!-- Filtro cinemático -->
+        <img src="rei.gif" class="w-full h-full object-cover opacity-80" alt="Intro 1">
+      </div>
+      <!-- Coluna 2: Matilda Cake -->
+      <div id="splash-col-2" class="splash-col w-1/3 h-full border-r border-zinc-900/50 relative">
+        <div class="absolute inset-0 bg-black/30 z-10"></div> <!-- Filtro cinemático -->
+        <img src="matilda.gif" class="w-full h-full object-cover opacity-80" alt="Intro 2">
+      </div>
+      <!-- Coluna 3: Painel Escuro / Grelha Abstrata -->
+      <div id="splash-col-3" class="splash-col w-1/3 h-full bg-zinc-950 relative">
+        <!-- Textura subtil escura -->
+        <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-zinc-900/40 via-black to-black"></div>
+      </div>
+    </div>
+
+    <!-- O Mascote: Ponto Amarelo Brat -->
+    <div id="splash-dot" class="absolute top-1/2 left-1/2 w-10 h-10 bg-amber-400 rounded-[12px] shadow-[0_0_40px_rgba(212,175,55,0.6)] z-20"></div>
+
+  </div>
+  <!-- ========================================== -->
+
   <!-- 1. NAVBAR FLUTUANTE -->
   <header class="fixed top-0 inset-x-0 z-50 backdrop-blur-xl bg-[#08080A]/85 border-b border-zinc-800/60">
     <div class="max-w-5xl mx-auto px-5 h-20 flex items-center justify-between">
       <div class="flex items-center gap-3">
-        <!-- LOGO DO TOPO MAIOR (Brat + Ícone) -->
         <img src="logo-topo.png" alt="Brat" class="h-10 sm:h-14 object-contain drop-shadow-md">
-        
         <span class="text-[10px] uppercase tracking-widest text-zinc-500 border-l border-zinc-800 pl-3 hidden sm:inline">São Caetano do Sul</span>
       </div>
-
       <div class="flex items-center gap-2 bg-zinc-900/80 border border-zinc-800/80 px-3 py-1 rounded-full text-xs">
         <span class="text-amber-400">★</span>
         <span class="font-semibold text-zinc-200">4.9</span>
         <span class="text-zinc-500 text-[10px] hidden sm:inline">(350+ avaliações)</span>
       </div>
-
       <a href="https://wa.me/5511977889397?text=Olá!%20Gostaria%20de%20fazer%20uma%20reserva%20e%20garantir%20as%20taças%20de%20vinho%20de%20boas-vindas." target="_blank" class="bg-white hover:bg-zinc-200 text-black text-xs font-bold px-4 py-2 rounded-full transition tracking-wider uppercase">
         Reservar Mesa
       </a>
     </div>
   </header>
 
-  <!-- 2. HERO SECTION -->
+  <!-- 2. HERO SECTION (TEXTO ENXUTO - SOCO VISUAL) -->
   <section class="min-h-[88vh] flex flex-col justify-center items-center text-center px-5 pt-28 pb-16 relative">
     <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-amber-950/20 via-transparent to-transparent -z-10"></div>
 
@@ -127,16 +146,17 @@
         <span>O burger elevado a alta gastronomia</span>
       </div>
 
-      <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight text-white leading-[1.15]">
+      <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight text-white leading-[1.10]">
         Esqueça o óbvio.<br>
         <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-amber-400 to-amber-600">Sua nova mesa está pronta.</span>
       </h1>
 
-      <p class="text-sm sm:text-base text-zinc-300 font-light max-w-xl mx-auto leading-relaxed">
-        Hambúrgueres confeccionados a partir de cortes nobres selecionados, tiras de baby beef grelhadas na chapa e nenhum atalho. Iluminação pensada para a conversa fluir e aquela sensação de que a noite vale a pena. Na Rua Amazonas, do seu jeito. <strong class="text-amber-400 font-semibold">Isso é Brat.</strong>
+      <!-- Parágrafo Limpo e Direto (Regra dos 3 Segundos) -->
+      <p class="text-sm sm:text-lg text-zinc-300 font-light max-w-lg mx-auto leading-relaxed">
+        Cortes nobres. Frigideira de ferro. O seu refúgio em São Caetano. <strong class="text-amber-400 font-semibold">Isso é Brat.</strong>
       </p>
 
-      <div class="pt-4 flex flex-col sm:flex-row items-center justify-center gap-3 w-full sm:w-auto">
+      <div class="pt-6 flex flex-col sm:flex-row items-center justify-center gap-3 w-full sm:w-auto">
         <a href="https://wa.me/5511977889397?text=Olá!%20Gostaria%20de%20fazer%20uma%20reserva%20e%20garantir%20as%20taças%20de%20vinho%20de%20boas-vindas." target="_blank" class="w-full sm:w-auto bg-amber-400 hover:bg-amber-300 text-black font-bold px-8 py-3.5 rounded-full transition text-xs tracking-widest uppercase shadow-lg shadow-amber-500/10">
           Garantir Mesa + Taças de Vinho
         </a>
@@ -147,7 +167,7 @@
     </div>
   </section>
 
-  <!-- 3. IDENTIDADE GASTRONÔMICA (COM OS 2 GIFs) -->
+  <!-- 3. IDENTIDADE GASTRONÔMICA -->
   <section class="py-20 max-w-5xl mx-auto px-5 border-t border-zinc-900">
     <div class="text-center max-w-xl mx-auto mb-14 space-y-3">
       <span class="text-xs uppercase tracking-[0.25em] text-amber-400 font-bold">Identidade Gastronômica</span>
@@ -158,54 +178,43 @@
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-      
-      <!-- Card 1: Brat Rei do Churrasco -->
+      <!-- Card 1 -->
       <div class="bg-brat-card border border-brat-border rounded-3xl p-6 relative overflow-hidden group hover:border-amber-500/40 transition flex flex-col justify-between">
         <div>
-          <!-- Mídia Vertical em GIF (rei.gif) -->
           <div class="vertical-media-frame mb-5 border border-zinc-800">
             <img src="rei.gif" alt="Brat Rei do Churrasco">
           </div>
-
-          <!-- Título + Selo Padronizado -->
           <div class="flex items-center justify-between mb-3">
             <h3 class="text-xl font-bold text-white">Brat Rei do Churrasco</h3>
             <span class="bg-zinc-900 border border-amber-500/40 text-amber-400 text-[9px] font-bold px-2 py-1 rounded uppercase tracking-wider flex-shrink-0 ml-2">Assinatura</span>
           </div>
-
           <p class="text-xs sm:text-sm text-zinc-300 leading-relaxed font-light">
             Tiras suculentas de baby beef grelhadas no ponto, coroadas pelo nosso Melt de provolone artesanal. O equilíbrio exato entre a intensidade da defumação e a fusão perfeita do queijo tostado na frigideira de ferro, servido no pão brioche selado na manteiga. A máxima expressão da nossa cozinha.
           </p>
         </div>
       </div>
 
-      <!-- Card 2: Matilda Cake (COM O MATILDA.GIF) -->
+      <!-- Card 2 -->
       <div class="bg-brat-card border border-brat-border rounded-3xl p-6 relative overflow-hidden group hover:border-amber-500/40 transition flex flex-col justify-between">
         <div>
-          <!-- Mídia Vertical em GIF (matilda.gif) -->
           <div class="vertical-media-frame mb-5 border border-zinc-800">
             <img src="matilda.gif" alt="Matilda Cake">
           </div>
-
-          <!-- Título + Selo Padronizado -->
           <div class="flex items-center justify-between mb-3">
             <h3 class="text-xl font-bold text-white">Matilda Cake</h3>
             <span class="bg-zinc-900 border border-amber-500/40 text-amber-400 text-[9px] font-bold px-2 py-1 rounded uppercase tracking-wider flex-shrink-0 ml-2">Autoral</span>
           </div>
-
           <p class="text-xs sm:text-sm text-zinc-300 leading-relaxed font-light">
             Uma década aperfeiçoando a massa e a densidade do chocolate. Fatia generosa e aveludada, servida com cascata de ganache quente direto à mesa e bolas de sorvete para o contraste perfeito. Feito para encerrar a sua noite sem concessões.
           </p>
         </div>
       </div>
-
     </div>
   </section>
 
-  <!-- 4. A EXPERIÊNCIA DO SALÃO (COM MOTOR DE FOCO BIDIRECIONAL) -->
+  <!-- 4. A EXPERIÊNCIA DO SALÃO -->
   <section class="py-24 max-w-5xl mx-auto px-5 border-t border-zinc-900">
     <div class="bg-zinc-900/40 border border-zinc-800/80 rounded-3xl p-6 sm:p-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-      
       <div class="lg:col-span-5 space-y-4">
         <span class="text-xs uppercase tracking-[0.2em] text-amber-400 font-bold">O Refúgio Local</span>
         <h2 class="text-2xl sm:text-3xl font-extrabold text-white leading-tight">Um espaço para desacelerar.</h2>
@@ -218,13 +227,11 @@
           </a>
         </div>
       </div>
-      
       <div class="lg:col-span-7">
         <div class="optical-frame border border-zinc-800">
           <img src="salao.jpg" alt="Salão da Brat Burger" class="optical-lens-img">
         </div>
       </div>
-
     </div>
   </section>
 
@@ -242,7 +249,7 @@
     </a>
   </section>
 
-  <!-- 6. PROVA SOCIAL (GOOGLE 4.9) -->
+  <!-- 6. PROVA SOCIAL -->
   <section class="py-20 max-w-5xl mx-auto px-5 border-t border-zinc-900">
     <div class="text-center max-w-xl mx-auto mb-10 space-y-2">
       <div class="inline-flex items-center gap-2 bg-zinc-900 border border-zinc-800 px-4 py-1.5 rounded-full text-xs text-amber-400 font-bold">
@@ -250,7 +257,6 @@
       </div>
       <h2 class="text-xl sm:text-2xl font-bold text-white">A escolha sem risco em São Caetano.</h2>
     </div>
-
     <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs text-zinc-300">
       <div class="bg-brat-card border border-brat-border p-5 rounded-2xl space-y-2">
         <div class="text-amber-400">★★★★★</div>
@@ -270,29 +276,25 @@
     </div>
   </section>
 
-  <!-- 7. RODAPÉ DE CONVERSÃO -->
+  <!-- 7. RODAPÉ -->
   <footer class="py-16 border-t border-zinc-900 bg-black/40 text-center text-xs text-zinc-400 space-y-4">
     <div class="max-w-xl mx-auto px-5 space-y-2">
-      <!-- LOGO DO RODAPÉ (Bem Maior e mais imponente) -->
       <div class="mb-6">
-        <img src="logo-rodape.png" alt="Brat Burger Oficial" class="h-24 sm:h-32 mx-auto opacity-90 hover:opacity-100 transition duration-300 object-contain">
+        <img src="logo-rodape.png" alt="Brat Burger Oficial" class="h-16 sm:h-24 mx-auto opacity-90 hover:opacity-100 transition duration-300 object-contain">
       </div>
       <p class="text-zinc-300">📍 Rua Amazonas, 1652 — São Caetano do Sul, SP</p>
       <p class="text-zinc-500">Quarta a Domingo, a partir das 18h</p>
     </div>
-
     <div class="pt-4">
       <a href="https://wa.me/5511977889397?text=Olá!%20Gostaria%20de%20fazer%20uma%20reserva%20e%20garantir%20as%20taças%20de%20vinho%20de%20boas-vindas." target="_blank" class="inline-block bg-amber-400 hover:bg-amber-300 text-black font-bold px-8 py-3.5 rounded-full uppercase tracking-wider transition shadow-lg shadow-amber-500/10">
         Reservar Minha Mesa Agora
       </a>
     </div>
-
     <div class="border-t border-zinc-900/80 pt-8 text-[11px] text-zinc-600">
       © Brat Burger. Todos os direitos reservados. Isso é Brat.
     </div>
   </footer>
 
-  <!-- MOTOR DE LENTE ÓPTICA (SCROLL BIDIRECIONAL) -->
   <script src="script.js"></script>
 
 </body>
