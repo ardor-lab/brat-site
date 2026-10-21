@@ -10,89 +10,43 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300&display=swap" rel="stylesheet">
   
-  <link rel="stylesheet" href="style.css">
-
   <script>
     tailwind.config = {
       theme: {
         extend: {
-          fontFamily: {
-            sans: ['Montserrat', 'sans-serif'],
-          },
-          colors: {
-            brat: {
-              gold: '#D4AF37',
-              dark: '#08080A',
-              card: '#121216',
-              border: '#22222A'
-            }
-          }
+          fontFamily: { sans: ['Montserrat', 'sans-serif'] },
+          colors: { brat: { gold: '#D4AF37', dark: '#08080A', card: '#121216', border: '#22222A' } }
         }
       }
     }
   </script>
 
   <style>
-    html, body {
-      font-family: 'Montserrat', sans-serif;
-      background-color: #08080A;
-      color: #f4f4f5;
-      margin: 0;
-      padding: 0;
-      width: 100%;
-      min-height: 100vh;
-      overflow-x: hidden;
-    }
-
-    /* MOLDURAS */
-    .optical-frame {
-      position: relative; width: 100%; border-radius: 1rem; overflow: hidden;
-      background-color: #08080A; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.85);
-    }
-    .optical-lens-img {
-      width: 100%; height: auto; display: block; transform-origin: center center;
-      will-change: filter, transform, opacity;
-    }
-
-    /* Moldura para os GIFs Verticais (Agora mais altos para evitar cortes) */
-    .vertical-media-frame {
-      position: relative; width: 100%; height: 400px; 
-      border-radius: 1rem; overflow: hidden; background-color: #000;
-    }
-    @media (min-width: 768px) {
-      /* Altura expandida no PC para respeitar o formato Reel 9:16 e focar a comida */
-      .vertical-media-frame { height: 450px; }
-    }
-    .vertical-media-frame img {
-      width: 100%; height: 100%; object-fit: cover; object-position: center;
-      transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
-    }
+    html, body { font-family: 'Montserrat', sans-serif; background-color: #08080A; color: #f4f4f5; margin: 0; padding: 0; width: 100%; min-height: 100vh; overflow-x: hidden; }
+    .optical-frame { position: relative; width: 100%; border-radius: 1rem; overflow: hidden; background-color: #08080A; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.85); }
+    .optical-lens-img { width: 100%; height: auto; display: block; transform-origin: center center; will-change: filter, transform, opacity; }
+    
+    .vertical-media-frame { position: relative; width: 100%; height: 320px; border-radius: 1rem; overflow: hidden; background-color: #000; }
+    @media (min-width: 768px) { .vertical-media-frame { height: 450px; } }
+    .vertical-media-frame img { width: 100%; height: 100%; object-fit: cover; object-position: center; transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1); }
     .vertical-media-frame:hover img { transform: scale(1.03); }
 
-    /* ESTILOS DA INTRODUÇÃO CINEMATOGRÁFICA (SPLASH) */
-    #splash-screen { transition: opacity 0.8s ease-out; }
+    /* ANIMAÇÃO CSS DA CORTINA */
+    @keyframes forceRemoveSplash {
+      0% { opacity: 1; visibility: visible; }
+      85% { opacity: 1; visibility: visible; }
+      99% { opacity: 0; visibility: visible; }
+      100% { opacity: 0; visibility: hidden; pointer-events: none; z-index: -100; display: none; }
+    }
+    #splash-screen { animation: forceRemoveSplash 5.5s forwards !important; }
     #splash-cols { transition: opacity 0.4s ease-in-out; }
-    .splash-col {
-      opacity: 0; transform: translateY(30px);
-      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-    }
-    #splash-dot {
-      opacity: 0; transform: translate(-50%, -50%) scale(0);
-      transition: transform 0.9s cubic-bezier(0.85, 0, 0.15, 1), opacity 0.5s ease;
-    }
-
-    /* Efeito visual para o fundo do mapa fake */
-    .map-bg-pattern {
-      background-image: radial-gradient(#22222A 1px, transparent 1px);
-      background-size: 20px 20px;
-    }
+    .splash-col { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; }
+    #splash-dot { opacity: 0; transform: translate(-50%, -50%) scale(0); transition: transform 0.9s cubic-bezier(0.85, 0, 0.15, 1), opacity 0.5s ease; }
   </style>
 </head>
 <body class="text-zinc-100 antialiased selection:bg-amber-400 selection:text-black relative">
 
-  <!-- ========================================== -->
-  <!-- INTRODUÇÃO CINEMATOGRÁFICA (CORTINA)       -->
-  <!-- ========================================== -->
+  <!-- CORTINA CINEMATOGRÁFICA -->
   <div id="splash-screen" class="fixed inset-0 z-[100] bg-[#08080A] flex flex-col justify-center items-center overflow-hidden">
     <div id="splash-cols" class="absolute inset-0 flex flex-row w-full h-full">
       <div id="splash-col-1" class="splash-col w-1/3 h-full border-r border-zinc-900/50 relative">
@@ -110,10 +64,9 @@
     </div>
     <div id="splash-dot" class="absolute top-1/2 left-1/2 w-10 h-10 bg-amber-400 rounded-[12px] shadow-[0_0_40px_rgba(212,175,55,0.6)] z-20"></div>
   </div>
-  <!-- ========================================== -->
 
-  <!-- BOTÃO FLUTUANTE WHATSAPP -->
-  <a href="https://wa.me/5511977889397?text=Olá!%20Gostaria%20de%20tirar%20uma%20dúvida%20sobre%20a%20Brat." target="_blank" class="fixed bottom-6 right-6 z-[90] bg-[#25D366] text-white p-4 rounded-full shadow-[0_4px_14px_rgba(37,211,102,0.4)] hover:scale-110 transition-transform duration-300 flex items-center justify-center group" aria-label="Falar no WhatsApp">
+  <!-- WHATSAPP FLUTUANTE CORRIGIDO (Alinhamento Perfeito) -->
+  <a href="https://wa.me/5511977889397?text=Olá!%20Gostaria%20de%20tirar%20uma%20dúvida%20sobre%20a%20Brat." target="_blank" class="fixed bottom-6 right-6 z-[90] bg-[#25D366] text-white w-14 h-14 rounded-full shadow-[0_4px_14px_rgba(37,211,102,0.4)] hover:scale-110 transition-transform duration-300 flex items-center justify-center group" aria-label="Falar no WhatsApp">
     <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24"><path d="M12.031 21.082a9.96 9.96 0 0 1-5.111-1.405l-.366-.217-3.8.995 1.018-3.705-.238-.378A9.97 9.97 0 0 1 2.05 12C2.05 6.486 6.536 2 12.05 2c5.514 0 10 4.486 10 10s-4.486 10-10 10zM12.05 3.652A8.358 8.358 0 0 0 3.705 12c0 1.637.427 3.23 1.24 4.63l.115.197-.597 2.17 2.222-.582.19.112A8.347 8.347 0 0 0 12.05 20.35a8.358 8.358 0 0 0 8.345-8.35c0-4.604-3.743-8.348-8.345-8.348zm4.568 11.41c-.25.7-1.48 1.34-2.04 1.41-.53.07-1.16.14-3.32-.75-2.61-1.08-4.28-3.75-4.41-3.92-.13-.18-1.05-1.4-1.05-2.67 0-1.27.66-1.89.89-2.14.23-.25.5-.31.66-.31.17 0 .34 0 .49.02.16.01.38-.06.59.43.21.5.73 1.76.79 1.89.06.13.1.28.02.44-.08.16-.13.26-.26.41-.13.15-.28.34-.39.46-.13.14-.27.29-.11.56.16.27.7 1.15 1.5 1.86.99.88 1.85 1.15 2.13 1.28.27.13.43.1.59-.08.16-.18.69-.8.88-1.07.18-.28.36-.23.6-.14.24.09 1.5.71 1.75.83.25.13.41.19.47.29.06.11.06.63-.19 1.33z"/></svg>
   </a>
 
@@ -124,9 +77,12 @@
         <img src="logo-topo.png" alt="Brat" class="h-10 sm:h-14 object-contain drop-shadow-md">
         <span class="text-[10px] uppercase tracking-widest text-zinc-500 border-l border-zinc-800 pl-3 hidden sm:inline">São Caetano do Sul</span>
       </div>
-      <div class="flex items-center gap-2 bg-zinc-900/80 border border-zinc-800/80 px-3 py-1 rounded-full text-xs">
+      
+      <!-- AVALIAÇÃO DO TOPO CLICÁVEL -->
+      <a href="https://maps.google.com/?q=Brat+Burger,+Rua+Amazonas,+1652+-+São+Caetano+do+Sul" target="_blank" class="flex items-center gap-2 bg-zinc-900/80 border border-zinc-800/80 hover:bg-zinc-800 hover:border-amber-500/50 px-3 py-1 rounded-full text-xs transition cursor-pointer">
         <span class="text-amber-400">★</span><span class="font-semibold text-zinc-200">4.9</span><span class="text-zinc-500 text-[10px] hidden sm:inline">(350+ avaliações)</span>
-      </div>
+      </a>
+
       <a href="https://wa.me/5511977889397?text=Olá!%20Gostaria%20de%20fazer%20uma%20reserva%20e%20garantir%20as%20taças%20de%20vinho%20de%20boas-vindas." target="_blank" class="bg-white hover:bg-zinc-200 text-black text-xs font-bold px-4 py-2 rounded-full transition tracking-wider uppercase">Reservar Mesa</a>
     </div>
   </header>
@@ -153,10 +109,8 @@
       <p class="text-zinc-400 text-xs sm:text-sm font-light leading-relaxed">Não criamos pratos para seguir tendências. Criamos receitas que exigiram anos de estudo, matemática e testes exaustivos para entregar sabor de verdade na sua mesa.</p>
     </div>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-      <!-- Card 1 -->
       <div class="bg-brat-card border border-brat-border rounded-3xl p-6 relative overflow-hidden group hover:border-amber-500/40 transition flex flex-col justify-between">
         <div>
-          <!-- Altura ajustada via CSS para evitar cortes no enquadramento -->
           <div class="vertical-media-frame mb-5 border border-zinc-800"><img src="rei.gif" alt="Brat Rei do Churrasco"></div>
           <div class="flex items-center justify-between mb-3">
             <h3 class="text-xl font-bold text-white">Brat Rei do Churrasco</h3><span class="bg-zinc-900 border border-amber-500/40 text-amber-400 text-[9px] font-bold px-2 py-1 rounded uppercase tracking-wider flex-shrink-0 ml-2">Assinatura</span>
@@ -164,10 +118,8 @@
           <p class="text-xs sm:text-sm text-zinc-300 leading-relaxed font-light">Tiras suculentas de baby beef grelhadas no ponto, coroadas pelo nosso Melt de provolone artesanal. O equilíbrio exato entre a intensidade da defumação e a fusão perfeita do queijo tostado na frigideira de ferro, servido no pão brioche selado na manteiga. A máxima expressão da nossa cozinha.</p>
         </div>
       </div>
-      <!-- Card 2 -->
       <div class="bg-brat-card border border-brat-border rounded-3xl p-6 relative overflow-hidden group hover:border-amber-500/40 transition flex flex-col justify-between">
         <div>
-          <!-- Altura ajustada via CSS para evitar cortes no enquadramento -->
           <div class="vertical-media-frame mb-5 border border-zinc-800"><img src="matilda.gif" alt="Matilda Cake"></div>
           <div class="flex items-center justify-between mb-3">
             <h3 class="text-xl font-bold text-white">Matilda Cake</h3><span class="bg-zinc-900 border border-amber-500/40 text-amber-400 text-[9px] font-bold px-2 py-1 rounded uppercase tracking-wider flex-shrink-0 ml-2">Autoral</span>
@@ -205,11 +157,13 @@
     <a href="https://wa.me/5511977889397?text=Olá!%20Gostaria%20de%20ver%20o%20cardápio%20completo." target="_blank" class="inline-block border border-amber-500/40 bg-amber-500/10 hover:bg-amber-500/20 text-amber-400 font-bold px-8 py-3.5 rounded-full text-xs tracking-widest uppercase transition">Acessar Cardápio Digital Completo</a>
   </section>
 
-  <!-- PROVA SOCIAL -->
+  <!-- PROVA SOCIAL COM AVALIAÇÃO CLICÁVEL -->
   <section class="py-20 max-w-5xl mx-auto px-5 border-t border-zinc-900">
     <div class="text-center max-w-xl mx-auto mb-10 space-y-2">
-      <div class="inline-flex items-center gap-2 bg-zinc-900 border border-zinc-800 px-4 py-1.5 rounded-full text-xs text-amber-400 font-bold"><span>★★★★★</span> <span>4.9 no Google • +350 Avaliações</span></div>
-      <h2 class="text-xl sm:text-2xl font-bold text-white">A escolha sem risco em São Caetano.</h2>
+      <a href="https://maps.google.com/?q=Brat+Burger,+Rua+Amazonas,+1652+-+São+Caetano+do+Sul" target="_blank" class="inline-flex items-center gap-2 bg-zinc-900 border border-zinc-800 hover:border-amber-500/50 hover:bg-zinc-800 px-4 py-1.5 rounded-full text-xs text-amber-400 font-bold transition cursor-pointer">
+        <span>★★★★★</span> <span>4.9 no Google • +350 Avaliações</span>
+      </a>
+      <h2 class="text-xl sm:text-2xl font-bold text-white mt-4">A escolha sem risco em São Caetano.</h2>
     </div>
     <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs text-zinc-300">
       <div class="bg-brat-card border border-brat-border p-5 rounded-2xl space-y-2"><div class="text-amber-400">★★★★★</div><p class="italic text-zinc-400 font-light">"Melhor hambúrguer da região disparado. O atendimento e o ambiente são impecáveis para jantar a dois."</p><div class="font-bold text-zinc-200">— Cliente Verificado no Google</div></div>
@@ -218,7 +172,7 @@
     </div>
   </section>
 
-  <!-- SUPER SECÇÃO: GPS E LOCALIZAÇÃO DESTAQUE -->
+  <!-- SUPER SECÇÃO: GPS E LOCALIZAÇÃO COM MAPA REAL -->
   <section class="py-24 max-w-6xl mx-auto px-5 border-t border-zinc-900">
     <div class="bg-zinc-900/40 border border-zinc-800/80 rounded-3xl overflow-hidden flex flex-col lg:flex-row shadow-2xl">
       <!-- Metade Texto e Botões -->
@@ -242,13 +196,9 @@
           </a>
         </div>
       </div>
-      <!-- Metade Mapa Visual Falso (Placeholder Elegante) -->
-      <div class="lg:w-1/2 min-h-[300px] lg:min-h-full relative bg-zinc-950 flex items-center justify-center border-l border-zinc-800/80 map-bg-pattern">
-        <div class="absolute inset-0 bg-black/60"></div>
-        <div class="relative z-10 flex flex-col items-center">
-          <div class="text-amber-400 text-5xl drop-shadow-2xl">📍</div>
-          <div class="mt-3 bg-black/90 px-5 py-2.5 rounded-full border border-amber-500/30 text-amber-400 text-xs font-bold uppercase tracking-widest shadow-2xl">Brat Burger</div>
-        </div>
+      <!-- Metade Mapa Real do Google -->
+      <div class="lg:w-1/2 w-full min-h-[350px] relative border-t lg:border-t-0 lg:border-l border-zinc-800/80 overflow-hidden">
+        <iframe src="https://maps.google.com/maps?q=Brat+Burger,+Rua+Amazonas,+1652,+S%C3%A3o+Caetano+do+Sul&t=m&z=15&output=embed&iwloc=near" class="absolute inset-0 w-full h-full" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
       </div>
     </div>
   </section>
@@ -270,7 +220,6 @@
     </div>
   </footer>
 
-  <!-- SCRIPT EMBUTIDO -->
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       // 1. Lógica da Splash Screen
