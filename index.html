@@ -197,4 +197,121 @@
       <!-- Metade Mapa Customizado (PIN DOURADO) -->
       <a href="https://maps.google.com/?q=Brat+Burger,+Rua+Amazonas,+1652+-+São+Caetano+do+Sul,+SP" target="_blank" class="lg:w-1/2 min-h-[350px] lg:min-h-full relative bg-[#0a0a0c] flex flex-col items-center justify-center border-t lg:border-t-0 lg:border-l border-zinc-800/80 group overflow-hidden cursor-pointer">
         <div class="absolute inset-0" style="background-image: radial-gradient(#22222A 1px, transparent 1px); background-size: 20px 20px;"></div>
-        <div class="absolute inset-
+        <div class="absolute inset-0 bg-black/40 group-hover:bg-black/10 transition duration-500"></div>
+
+        <div class="relative z-10 flex flex-col items-center transform group-hover:scale-110 transition duration-500">
+          <svg class="w-14 h-14 text-amber-400 drop-shadow-[0_0_15px_rgba(212,175,55,0.6)]" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 010-5 2.5 2.5 0 010 5z"/>
+          </svg>
+          <div class="mt-3 bg-zinc-950 border border-amber-500/30 px-5 py-2 rounded-full text-amber-400 text-[10px] font-bold uppercase tracking-widest shadow-2xl group-hover:border-amber-400 transition">
+            Brat Burger
+          </div>
+        </div>
+      </a>
+
+    </div>
+  </section>
+
+  <!-- RODAPÉ -->
+  <footer class="py-16 border-t border-zinc-900 bg-black/40 text-center text-xs text-zinc-400 space-y-4">
+    <div class="max-w-xl mx-auto px-5 space-y-2">
+      <div class="mb-6"><img src="logo-rodape.png" alt="Brat Burger Oficial" class="h-16 sm:h-24 mx-auto opacity-90 hover:opacity-100 transition duration-300 object-contain"></div>
+      <div class="space-y-1.5 pt-2 text-sm font-light text-zinc-400">
+        <p>Quarta e Quinta: 16h às 22h</p>
+        <p>Sexta e Sábado: 16h à meia-noite</p>
+        <p>Domingo: 18h às 22h</p>
+      </div>
+    </div>
+    <div class="pt-4">
+      <a href="https://wa.me/5511977889397?text=Olá!%20Gostaria%20de%20fazer%20uma%20reserva%20e%20garantir%20as%20taças%20de%20vinho%20de%20boas-vindas." target="_blank" class="inline-block bg-amber-400 hover:bg-amber-300 text-black font-bold px-8 py-3.5 rounded-full uppercase tracking-wider transition shadow-lg shadow-amber-500/10">Reservar Minha Mesa Agora</a>
+    </div>
+    <div class="border-t border-zinc-900/80 pt-10 mt-10 flex flex-col items-center gap-5">
+      <a href="https://instagram.com/bratburger" target="_blank" class="text-zinc-600 hover:text-amber-400 transition" aria-label="Instagram da Brat Burger"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+      <div class="text-[11px] text-zinc-700">© Brat Burger. Todos os direitos reservados. Isso é Brat.</div>
+    </div>
+  </footer>
+
+  <!-- SCRIPT EMBUTIDO (Com tempos alargados para garantir as animações) -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      
+      const splashScreen = document.getElementById('splash-screen');
+      if(splashScreen) {
+        const col1 = document.getElementById('splash-col-1');
+        const col2 = document.getElementById('splash-col-2');
+        const col3 = document.getElementById('splash-col-3');
+        const colsContainer = document.getElementById('splash-cols');
+        const dot = document.getElementById('splash-dot');
+
+        document.body.style.overflow = 'hidden';
+
+        // Falha de segurança para libertar a página
+        const safetyTimeout = setTimeout(() => { fecharSplash(); }, 8000);
+
+        function fecharSplash() {
+          clearTimeout(safetyTimeout);
+          splashScreen.style.opacity = '0';
+          setTimeout(() => { 
+            splashScreen.style.display = 'none'; 
+            document.body.style.overflow = 'auto';
+          }, 800);
+        }
+
+        // Tempos reajustados para os GIFs respirarem
+        if(col1) setTimeout(() => { col1.style.opacity = '1'; col1.style.transform = 'translateY(0)'; }, 300);
+        if(col2) setTimeout(() => { col2.style.opacity = '1'; col2.style.transform = 'translateY(0)'; }, 1500);
+        if(col3) setTimeout(() => { col3.style.opacity = '1'; col3.style.transform = 'translateY(0)'; }, 2700);
+
+        setTimeout(() => {
+          if(colsContainer) colsContainer.style.opacity = '0';
+          setTimeout(() => {
+            if(dot) { dot.style.opacity = '1'; dot.style.transform = 'translate(-50%, -50%) scale(1)'; }
+          }, 400);
+        }, 4500);
+
+        setTimeout(() => {
+          if(dot) { dot.style.transform = 'translate(-50%, -50%) scale(150)'; dot.style.opacity = '0'; }
+        }, 5500);
+
+        setTimeout(() => { fecharSplash(); }, 5800);
+      }
+
+      // Motor de Foco Óptico
+      const images = document.querySelectorAll('.optical-lens-img');
+      function renderOpticalFocus() {
+        if (!images.length) return;
+        const vh = window.innerHeight;
+        const screenCenter = vh / 2;
+
+        images.forEach((img) => {
+          const rect = img.getBoundingClientRect();
+          const imgCenter = rect.top + (rect.height / 2);
+          const dist = Math.abs(screenCenter - imgCenter);
+          const focusZone = vh * 0.12;
+          const maxBlurZone = vh * 0.65;
+          let ratio = 0;
+
+          if (dist > focusZone) {
+            ratio = (dist - focusZone) / (maxBlurZone - focusZone);
+            ratio = Math.max(0, Math.min(1, ratio));
+          }
+
+          const ease = Math.pow(ratio, 1.35);
+          const blurPx = (ease * 14).toFixed(2);
+          const scaleVal = (1 + (ease * 0.14)).toFixed(3);
+          const opacityVal = (1 - (ease * 0.75)).toFixed(2);
+
+          img.style.filter = `blur(${blurPx}px)`;
+          img.style.transform = `scale(${scaleVal})`;
+          img.style.opacity = opacityVal;
+        });
+      }
+
+      window.addEventListener('scroll', () => { window.requestAnimationFrame(renderOpticalFocus); }, { passive: true });
+      window.addEventListener('resize', renderOpticalFocus);
+      window.addEventListener('load', renderOpticalFocus);
+      renderOpticalFocus();
+    });
+  </script>
+</body>
+</html>
