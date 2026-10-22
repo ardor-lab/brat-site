@@ -12,31 +12,28 @@
   <style>
     body { font-family: 'Montserrat', sans-serif; background-color: #08080A; color: #f4f4f5; }
     
-    /* Carteira Flutuante */
     .wallet-card {
       background: linear-gradient(135deg, #121216 0%, #1a1a20 100%);
       border: 1px solid rgba(212, 175, 55, 0.3);
       box-shadow: 0 10px 30px -10px rgba(212, 175, 55, 0.15);
     }
 
-    /* Silhueta da Roleta Bloqueada */
     .locked-roleta-bg {
       background: conic-gradient(#18181B 0deg 60deg, #27272A 60deg 120deg, #18181B 120deg 180deg, #3f3f46 180deg 240deg, #18181B 240deg 300deg, #27272A 300deg 360deg);
       filter: blur(4px) brightness(0.4);
       transform: scale(1.1);
     }
     
-    /* Efeito do Cadeado de Ouro */
     .golden-lock {
       filter: drop-shadow(0 0 15px rgba(212, 175, 55, 0.6));
     }
 
-    /* Canvas do Jogo da Cobrinha */
     canvas {
       background-color: #000;
       border: 2px solid #D4AF37;
       border-radius: 8px;
       box-shadow: 0 0 20px rgba(212, 175, 55, 0.2);
+      touch-action: none; /* Impede que a tela role quando desliza no jogo */
     }
   </style>
 </head>
@@ -44,7 +41,6 @@
   
   <div class="absolute inset-0 bg-[radial-gradient(circle_at_top,_var(--tw-gradient-stops))] from-amber-950/20 via-transparent to-transparent -z-10 fixed"></div>
 
-  <!-- CABEÇALHO & CARTEIRA -->
   <header class="w-full max-w-md flex flex-col items-center gap-6 mb-10 z-10 shrink-0">
     <a href="index.html" class="hover:scale-105 transition-transform">
       <img src="logo-topo.png" alt="Brat" class="h-10 object-contain drop-shadow-md">
@@ -67,16 +63,14 @@
     </div>
   </header>
 
-  <!-- GRELHA DE ATRAÇÕES DO PARQUE -->
   <main class="w-full max-w-md space-y-4 z-10 shrink-0 mb-10">
     
-    <!-- 1. A ROLETA (SEMPRE BLOQUEADA NO PARQUE) -->
+    <!-- 1. A ROLETA BLOQUEADA -->
     <div class="bg-[#121216] border border-zinc-800 rounded-2xl h-48 relative overflow-hidden flex flex-col justify-center items-center text-center shadow-lg group">
       <div class="absolute inset-0 locked-roleta-bg"></div>
       <div class="absolute inset-0 bg-black/60 group-hover:bg-black/70 transition-colors"></div>
       
       <div class="relative z-10 flex flex-col items-center p-4">
-        <!-- Cadeado Dourado SVG -->
         <svg class="w-12 h-12 text-amber-400 mb-3 golden-lock" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C9.243 2 7 4.243 7 7v3H6c-1.103 0-2 .897-2 2v8c0 1.103.897 2 2 2h12c1.103 0 2-.897 2-2v-8c0-1.103-.897-2-2-2h-1V7c0-2.757-2.243-5-5-5zm-3 5c0-1.654 1.346-3 3-3s3 1.346 3 3v3H9V7zm8 7v6H7v-6h10z"/></svg>
         <h3 class="text-white font-bold tracking-widest uppercase text-sm mb-1">Roleta do Anfitrião</h3>
         <p class="text-zinc-300 text-[10px] px-6 leading-relaxed font-light">Desbloqueio exclusivo no salão. Faça a sua avaliação na loja e liberte as recompensas premium.</p>
@@ -84,7 +78,7 @@
       </div>
     </div>
 
-    <!-- 2. BRAT SNAKE (JOGO DA COBRINHA) -->
+    <!-- 2. BRAT SNAKE -->
     <div class="bg-zinc-900/80 border border-zinc-800 hover:border-amber-500/30 rounded-2xl p-5 transition flex items-center justify-between shadow-lg">
       <div>
         <h3 class="text-white font-bold tracking-widest uppercase text-sm">Brat Snake</h3>
@@ -96,7 +90,7 @@
       </button>
     </div>
 
-    <!-- 3. BRAT MATCH (JOGO DA MEMÓRIA - ESPAÇO RESERVADO) -->
+    <!-- 3. BRAT MATCH -->
     <div class="bg-zinc-900/80 border border-zinc-800 hover:border-amber-500/30 rounded-2xl p-5 transition flex items-center justify-between shadow-lg opacity-70">
       <div>
         <h3 class="text-white font-bold tracking-widest uppercase text-sm">Brat Match</h3>
@@ -115,7 +109,7 @@
     <div class="bg-[#121216] border border-amber-500/50 rounded-3xl p-6 max-w-sm w-full text-center shadow-[0_0_80px_rgba(212,175,55,0.2)]">
       <div class="flex justify-between items-center mb-4">
         <h3 class="text-amber-400 text-xs font-bold tracking-[0.2em] uppercase">Brat Snake</h3>
-        <button id="close-snake" class="text-zinc-500 hover:text-white text-2xl leading-none">&times;</button>
+        <button id="close-snake" class="text-zinc-500 hover:text-white text-3xl leading-none">&times;</button>
       </div>
       
       <div class="flex justify-between text-xs text-white mb-2 font-mono">
@@ -126,17 +120,17 @@
       <!-- O Quadro do Jogo -->
       <canvas id="snake-game" width="280" height="280" class="mx-auto mb-6"></canvas>
 
-      <!-- Controlos Mobile para a Cobrinha -->
-      <div class="grid grid-cols-3 gap-2 w-48 mx-auto mb-4">
+      <!-- Controlos Mobile Aumentados -->
+      <div class="grid grid-cols-3 gap-3 w-64 mx-auto mb-4">
         <div></div>
-        <button class="bg-zinc-800 hover:bg-zinc-700 active:bg-amber-500 text-white rounded p-3 flex justify-center" onclick="changeDirection('UP')">▲</button>
+        <button class="bg-zinc-800 hover:bg-zinc-700 active:bg-amber-500 text-white rounded-xl p-5 text-xl flex justify-center items-center transition shadow-md" onclick="changeDirection('UP')">▲</button>
         <div></div>
-        <button class="bg-zinc-800 hover:bg-zinc-700 active:bg-amber-500 text-white rounded p-3 flex justify-center" onclick="changeDirection('LEFT')">◀</button>
-        <button class="bg-zinc-800 hover:bg-zinc-700 active:bg-amber-500 text-white rounded p-3 flex justify-center" onclick="changeDirection('DOWN')">▼</button>
-        <button class="bg-zinc-800 hover:bg-zinc-700 active:bg-amber-500 text-white rounded p-3 flex justify-center" onclick="changeDirection('RIGHT')">▶</button>
+        <button class="bg-zinc-800 hover:bg-zinc-700 active:bg-amber-500 text-white rounded-xl p-5 text-xl flex justify-center items-center transition shadow-md" onclick="changeDirection('LEFT')">◀</button>
+        <button class="bg-zinc-800 hover:bg-zinc-700 active:bg-amber-500 text-white rounded-xl p-5 text-xl flex justify-center items-center transition shadow-md" onclick="changeDirection('DOWN')">▼</button>
+        <button class="bg-zinc-800 hover:bg-zinc-700 active:bg-amber-500 text-white rounded-xl p-5 text-xl flex justify-center items-center transition shadow-md" onclick="changeDirection('RIGHT')">▶</button>
       </div>
 
-      <button id="btn-start-snake" class="w-full bg-amber-400 hover:bg-amber-300 text-black font-bold px-4 py-3 rounded-full transition text-xs tracking-widest uppercase shadow-lg shadow-amber-500/10">
+      <button id="btn-start-snake" class="w-full bg-amber-400 hover:bg-amber-300 text-black font-bold px-4 py-4 rounded-full transition text-xs tracking-widest uppercase shadow-lg shadow-amber-500/10 mt-2">
         Iniciar Partida
       </button>
     </div>
@@ -144,10 +138,9 @@
 
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      // 1. SISTEMA FINANCEIRO E DE CARÊNCIA (O Motor de Regras)
+      // 1. SISTEMA FINANCEIRO
       const LIMITE_MENSAL = 10.00;
-      const CARENCIA_MS = 48 * 60 * 60 * 1000; // 48 horas em milissegundos
-      // Para testes rápidos, mude a linha acima para: const CARENCIA_MS = 1 * 60 * 1000; (1 minuto)
+      const CARENCIA_MS = 48 * 60 * 60 * 1000; 
 
       let saldoAtual = parseFloat(localStorage.getItem('brat_cashback')) || 0;
       let ultimoJogo = parseInt(localStorage.getItem('brat_last_played')) || 0;
@@ -183,7 +176,6 @@
 
       atualizarCarteira();
 
-      // TRUQUE DO ANFITRIÃO: Limpar Carteira (Para testes)
       saldoDisplay.addEventListener('dblclick', () => {
         localStorage.removeItem('brat_cashback');
         localStorage.removeItem('brat_last_played');
@@ -191,7 +183,6 @@
         window.location.reload();
       });
 
-      // 2. RESGATE VIA WHATSAPP
       btnResgatar.addEventListener('click', () => {
         if (saldoAtual <= 0) {
           alert("Não tem saldo disponível para resgatar.");
@@ -200,7 +191,6 @@
         const dataStr = new Date().toLocaleDateString('pt-BR');
         const msg = encodeURIComponent(`Olá! Sou um jogador do Brat Play e gostaria de gerar meu cupom de desconto.\n\n*Saldo de Cashback:* R$ ${saldoAtual.toFixed(2).replace('.', ',')}\n*Data:* ${dataStr}`);
         
-        // Zera o saldo após o pedido de resgate (simulação de uso)
         localStorage.setItem('brat_cashback', 0);
         saldoAtual = 0;
         atualizarCarteira();
@@ -215,7 +205,7 @@
       const canvas = document.getElementById('snake-game');
       const ctx = canvas.getContext('2d');
       
-      const box = 20; // Tamanho do quadrado da cobra/comida
+      const box = 20; 
       let snake = [];
       let food = {};
       let d = "";
@@ -235,7 +225,6 @@
 
       btnStartSnake.addEventListener('click', initGame);
 
-      // Ligação aos controlos no ecrã (Mobile)
       window.changeDirection = function(direction) {
         if(direction == "LEFT" && d != "RIGHT") d = "LEFT";
         if(direction == "UP" && d != "DOWN") d = "UP";
@@ -243,13 +232,45 @@
         if(direction == "DOWN" && d != "UP") d = "DOWN";
       }
 
-      // Controlos de Teclado (PC)
       document.addEventListener("keydown", (event) => {
         if(event.keyCode == 37 && d != "RIGHT") d = "LEFT";
         if(event.keyCode == 38 && d != "DOWN") d = "UP";
         if(event.keyCode == 39 && d != "LEFT") d = "RIGHT";
         if(event.keyCode == 40 && d != "UP") d = "DOWN";
       });
+
+      // SISTEMA DE SWIPE (DESLIZAR O DEDO) NO CANVAS
+      let touchStartX = 0;
+      let touchStartY = 0;
+      
+      canvas.addEventListener('touchstart', function(e) {
+        touchStartX = e.changedTouches[0].screenX;
+        touchStartY = e.changedTouches[0].screenY;
+      }, {passive: true});
+
+      canvas.addEventListener('touchend', function(e) {
+        let touchEndX = e.changedTouches[0].screenX;
+        let touchEndY = e.changedTouches[0].screenY;
+        handleSwipe(touchStartX, touchStartY, touchEndX, touchEndY);
+      }, {passive: true});
+
+      function handleSwipe(startX, startY, endX, endY) {
+        let diffX = endX - startX;
+        let diffY = endY - startY;
+        
+        // Verifica se o movimento foi maior que 30px (para ignorar toques acidentais)
+        if (Math.abs(diffX) > Math.abs(diffY)) {
+          if (Math.abs(diffX) > 30) {
+            if (diffX > 0 && d != "LEFT") d = "RIGHT";
+            else if (diffX < 0 && d != "RIGHT") d = "LEFT";
+          }
+        } else {
+          if (Math.abs(diffY) > 30) {
+            if (diffY > 0 && d != "UP") d = "DOWN";
+            else if (diffY < 0 && d != "DOWN") d = "UP";
+          }
+        }
+      }
 
       function initGame() {
         btnStartSnake.style.display = 'none';
@@ -258,14 +279,14 @@
         score = 0;
         d = "RIGHT";
         
-        // Comida aleatória (O Burger)
         food = {
           x: Math.floor(Math.random() * 13 + 1) * box,
           y: Math.floor(Math.random() * 13 + 1) * box
         };
 
         clearInterval(gameInterval);
-        gameInterval = setInterval(drawGame, 150); // Velocidade do jogo
+        // REDUÇÃO DA VELOCIDADE: de 150 para 220 ms
+        gameInterval = setInterval(drawGame, 220); 
       }
 
       function collision(head, array) {
@@ -280,13 +301,12 @@
         ctx.fillRect(0, 0, canvas.width, canvas.height);
 
         for(let i = 0; i < snake.length; i++) {
-          ctx.fillStyle = (i == 0) ? "#D4AF37" : "#a18222"; // Cabeça dourada, corpo escuro
+          ctx.fillStyle = (i == 0) ? "#D4AF37" : "#a18222"; 
           ctx.fillRect(snake[i].x, snake[i].y, box, box);
           ctx.strokeStyle = "#000";
           ctx.strokeRect(snake[i].x, snake[i].y, box, box);
         }
 
-        // Desenha a comida (Burger laranja)
         ctx.fillStyle = "#d97706";
         ctx.beginPath();
         ctx.arc(food.x + box/2, food.y + box/2, box/2.2, 0, 2 * Math.PI);
@@ -300,14 +320,12 @@
         if(d == "RIGHT") snakeX += box;
         if(d == "DOWN") snakeY += box;
 
-        // Bateu na parede? (Game Over)
         if(snakeX < 0 || snakeX >= canvas.width || snakeY < 0 || snakeY >= canvas.height || collision({x:snakeX,y:snakeY}, snake)) {
           clearInterval(gameInterval);
           finalizarPartida();
           return;
         }
 
-        // Comeu o burger?
         if(snakeX == food.x && snakeY == food.y) {
           score++;
           document.getElementById('snake-score').innerText = score;
@@ -318,17 +336,16 @@
             y: Math.floor(Math.random() * 13 + 1) * box
           };
         } else {
-          snake.pop(); // Remove a cauda se não comeu
+          snake.pop(); 
         }
 
         let newHead = { x: snakeX, y: snakeY };
-        snake.unshift(newHead); // Adiciona nova cabeça
+        snake.unshift(newHead); 
       }
 
       function finalizarPartida() {
         const ganho = score * 0.05;
         
-        // Verifica se ultrapassou o limite mensal (R$ 10)
         if (saldoAtual + ganho > LIMITE_MENSAL) {
           const permitido = LIMITE_MENSAL - saldoAtual;
           saldoAtual += permitido;
@@ -338,7 +355,6 @@
           alert(`Game Over! Você devorou ${score} burgers e faturou R$ ${ganho.toFixed(2)} de Cashback!`);
         }
 
-        // Grava no telemóvel e aplica a carência
         localStorage.setItem('brat_cashback', saldoAtual);
         localStorage.setItem('brat_last_played', Date.now());
         
