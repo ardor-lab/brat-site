@@ -9,9 +9,11 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300&display=swap" rel="stylesheet">
   
+  <!-- Biblioteca de Confetes -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+
   <script>
-    // 1. FECHADURA DIGITAL (ANTIFRAUDE)
-    // Se o cliente já girou, ele é bloqueado e expulso para a Home antes do site carregar.
+    // FECHADURA DIGITAL (ANTIFRAUDE)
     if (localStorage.getItem('brat_roleta_girada') === 'true') {
       window.location.replace('index.html');
     }
@@ -20,12 +22,11 @@
   <style>
     body { font-family: 'Montserrat', sans-serif; background-color: #08080A; color: #f4f4f5; }
     
-    /* Design da Roleta */
     .wheel-container {
-      width: 320px; height: 320px;
+      width: 300px; height: 300px;
       position: relative;
       border-radius: 50%;
-      border: 4px solid #3f3f46; /* Começa cinza (bloqueada) */
+      border: 4px solid #3f3f46;
       box-shadow: 0 0 20px rgba(0,0,0,0.5);
       transition: border-color 0.5s ease, box-shadow 0.5s ease;
       overflow: hidden;
@@ -36,7 +37,6 @@
       box-shadow: 0 0 50px rgba(212, 175, 55, 0.4);
     }
 
-    /* O Disco da Roleta com as 6 fatias coloridas */
     #wheel {
       width: 100%; height: 100%;
       border-radius: 50%;
@@ -45,20 +45,20 @@
         #18181B 0deg 60deg,     /* 1. Brownie */
         #27272A 60deg 120deg,   /* 2. Sunday */
         #18181B 120deg 180deg,  /* 3. Drink */
-        #D4AF37 180deg 240deg,  /* 4. Cheeseburguer (Jackpot Dourado) */
+        #D4AF37 180deg 240deg,  /* 4. Cheeseburguer (Jackpot) */
         #18181B 240deg 300deg,  /* 5. Fritas */
         #27272A 300deg 360deg   /* 6. Churros */
       );
-      transition: transform 5s cubic-bezier(0.25, 1, 0.1, 1); /* Curva de desaceleração realista */
+      /* Curva de travagem mais longa e dramática */
+      transition: transform 6s cubic-bezier(0.15, 0.9, 0.15, 1); 
     }
 
-    /* Textos dentro das fatias */
     .slice-text {
       position: absolute;
       width: 100px;
-      left: 110px; /* (320/2) - (100/2) */
+      left: 100px; /* (300/2) - (100/2) */
       top: 20px;
-      transform-origin: 50% 140px; /* Centro da roda (160 - 20) */
+      transform-origin: 50% 130px; /* (300/2) - 20 */
       text-align: center;
       font-size: 11px;
       font-weight: 700;
@@ -67,15 +67,13 @@
       text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
     }
 
-    /* Rotação matemática de cada texto para alinhar com as fatias */
     .slice-1 { transform: rotate(30deg); }
     .slice-2 { transform: rotate(90deg); }
     .slice-3 { transform: rotate(150deg); }
-    .slice-4 { transform: rotate(210deg); color: #08080A; text-shadow: none; } /* Jackpot: Texto Preto no Dourado */
+    .slice-4 { transform: rotate(210deg); color: #08080A; text-shadow: none; }
     .slice-5 { transform: rotate(270deg); }
     .slice-6 { transform: rotate(330deg); }
 
-    /* O Ponteiro Fixo no Topo */
     .pointer {
       position: absolute;
       top: -15px;
@@ -89,7 +87,6 @@
       filter: drop-shadow(0px 4px 4px rgba(0,0,0,0.5));
     }
 
-    /* Modal de Resultado (Oculto inicialmente) */
     #resultado-modal {
       opacity: 0; visibility: hidden;
       transition: opacity 0.4s ease, visibility 0.4s ease;
@@ -99,33 +96,32 @@
     }
   </style>
 </head>
-<body class="min-h-screen flex flex-col items-center justify-center p-5 relative overflow-hidden">
+<body class="min-h-screen flex flex-col items-center justify-center py-10 px-5 relative overflow-y-auto overflow-x-hidden">
   
-  <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-amber-950/10 via-transparent to-transparent -z-10"></div>
+  <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-amber-950/10 via-transparent to-transparent -z-10 fixed"></div>
 
   <!-- Rota de Fuga Secreta no Logo -->
-  <a href="index.html" class="mb-6 hover:scale-105 transition-transform relative z-10">
+  <a href="index.html" class="mb-4 hover:scale-105 transition-transform relative z-10 shrink-0">
     <img src="logo-topo.png" alt="Brat" class="h-10 object-contain drop-shadow-md">
   </a>
 
-  <div class="text-center max-w-sm mb-8 space-y-2 relative z-10">
+  <div class="text-center max-w-sm mb-6 space-y-2 relative z-10 shrink-0">
     <h1 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">O Anfitrião retribui.</h1>
     <p class="text-zinc-400 text-xs sm:text-sm font-light leading-relaxed">Avalie a nossa casa e destrave a roleta para garantir a sua recompensa de hoje.</p>
   </div>
 
   <!-- A MÁQUINA DA ROLETA -->
-  <div class="relative mb-8 z-10">
+  <div class="relative mb-6 z-10 shrink-0 mt-2">
     <div class="pointer"></div>
-    <div id="container-roleta" class="wheel-container flex items-center justify-center relative">
+    <div id="container-roleta" class="wheel-container flex items-center justify-center relative mx-auto">
       
-      <!-- Ícone de Cadeado Central -->
       <div id="lock-center" class="absolute z-30 bg-zinc-900 border border-zinc-700 w-16 h-16 rounded-full flex items-center justify-center shadow-xl transition-colors duration-500">
         <svg id="lock-icon" class="w-6 h-6 text-zinc-500 transition-all duration-500" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C9.243 2 7 4.243 7 7v3H6c-1.103 0-2 .897-2 2v8c0 1.103.897 2 2 2h12c1.103 0 2-.897 2-2v-8c0-1.103-.897-2-2-2h-1V7c0-2.757-2.243-5-5-5zm-3 5c0-1.654 1.346-3 3-3s3 1.346 3 3v3H9V7zm8 7v6H7v-6h10z"/></svg>
       </div>
 
       <div id="wheel">
         <div class="slice-text slice-1">Brownie c/ Sorvete</div>
-        <div class="slice-text slice-2">Sunday de Doce de Leite</div>
+        <div class="slice-text slice-2">Sunday de Doce Leite</div>
         <div class="slice-text slice-3">Drink de Frutas</div>
         <div class="slice-text slice-4">Cheeseburguer</div>
         <div class="slice-text slice-5">Fritas c/ Cheddar</div>
@@ -135,7 +131,7 @@
   </div>
 
   <!-- BOTÕES DE AÇÃO (PEDÁGIO) -->
-  <div class="flex flex-col gap-3 w-full max-w-xs relative z-10">
+  <div class="flex flex-col gap-3 w-full max-w-xs relative z-10 shrink-0">
     <a href="https://maps.google.com/?q=Brat+Burger,+Rua+Amazonas,+1652+-+São+Caetano+do+Sul" target="_blank" id="btn-avaliar" class="w-full bg-white hover:bg-zinc-200 text-black font-bold px-6 py-4 rounded-full transition text-xs tracking-widest uppercase shadow-lg flex items-center justify-center gap-2">
       <span class="text-amber-500 text-lg leading-none">★</span> Deixar 5 Estrelas
     </a>
@@ -152,7 +148,6 @@
       <h3 class="text-amber-400 text-xs font-bold tracking-[0.2em] uppercase mb-2">Recompensa Desbloqueada</h3>
       <h2 id="premio-texto" class="text-2xl font-extrabold text-white mb-6">Prémio</h2>
       
-      <!-- Registo de Segurança -->
       <div class="bg-black border border-zinc-800 rounded-xl p-4 mb-6">
         <p class="text-zinc-500 text-[10px] uppercase tracking-widest mb-1">Validação de Segurança</p>
         <p id="data-hora-texto" class="text-zinc-300 text-sm font-mono tracking-widest"></p>
@@ -184,8 +179,6 @@
       let roletaAtiva = false;
       let premioGanho = "";
 
-      // Lista dos Prémios exatos na ordem das fatias (sentido horário a partir do topo)
-      // Fatia 1 (0-60deg), Fatia 2 (60-120), etc.
       const premios = [
         "Brownie com Sorvete",
         "Sunday de Doce de Leite",
@@ -195,7 +188,6 @@
         "4 Mini Churros"
       ];
 
-      // O PEDÁGIO: Clicar para avaliar destrava o jogo
       btnAvaliar.addEventListener('click', () => {
         if(roletaAtiva) return;
         
@@ -209,8 +201,6 @@
           lockCenter.classList.replace('bg-zinc-900', 'bg-amber-400');
           lockCenter.classList.replace('border-zinc-700', 'border-amber-500');
           lockIcon.classList.replace('text-zinc-500', 'text-black');
-          
-          // Muda o ícone do cadeado para uma estrela (Roleta Livre)
           lockIcon.innerHTML = '<path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>';
 
           btnGirar.disabled = false;
@@ -223,52 +213,50 @@
         }, 3000);
       });
 
-      // A FÍSICA DO GIRO
       btnGirar.addEventListener('click', () => {
         btnGirar.disabled = true;
         btnGirar.classList.add('opacity-50', 'cursor-not-allowed');
         
-        // Quantidade de voltas completas para dar suspense (ex: 5 voltas)
-        const voltas = 5 * 360;
-        // Escolhe um prémio aleatório (0 a 5)
+        const voltas = 6 * 360; 
         const randomIndex = Math.floor(Math.random() * 6);
-        
-        // A matemática da fatia (cada fatia tem 60 graus. O centro da fatia 1 é 30deg)
-        // Para a fatia parar no topo, subtraímos do total de 360.
         const anguloFatia = (randomIndex * 60) + 30;
         const rotacaoFinal = voltas + (360 - anguloFatia);
 
         wheel.style.transform = `rotate(${rotacaoFinal}deg)`;
 
-        // Aguarda a roleta parar (5 segundos de animação definidos no CSS)
+        // Aguarda 6 segundos (tempo exato da transição do CSS) para disparar o resultado
         setTimeout(() => {
           premioGanho = premios[randomIndex];
           mostrarResultado(premioGanho);
-        }, 5200);
+        }, 6200);
       });
 
-      // MOSTRAR O COFRE/MODAL COM A DATA EXATA
+      function dispararConfetes() {
+        var duration = 3000;
+        var end = Date.now() + duration;
+
+        (function frame() {
+          confetti({ particleCount: 4, angle: 60, spread: 55, origin: { x: 0 }, colors: ['#D4AF37', '#ffffff'] });
+          confetti({ particleCount: 4, angle: 120, spread: 55, origin: { x: 1 }, colors: ['#D4AF37', '#ffffff'] });
+          if (Date.now() < end) { requestAnimationFrame(frame); }
+        }());
+      }
+
       function mostrarResultado(premio) {
         premioTexto.innerText = premio;
-        
         const agora = new Date();
         const data = agora.toLocaleDateString('pt-BR');
         const hora = agora.toLocaleTimeString('pt-BR');
         dataHoraTexto.innerText = `${data} às ${hora}`;
 
         modal.classList.add('show');
+        dispararConfetes();
       }
 
-      // RESGATAR E BLOQUEAR PARA SEMPRE O TELEMÓVEL DO CLIENTE
       btnResgatar.addEventListener('click', () => {
-        // Grava no telemóvel que ele já jogou
         localStorage.setItem('brat_roleta_girada', 'true');
-        
-        // Monta a mensagem para o WhatsApp
         const msg = encodeURIComponent(`Olá! Estou no salão e acabei de girar a Roleta do Anfitrião.\n\n*Meu Prêmio:* ${premioGanho}\n*Código de Segurança:* ${dataHoraTexto.innerText}`);
         window.open(`https://wa.me/5511977889397?text=${msg}`, '_blank');
-        
-        // Substitui a página atual pela Home (Mais tarde mudaremos para parque.html)
         window.location.replace('index.html');
       });
     });
