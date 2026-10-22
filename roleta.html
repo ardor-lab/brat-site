@@ -9,11 +9,9 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300&display=swap" rel="stylesheet">
   
-  <!-- Biblioteca de Confetes -->
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
 
   <script>
-    // FECHADURA DIGITAL (ANTIFRAUDE)
     if (localStorage.getItem('brat_roleta_girada') === 'true') {
       window.location.replace('index.html');
     }
@@ -37,42 +35,46 @@
       box-shadow: 0 0 50px rgba(212, 175, 55, 0.4);
     }
 
+    /* Roleta dividida matematicamente em 7 fatias (51.42 graus cada) */
     #wheel {
       width: 100%; height: 100%;
       border-radius: 50%;
       position: relative;
       background: conic-gradient(
-        #18181B 0deg 60deg,     /* 1. Brownie */
-        #27272A 60deg 120deg,   /* 2. Sunday */
-        #18181B 120deg 180deg,  /* 3. Drink */
-        #D4AF37 180deg 240deg,  /* 4. Cheeseburguer (Jackpot) */
-        #18181B 240deg 300deg,  /* 5. Fritas */
-        #27272A 300deg 360deg   /* 6. Churros */
+        #18181B 0deg 51.42deg,       /* 1. Brownie */
+        #27272A 51.42deg 102.85deg,  /* 2. MS Ovo */
+        #18181B 102.85deg 154.28deg, /* 3. Drink */
+        #D4AF37 154.28deg 205.71deg, /* 4. Cheeseburguer (Jackpot) */
+        #18181B 205.71deg 257.14deg, /* 5. Fritas */
+        #27272A 257.14deg 308.57deg, /* 6. MS Morango */
+        #0a0a0c 308.57deg 360deg     /* 7. MS Oreo (A fatia impossível) */
       );
-      /* Curva de travagem mais longa e dramática */
       transition: transform 6s cubic-bezier(0.15, 0.9, 0.15, 1); 
     }
 
     .slice-text {
       position: absolute;
-      width: 100px;
-      left: 100px; /* (300/2) - (100/2) */
-      top: 20px;
-      transform-origin: 50% 130px; /* (300/2) - 20 */
+      width: 80px;
+      left: 110px;
+      top: 15px;
+      transform-origin: 50% 135px;
       text-align: center;
-      font-size: 11px;
+      font-size: 10px;
       font-weight: 700;
       text-transform: uppercase;
       color: #f4f4f5;
       text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
+      line-height: 1.2;
     }
 
-    .slice-1 { transform: rotate(30deg); }
-    .slice-2 { transform: rotate(90deg); }
-    .slice-3 { transform: rotate(150deg); }
-    .slice-4 { transform: rotate(210deg); color: #08080A; text-shadow: none; }
-    .slice-5 { transform: rotate(270deg); }
-    .slice-6 { transform: rotate(330deg); }
+    /* Rotações no centro exato de cada uma das 7 fatias */
+    .slice-1 { transform: rotate(25.7deg); }
+    .slice-2 { transform: rotate(77.1deg); }
+    .slice-3 { transform: rotate(128.5deg); }
+    .slice-4 { transform: rotate(180deg); color: #08080A; text-shadow: none; }
+    .slice-5 { transform: rotate(231.4deg); }
+    .slice-6 { transform: rotate(282.8deg); }
+    .slice-7 { transform: rotate(334.2deg); color: #D4AF37; } /* Oreo destacado em dourado */
 
     .pointer {
       position: absolute;
@@ -100,17 +102,16 @@
   
   <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-amber-950/10 via-transparent to-transparent -z-10 fixed"></div>
 
-  <!-- Rota de Fuga Secreta no Logo -->
   <a href="index.html" class="mb-4 hover:scale-105 transition-transform relative z-10 shrink-0">
     <img src="logo-topo.png" alt="Brat" class="h-10 object-contain drop-shadow-md">
   </a>
 
   <div class="text-center max-w-sm mb-6 space-y-2 relative z-10 shrink-0">
-    <h1 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">O Anfitrião retribui.</h1>
+    <!-- TRUQUE DO ANFITRIÃO: Duplo clique neste título zera a roleta -->
+    <h1 id="titulo-secreto" class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight cursor-default select-none">O Anfitrião retribui.</h1>
     <p class="text-zinc-400 text-xs sm:text-sm font-light leading-relaxed">Avalie a nossa casa e destrave a roleta para garantir a sua recompensa de hoje.</p>
   </div>
 
-  <!-- A MÁQUINA DA ROLETA -->
   <div class="relative mb-6 z-10 shrink-0 mt-2">
     <div class="pointer"></div>
     <div id="container-roleta" class="wheel-container flex items-center justify-center relative mx-auto">
@@ -120,17 +121,17 @@
       </div>
 
       <div id="wheel">
-        <div class="slice-text slice-1">Brownie c/ Sorvete</div>
-        <div class="slice-text slice-2">Sunday de Doce Leite</div>
-        <div class="slice-text slice-3">Drink de Frutas</div>
-        <div class="slice-text slice-4">Cheeseburguer</div>
-        <div class="slice-text slice-5">Fritas c/ Cheddar</div>
-        <div class="slice-text slice-6">4 Mini Churros</div>
+        <div class="slice-text slice-1">Brownie <br>c/ Sorvete</div>
+        <div class="slice-text slice-2">MS de<br>Ovomaltine</div>
+        <div class="slice-text slice-3">Drink<br>de Frutas</div>
+        <div class="slice-text slice-4">Cheese<br>burguer</div>
+        <div class="slice-text slice-5">Fritas c/<br>Cheddar</div>
+        <div class="slice-text slice-6">MS de<br>Morango</div>
+        <div class="slice-text slice-7">MS de<br>Oreo</div>
       </div>
     </div>
   </div>
 
-  <!-- BOTÕES DE AÇÃO (PEDÁGIO) -->
   <div class="flex flex-col gap-3 w-full max-w-xs relative z-10 shrink-0">
     <a href="https://maps.google.com/?q=Brat+Burger,+Rua+Amazonas,+1652+-+São+Caetano+do+Sul" target="_blank" id="btn-avaliar" class="w-full bg-white hover:bg-zinc-200 text-black font-bold px-6 py-4 rounded-full transition text-xs tracking-widest uppercase shadow-lg flex items-center justify-center gap-2">
       <span class="text-amber-500 text-lg leading-none">★</span> Deixar 5 Estrelas
@@ -141,7 +142,6 @@
     </button>
   </div>
 
-  <!-- MODAL DE RESULTADO ANTIFRAUDE -->
   <div id="resultado-modal" class="fixed inset-0 z-[200] bg-black/95 flex flex-col items-center justify-center p-6 backdrop-blur-sm">
     <div class="bg-[#121216] border border-amber-500/50 rounded-3xl p-8 max-w-sm w-full text-center shadow-[0_0_80px_rgba(212,175,55,0.2)]">
       <span class="text-4xl mb-4 block">🎉</span>
@@ -170,6 +170,7 @@
       const wheel = document.getElementById('wheel');
       const lockCenter = document.getElementById('lock-center');
       const lockIcon = document.getElementById('lock-icon');
+      const tituloSecreto = document.getElementById('titulo-secreto');
       
       const modal = document.getElementById('resultado-modal');
       const premioTexto = document.getElementById('premio-texto');
@@ -179,13 +180,22 @@
       let roletaAtiva = false;
       let premioGanho = "";
 
-      const premios = [
-        "Brownie com Sorvete",
-        "Sunday de Doce de Leite",
-        "Drink de Frutas",
-        "Cheeseburguer",
-        "Fritas com Cheddar & Bacon",
-        "4 Mini Churros"
+      // TRUQUE PARA TESTES: Duplo clique no título limpa a fechadura digital
+      tituloSecreto.addEventListener('dblclick', () => {
+        localStorage.removeItem('brat_roleta_girada');
+        alert('Fechadura destravada com sucesso! A página será atualizada.');
+        window.location.reload();
+      });
+
+      // Lista dos Prémios e as respetivas Probabilidades (em %)
+      const configProbabilidades = [
+        { premio: "Brownie com Sorvete", index: 0, chance: 3 },      
+        { premio: "Milkshake de Ovomaltine", index: 1, chance: 35 }, 
+        { premio: "Drink de Frutas", index: 2, chance: 15 },         
+        { premio: "Cheeseburguer", index: 3, chance: 10 },           
+        { premio: "Fritas com Cheddar & Bacon", index: 4, chance: 2 },
+        { premio: "Milkshake de Morango", index: 5, chance: 35 },    
+        { premio: "Milkshake de Oreo", index: 6, chance: 0 }         // NUNCA CAI AQUI
       ];
 
       btnAvaliar.addEventListener('click', () => {
@@ -217,49 +227,20 @@
         btnGirar.disabled = true;
         btnGirar.classList.add('opacity-50', 'cursor-not-allowed');
         
+        // Sorteio Viciado baseado nas probabilidades definidas
+        let randomNum = Math.random() * 100;
+        let acumulado = 0;
+        let fatiaSorteada = 0;
+
+        for (let item of configProbabilidades) {
+          acumulado += item.chance;
+          if (randomNum < acumulado) {
+            fatiaSorteada = item.index;
+            premioGanho = item.premio;
+            break;
+          }
+        }
+        
         const voltas = 6 * 360; 
-        const randomIndex = Math.floor(Math.random() * 6);
-        const anguloFatia = (randomIndex * 60) + 30;
-        const rotacaoFinal = voltas + (360 - anguloFatia);
-
-        wheel.style.transform = `rotate(${rotacaoFinal}deg)`;
-
-        // Aguarda 6 segundos (tempo exato da transição do CSS) para disparar o resultado
-        setTimeout(() => {
-          premioGanho = premios[randomIndex];
-          mostrarResultado(premioGanho);
-        }, 6200);
-      });
-
-      function dispararConfetes() {
-        var duration = 3000;
-        var end = Date.now() + duration;
-
-        (function frame() {
-          confetti({ particleCount: 4, angle: 60, spread: 55, origin: { x: 0 }, colors: ['#D4AF37', '#ffffff'] });
-          confetti({ particleCount: 4, angle: 120, spread: 55, origin: { x: 1 }, colors: ['#D4AF37', '#ffffff'] });
-          if (Date.now() < end) { requestAnimationFrame(frame); }
-        }());
-      }
-
-      function mostrarResultado(premio) {
-        premioTexto.innerText = premio;
-        const agora = new Date();
-        const data = agora.toLocaleDateString('pt-BR');
-        const hora = agora.toLocaleTimeString('pt-BR');
-        dataHoraTexto.innerText = `${data} às ${hora}`;
-
-        modal.classList.add('show');
-        dispararConfetes();
-      }
-
-      btnResgatar.addEventListener('click', () => {
-        localStorage.setItem('brat_roleta_girada', 'true');
-        const msg = encodeURIComponent(`Olá! Estou no salão e acabei de girar a Roleta do Anfitrião.\n\n*Meu Prêmio:* ${premioGanho}\n*Código de Segurança:* ${dataHoraTexto.innerText}`);
-        window.open(`https://wa.me/5511977889397?text=${msg}`, '_blank');
-        window.location.replace('index.html');
-      });
-    });
-  </script>
-</body>
-</html>
+        const anguloFatia = (fatiaSorteada * 51.428) + 25.714;
+        const rotacaoFinal = volt
