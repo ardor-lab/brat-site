@@ -4,6 +4,25 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Brat Burger | Cortes Nobres & Experiência Urbana</title>
+  
+  <!-- Meta Pixel Code -->
+  <script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', 'COLE_SEU_PIXEL_ID_AQUI');
+  fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=COLE_SEU_PIXEL_ID_AQUI&ev=PageView&noscript=1"
+  /></noscript>
+  <!-- End Meta Pixel Code -->
+
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- Fonte Montserrat -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -213,59 +232,52 @@
       <a href="https://wa.me/5511977889397?text=Olá!%20Gostaria%20de%20fazer%20uma%20reserva%20e%20garantir%20as%20taças%20de%20vinho%20de%20boas-vindas." target="_blank" class="inline-block bg-amber-400 hover:bg-amber-300 text-black font-bold px-8 py-3.5 rounded-full uppercase tracking-wider transition shadow-lg shadow-amber-500/10">Reservar Minha Mesa Agora</a>
     </div>
     <div class="border-t border-zinc-900/80 pt-10 mt-10 flex flex-col items-center gap-5">
-      <!-- CORREÇÃO DO INSTAGRAM (@bratburgersaocaetano) -->
       <a href="https://instagram.com/bratburgersaocaetano" target="_blank" class="text-zinc-600 hover:text-amber-400 transition" aria-label="Instagram da Brat Burger"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
       <div class="text-[11px] text-zinc-700">© Brat Burger. Todos os direitos reservados. Isso é Brat.</div>
     </div>
   </footer>
 
-  <!-- SCRIPT INTELIGENTE: SÓ COMEÇA O SHOW QUANDO OS VIDEOS ESTÃO PRONTOS -->
+  <!-- SCRIPT EMBUTIDO -->
   <script>
-    function startShow() {
-      const splashScreen = document.getElementById('splash-screen');
-      if(!splashScreen || splashScreen.dataset.started === 'true') return;
-      splashScreen.dataset.started = 'true';
-
-      const col1 = document.getElementById('splash-col-1');
-      const col2 = document.getElementById('splash-col-2');
-      const col3 = document.getElementById('splash-col-3');
-      const colsContainer = document.getElementById('splash-cols');
-      const dot = document.getElementById('splash-dot');
-
-      document.body.style.overflow = 'hidden';
-
-      if(col1) setTimeout(() => { col1.style.opacity = '1'; col1.style.transform = 'translateY(0)'; }, 300);
-      if(col2) setTimeout(() => { col2.style.opacity = '1'; col2.style.transform = 'translateY(0)'; }, 1500);
-      if(col3) setTimeout(() => { col3.style.opacity = '1'; col3.style.transform = 'translateY(0)'; }, 2700);
-
-      setTimeout(() => {
-        if(colsContainer) colsContainer.style.opacity = '0';
-        setTimeout(() => {
-          if(dot) { dot.style.opacity = '1'; dot.style.transform = 'translate(-50%, -50%) scale(1)'; }
-        }, 400);
-      }, 4500);
-
-      setTimeout(() => {
-        if(dot) { dot.style.transform = 'translate(-50%, -50%) scale(150)'; dot.style.opacity = '0'; }
-      }, 5500);
-
-      setTimeout(() => { 
-        splashScreen.style.opacity = '0';
-        setTimeout(() => { 
-          splashScreen.style.display = 'none'; 
-          document.body.style.overflow = 'auto';
-        }, 800);
-      }, 5800);
-    }
-
-    // O truque de mestre: Aguarda o download dos GIFs pesados antes de abrir a cortina
-    window.addEventListener('load', startShow);
-    
-    // Se a internet falhar ou demorar muito, a segurança abre o site ao fim de 5 segundos
-    setTimeout(startShow, 5000);
-
-    // Motor de Foco Óptico
     document.addEventListener('DOMContentLoaded', () => {
+      const splashScreen = document.getElementById('splash-screen');
+      if(splashScreen) {
+        const col1 = document.getElementById('splash-col-1');
+        const col2 = document.getElementById('splash-col-2');
+        const col3 = document.getElementById('splash-col-3');
+        const colsContainer = document.getElementById('splash-cols');
+        const dot = document.getElementById('splash-dot');
+
+        document.body.style.overflow = 'hidden';
+        const safetyTimeout = setTimeout(() => { fecharSplash(); }, 8500);
+
+        function fecharSplash() {
+          clearTimeout(safetyTimeout);
+          splashScreen.style.opacity = '0';
+          setTimeout(() => { 
+            splashScreen.style.display = 'none'; 
+            document.body.style.overflow = 'auto';
+          }, 800);
+        }
+
+        if(col1) setTimeout(() => { col1.style.opacity = '1'; col1.style.transform = 'translateY(0)'; }, 300);
+        if(col2) setTimeout(() => { col2.style.opacity = '1'; col2.style.transform = 'translateY(0)'; }, 1500);
+        if(col3) setTimeout(() => { col3.style.opacity = '1'; col3.style.transform = 'translateY(0)'; }, 2700);
+
+        setTimeout(() => {
+          if(colsContainer) colsContainer.style.opacity = '0';
+          setTimeout(() => {
+            if(dot) { dot.style.opacity = '1'; dot.style.transform = 'translate(-50%, -50%) scale(1)'; }
+          }, 400);
+        }, 4500);
+
+        setTimeout(() => {
+          if(dot) { dot.style.transform = 'translate(-50%, -50%) scale(150)'; dot.style.opacity = '0'; }
+        }, 5500);
+
+        setTimeout(() => { fecharSplash(); }, 5800);
+      }
+
       const images = document.querySelectorAll('.optical-lens-img');
       function renderOpticalFocus() {
         if (!images.length) return;
