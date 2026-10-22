@@ -35,19 +35,20 @@
       box-shadow: 0 0 50px rgba(212, 175, 55, 0.4);
     }
 
-    /* Roleta dividida matematicamente em 7 fatias (51.42 graus cada) */
+    /* Roleta dividida matematicamente em 8 fatias (45 graus cada) */
     #wheel {
       width: 100%; height: 100%;
       border-radius: 50%;
       position: relative;
       background: conic-gradient(
-        #18181B 0deg 51.42deg,       /* 1. Brownie */
-        #27272A 51.42deg 102.85deg,  /* 2. MS Ovo */
-        #18181B 102.85deg 154.28deg, /* 3. Drink */
-        #D4AF37 154.28deg 205.71deg, /* 4. Cheeseburguer (Jackpot) */
-        #18181B 205.71deg 257.14deg, /* 5. Fritas */
-        #27272A 257.14deg 308.57deg, /* 6. MS Morango */
-        #0a0a0c 308.57deg 360deg     /* 7. MS Oreo (A fatia impossível) */
+        #18181B 0deg 45deg,       /* 1. Brownie */
+        #27272A 45deg 90deg,      /* 2. Cupom 10 */
+        #18181B 90deg 135deg,     /* 3. MS Ovo */
+        #27272A 135deg 180deg,    /* 4. Drink */
+        #18181B 180deg 225deg,    /* 5. Fritas */
+        #D4AF37 225deg 270deg,    /* 6. Cheeseburguer (Jackpot menor) */
+        #0a0a0c 270deg 315deg,    /* 7. MS Oreo (Isca Escura) */
+        #D4AF37 315deg 360deg     /* 8. Cupom 50 (Isca Dourada Maior) */
       );
       transition: transform 6s cubic-bezier(0.15, 0.9, 0.15, 1); 
     }
@@ -67,14 +68,15 @@
       line-height: 1.2;
     }
 
-    /* Rotações no centro exato de cada uma das 7 fatias */
-    .slice-1 { transform: rotate(25.7deg); }
-    .slice-2 { transform: rotate(77.1deg); }
-    .slice-3 { transform: rotate(128.5deg); }
-    .slice-4 { transform: rotate(180deg); color: #08080A; text-shadow: none; }
-    .slice-5 { transform: rotate(231.4deg); }
-    .slice-6 { transform: rotate(282.8deg); }
-    .slice-7 { transform: rotate(334.2deg); color: #D4AF37; } /* Oreo destacado em dourado */
+    /* Rotações no centro de cada uma das 8 fatias */
+    .slice-1 { transform: rotate(22.5deg); }
+    .slice-2 { transform: rotate(67.5deg); }
+    .slice-3 { transform: rotate(112.5deg); }
+    .slice-4 { transform: rotate(157.5deg); }
+    .slice-5 { transform: rotate(202.5deg); }
+    .slice-6 { transform: rotate(247.5deg); color: #08080A; text-shadow: none; } 
+    .slice-7 { transform: rotate(292.5deg); color: #D4AF37; } 
+    .slice-8 { transform: rotate(337.5deg); color: #08080A; text-shadow: none; font-size: 9px; }
 
     .pointer {
       position: absolute;
@@ -107,7 +109,6 @@
   </a>
 
   <div class="text-center max-w-sm mb-6 space-y-2 relative z-10 shrink-0">
-    <!-- TRUQUE DO ANFITRIÃO: Duplo clique neste título zera a roleta -->
     <h1 id="titulo-secreto" class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight cursor-default select-none">O Anfitrião retribui.</h1>
     <p class="text-zinc-400 text-xs sm:text-sm font-light leading-relaxed">Avalie a nossa casa e destrave a roleta para garantir a sua recompensa de hoje.</p>
   </div>
@@ -122,12 +123,13 @@
 
       <div id="wheel">
         <div class="slice-text slice-1">Brownie <br>c/ Sorvete</div>
-        <div class="slice-text slice-2">MS de<br>Ovomaltine</div>
-        <div class="slice-text slice-3">Drink<br>de Frutas</div>
-        <div class="slice-text slice-4">Cheese<br>burguer</div>
+        <div class="slice-text slice-2">Cupom<br>R$ 10,00</div>
+        <div class="slice-text slice-3">MS de<br>Ovomaltine</div>
+        <div class="slice-text slice-4">Drink<br>de Frutas</div>
         <div class="slice-text slice-5">Fritas c/<br>Cheddar</div>
-        <div class="slice-text slice-6">MS de<br>Morango</div>
+        <div class="slice-text slice-6">Cheese<br>burguer</div>
         <div class="slice-text slice-7">MS de<br>Oreo</div>
+        <div class="slice-text slice-8">Cupom<br>R$ 50,00</div>
       </div>
     </div>
   </div>
@@ -180,22 +182,22 @@
       let roletaAtiva = false;
       let premioGanho = "";
 
-      // TRUQUE PARA TESTES: Duplo clique no título limpa a fechadura digital
+      // Truque do Anfitrião
       tituloSecreto.addEventListener('dblclick', () => {
         localStorage.removeItem('brat_roleta_girada');
-        alert('Fechadura destravada com sucesso! A página será atualizada.');
+        alert('Fechadura destravada com sucesso!');
         window.location.reload();
       });
 
-      // Lista dos Prémios e as respetivas Probabilidades (em %)
       const configProbabilidades = [
-        { premio: "Brownie com Sorvete", index: 0, chance: 3 },      
-        { premio: "Milkshake de Ovomaltine", index: 1, chance: 35 }, 
-        { premio: "Drink de Frutas", index: 2, chance: 15 },         
-        { premio: "Cheeseburguer", index: 3, chance: 10 },           
-        { premio: "Fritas com Cheddar & Bacon", index: 4, chance: 2 },
-        { premio: "Milkshake de Morango", index: 5, chance: 35 },    
-        { premio: "Milkshake de Oreo", index: 6, chance: 0 }         // NUNCA CAI AQUI
+        { premio: "Brownie com Sorvete", index: 0, chance: 45 },      
+        { premio: "Cupom R$ 10 (Próxima Visita)", index: 1, chance: 20 }, 
+        { premio: "Milkshake de Ovomaltine", index: 2, chance: 15 },         
+        { premio: "Drink de Frutas", index: 3, chance: 10 },           
+        { premio: "Fritas com Cheddar & Bacon", index: 4, chance: 7 },
+        { premio: "Cheeseburguer", index: 5, chance: 3 },    
+        { premio: "Milkshake de Oreo", index: 6, chance: 0 },
+        { premio: "Cupom R$ 50 (Próxima Visita)", index: 7, chance: 0 }
       ];
 
       btnAvaliar.addEventListener('click', () => {
@@ -227,7 +229,6 @@
         btnGirar.disabled = true;
         btnGirar.classList.add('opacity-50', 'cursor-not-allowed');
         
-        // Sorteio Viciado baseado nas probabilidades definidas
         let randomNum = Math.random() * 100;
         let acumulado = 0;
         let fatiaSorteada = 0;
@@ -242,5 +243,45 @@
         }
         
         const voltas = 6 * 360; 
-        const anguloFatia = (fatiaSorteada * 51.428) + 25.714;
-        const rotacaoFinal = volt
+        const anguloFatia = (fatiaSorteada * 45) + 22.5;
+        const rotacaoFinal = voltas + (360 - anguloFatia);
+
+        wheel.style.transform = `rotate(${rotacaoFinal}deg)`;
+
+        setTimeout(() => {
+          mostrarResultado(premioGanho);
+        }, 6200);
+      });
+
+      function dispararConfetes() {
+        var duration = 3000;
+        var end = Date.now() + duration;
+
+        (function frame() {
+          confetti({ particleCount: 4, angle: 60, spread: 55, origin: { x: 0 }, colors: ['#D4AF37', '#ffffff'] });
+          confetti({ particleCount: 4, angle: 120, spread: 55, origin: { x: 1 }, colors: ['#D4AF37', '#ffffff'] });
+          if (Date.now() < end) { requestAnimationFrame(frame); }
+        }());
+      }
+
+      function mostrarResultado(premio) {
+        premioTexto.innerText = premio;
+        const agora = new Date();
+        const data = agora.toLocaleDateString('pt-BR');
+        const hora = agora.toLocaleTimeString('pt-BR');
+        dataHoraTexto.innerText = `${data} às ${hora}`;
+
+        modal.classList.add('show');
+        dispararConfetes();
+      }
+
+      btnResgatar.addEventListener('click', () => {
+        localStorage.setItem('brat_roleta_girada', 'true');
+        const msg = encodeURIComponent(`Olá! Estou no salão e acabei de girar a Roleta do Anfitrião.\n\n*Meu Prêmio:* ${premioGanho}\n*Código de Segurança:* ${dataHoraTexto.innerText}`);
+        window.open(`https://wa.me/5511977889397?text=${msg}`, '_blank');
+        window.location.replace('index.html');
+      });
+    });
+  </script>
+</body>
+</html>
