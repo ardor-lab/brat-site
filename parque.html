@@ -18,24 +18,38 @@
       box-shadow: 0 10px 30px -10px rgba(212, 175, 55, 0.15);
     }
     
-    .golden-lock {
-      filter: drop-shadow(0 0 15px rgba(212, 175, 55, 0.6));
-    }
+    .golden-lock { filter: drop-shadow(0 0 15px rgba(212, 175, 55, 0.6)); }
 
     canvas {
-      background-color: #000;
-      border: 2px solid #D4AF37;
-      border-radius: 8px;
-      box-shadow: 0 0 20px rgba(212, 175, 55, 0.2);
-      touch-action: none;
+      background-color: #000; border: 2px solid #D4AF37; border-radius: 8px;
+      box-shadow: 0 0 20px rgba(212, 175, 55, 0.2); touch-action: none;
     }
+
+    /* CSS do Brat Match (Memória) */
+    .memory-board {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px;
+      width: 100%; max-width: 280px; margin: 0 auto; perspective: 1000px;
+    }
+    .memory-card {
+      aspect-ratio: 1/1; position: relative; transform-style: preserve-3d;
+      transition: transform 0.4s cubic-bezier(0.4, 0.0, 0.2, 1); cursor: pointer;
+    }
+    .memory-card.flip { transform: rotateY(180deg); }
+    .memory-front, .memory-back {
+      position: absolute; width: 100%; height: 100%; backface-visibility: hidden;
+      border-radius: 8px; display: flex; align-items: center; justify-content: center;
+      font-size: 2rem; box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+    }
+    .memory-front { background: #D4AF37; transform: rotateY(180deg); }
+    .memory-back { background: #27272A; border: 2px solid #3f3f46; }
+    .memory-back::after { content: '?'; color: #52525b; font-size: 1.5rem; font-weight: bold; }
   </style>
 </head>
 <body class="min-h-screen flex flex-col items-center py-8 px-5 relative overflow-y-auto overflow-x-hidden">
   
   <div class="absolute inset-0 bg-[radial-gradient(circle_at_top,_var(--tw-gradient-stops))] from-amber-950/20 via-transparent to-transparent -z-10 fixed"></div>
 
-  <header class="w-full max-w-md flex flex-col items-center gap-6 mb-10 z-10 shrink-0">
+  <header class="w-full max-w-md flex flex-col items-center gap-6 mb-8 z-10 shrink-0">
     <a href="index.html" class="hover:scale-105 transition-transform">
       <img src="logo-topo.png" alt="Brat" class="h-10 object-contain drop-shadow-md">
     </a>
@@ -45,348 +59,353 @@
         <svg class="w-16 h-16" fill="currentColor" viewBox="0 0 24 24"><path d="M21 18v1a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h14a2 2 0 012 2v1h-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v14a1 1 0 001 1h14a1 1 0 001-1v-1h1zm-1-9H10a2 2 0 00-2 2v2a2 2 0 002 2h10a2 2 0 002-2v-2a2 2 0 00-2-2zm-1 3.5a1.5 1.5 0 110-3 1.5 1.5 0 010 3z"/></svg>
       </div>
       <p class="text-zinc-400 text-[10px] uppercase tracking-widest font-bold mb-1">Seu Cashback Disponível</p>
-      <h2 class="text-4xl font-extrabold text-amber-400 tracking-tight">R$ <span id="saldo-display">0,00</span></h2>
+      <h2 class="text-4xl font-extrabold text-amber-400 tracking-tight" id="saldo-display-container">R$ <span id="saldo-display">0,00</span></h2>
       <div class="flex justify-between items-center mt-4 text-[9px] text-zinc-500 uppercase tracking-wider font-bold">
         <span>Limite Mensal: R$ 10,00</span>
         <span id="carencia-status" class="text-emerald-500">Jogos Liberados</span>
       </div>
       
-      <button id="btn-resgatar-cashback" class="mt-5 w-full bg-white hover:bg-zinc-200 text-black font-bold px-4 py-3 rounded-full transition text-xs tracking-widest uppercase">
+      <button id="btn-resgatar-cashback" class="mt-5 w-full bg-white hover:bg-zinc-200 text-black font-bold px-4 py-3 rounded-full transition text-xs tracking-widest uppercase shadow-lg">
         Gerar Cupom de Desconto
       </button>
+    </div>
+
+    <!-- Interface Global de Vidas -->
+    <div class="bg-zinc-900 border border-zinc-800 rounded-full px-5 py-2 flex items-center gap-3 shadow-md">
+      <span class="text-zinc-400 text-[10px] uppercase tracking-widest font-bold">Fichas Restantes:</span>
+      <div class="flex gap-1" id="vidas-icons">
+        <!-- Preenchido via JS -->
+      </div>
     </div>
   </header>
 
   <main class="w-full max-w-md space-y-4 z-10 shrink-0 mb-10">
     
-    <!-- 1. A ROLETA BLOQUEADA COM PRINT DE FUNDO -->
-    <div class="bg-[#121216] border border-zinc-800 rounded-2xl h-48 relative overflow-hidden flex flex-col justify-center items-center text-center shadow-lg group">
-      <!-- O Fundo agora puxa a imagem roleta-print.jpg que você vai subir no GitHub -->
-      <div class="absolute inset-0 bg-[url('roleta-print.jpg')] bg-cover bg-center" style="filter: blur(4px) brightness(0.35); transform: scale(1.05);"></div>
+    <!-- 1. ROLETA -->
+    <div class="bg-[#121216] border border-zinc-800 rounded-2xl h-40 relative overflow-hidden flex flex-col justify-center items-center text-center shadow-lg group">
+      <div class="absolute inset-0 bg-[url('roleta-print.jpg')] bg-cover bg-center" style="filter: blur(5px) brightness(0.35); transform: scale(1.05);"></div>
       <div class="absolute inset-0 bg-black/40 group-hover:bg-black/50 transition-colors"></div>
       
-      <div class="relative z-10 flex flex-col items-center p-4">
-        <svg class="w-12 h-12 text-amber-400 mb-3 golden-lock" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C9.243 2 7 4.243 7 7v3H6c-1.103 0-2 .897-2 2v8c0 1.103.897 2 2 2h12c1.103 0 2-.897 2-2v-8c0-1.103-.897-2-2-2h-1V7c0-2.757-2.243-5-5-5zm-3 5c0-1.654 1.346-3 3-3s3 1.346 3 3v3H9V7zm8 7v6H7v-6h10z"/></svg>
-        <h3 class="text-white font-bold tracking-widest uppercase text-sm mb-1">Roleta do Anfitrião</h3>
-        <p class="text-zinc-300 text-[10px] px-6 leading-relaxed font-light">Desbloqueio exclusivo no salão. Faça a sua avaliação na loja e liberte as recompensas premium.</p>
-        <span class="mt-3 bg-black/50 border border-zinc-700 text-amber-400 text-[9px] px-3 py-1 rounded-full uppercase tracking-widest font-bold border-amber-500/30">Acesso Apenas Presencial</span>
+      <div class="relative z-10 flex flex-col items-center p-4 w-full">
+        <div class="flex items-center gap-3 mb-2">
+          <svg class="w-8 h-8 text-amber-400 golden-lock" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C9.243 2 7 4.243 7 7v3H6c-1.103 0-2 .897-2 2v8c0 1.103.897 2 2 2h12c1.103 0 2-.897 2-2v-8c0-1.103-.897-2-2-2h-1V7c0-2.757-2.243-5-5-5zm-3 5c0-1.654 1.346-3 3-3s3 1.346 3 3v3H9V7zm8 7v6H7v-6h10z"/></svg>
+          <h3 class="text-white font-bold tracking-widest uppercase text-sm">A Rodada da Casa</h3>
+        </div>
+        <p class="text-zinc-300 text-[10px] px-2 leading-relaxed font-light">Avalie-nos no salão e liberte recompensas premium ocultas.</p>
       </div>
     </div>
 
-    <!-- 2. BRAT SNAKE COM SISTEMA DE VIDAS -->
+    <!-- 2. BRAT SNAKE -->
     <div class="bg-zinc-900/80 border border-zinc-800 hover:border-amber-500/30 rounded-2xl p-5 transition flex items-center justify-between shadow-lg">
       <div>
         <h3 class="text-white font-bold tracking-widest uppercase text-sm">Brat Snake</h3>
-        <p class="text-amber-400 text-xs font-semibold mt-1">Ganha R$ 0,05 por Burger</p>
-        <p id="vidas-status" class="text-zinc-400 text-[11px] mt-1 font-bold">Vidas Restantes: <span id="vidas-count" class="text-white">3</span></p>
+        <p class="text-amber-400 text-xs font-semibold mt-1">Acumula R$ 0,05 por Burger</p>
+        <p class="text-zinc-500 text-[9px] uppercase mt-1">Custo: 1 Ficha</p>
       </div>
-      <button id="btn-jogar-snake" class="bg-amber-400 hover:bg-amber-300 disabled:bg-zinc-800 disabled:text-zinc-600 disabled:cursor-not-allowed text-black font-bold w-12 h-12 rounded-full flex items-center justify-center transition shadow-[0_0_15px_rgba(212,175,55,0.2)] shrink-0">
+      <button id="btn-open-snake" class="btn-game bg-amber-400 hover:bg-amber-300 disabled:bg-zinc-800 disabled:text-zinc-600 disabled:cursor-not-allowed text-black font-bold w-12 h-12 rounded-full flex items-center justify-center transition shadow-[0_0_15px_rgba(212,175,55,0.2)] shrink-0">
         <svg class="w-5 h-5 ml-1" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
       </button>
     </div>
 
     <!-- 3. BRAT MATCH -->
-    <div class="bg-zinc-900/80 border border-zinc-800 hover:border-amber-500/30 rounded-2xl p-5 transition flex items-center justify-between shadow-lg opacity-70">
+    <div class="bg-zinc-900/80 border border-zinc-800 hover:border-amber-500/30 rounded-2xl p-5 transition flex items-center justify-between shadow-lg">
       <div>
         <h3 class="text-white font-bold tracking-widest uppercase text-sm">Brat Match</h3>
-        <p class="text-amber-400 text-xs font-semibold mt-1">Brevemente...</p>
-        <p class="text-zinc-500 text-[10px] mt-1">O jogo da memória oficial da Brat.</p>
+        <p class="text-amber-400 text-xs font-semibold mt-1">Ganha R$ 0,50 se vencer</p>
+        <p class="text-zinc-500 text-[9px] uppercase mt-1">Custo: 1 Ficha</p>
       </div>
-      <button disabled class="bg-zinc-800 text-zinc-600 cursor-not-allowed font-bold w-12 h-12 rounded-full flex items-center justify-center transition shrink-0">
-        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15h2v2h-2v-2zm1-12c-2.21 0-4 1.79-4 4h2c0-1.1.9-2 2-2s2 .9 2 2c0 2-3 1.75-3 5h2c0-2.25 3-2.5 3-5 0-2.21-1.79-4-4-4z"/></svg>
+      <button id="btn-open-match" class="btn-game bg-amber-400 hover:bg-amber-300 disabled:bg-zinc-800 disabled:text-zinc-600 disabled:cursor-not-allowed text-black font-bold w-12 h-12 rounded-full flex items-center justify-center transition shadow-[0_0_15px_rgba(212,175,55,0.2)] shrink-0">
+        <svg class="w-5 h-5 ml-1" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
       </button>
     </div>
 
   </main>
 
+  <!-- MODAL: BRAT SNAKE -->
   <div id="snake-modal" class="fixed inset-0 z-[200] bg-black/95 flex flex-col items-center justify-center p-4 backdrop-blur-sm opacity-0 visibility-hidden transition-all" style="visibility: hidden;">
     <div class="bg-[#121216] border border-amber-500/50 rounded-3xl p-6 max-w-sm w-full text-center shadow-[0_0_80px_rgba(212,175,55,0.2)]">
       <div class="flex justify-between items-center mb-4">
         <h3 class="text-amber-400 text-xs font-bold tracking-[0.2em] uppercase">Brat Snake</h3>
-        <button id="close-snake" class="text-zinc-500 hover:text-white text-3xl leading-none">&times;</button>
+        <button class="close-modal text-zinc-500 hover:text-white text-3xl leading-none">&times;</button>
       </div>
-      
       <div class="flex justify-between text-xs text-white mb-2 font-mono">
         <span>Score: <span id="snake-score">0</span></span>
         <span>Ganho: R$ <span id="snake-ganho">0,00</span></span>
       </div>
-
       <canvas id="snake-game" width="280" height="280" class="mx-auto mb-6"></canvas>
-
       <div class="grid grid-cols-3 gap-3 w-64 mx-auto mb-4">
         <div></div>
-        <button class="bg-zinc-800 hover:bg-zinc-700 active:bg-amber-500 text-white rounded-xl p-5 text-xl flex justify-center items-center transition shadow-md" onclick="changeDirection('UP')">▲</button>
+        <button class="bg-zinc-800 hover:bg-zinc-700 active:bg-amber-500 text-white rounded-xl p-5 text-xl flex justify-center items-center transition" onclick="changeDirection('UP')">▲</button>
         <div></div>
-        <button class="bg-zinc-800 hover:bg-zinc-700 active:bg-amber-500 text-white rounded-xl p-5 text-xl flex justify-center items-center transition shadow-md" onclick="changeDirection('LEFT')">◀</button>
-        <button class="bg-zinc-800 hover:bg-zinc-700 active:bg-amber-500 text-white rounded-xl p-5 text-xl flex justify-center items-center transition shadow-md" onclick="changeDirection('DOWN')">▼</button>
-        <button class="bg-zinc-800 hover:bg-zinc-700 active:bg-amber-500 text-white rounded-xl p-5 text-xl flex justify-center items-center transition shadow-md" onclick="changeDirection('RIGHT')">▶</button>
+        <button class="bg-zinc-800 hover:bg-zinc-700 active:bg-amber-500 text-white rounded-xl p-5 text-xl flex justify-center items-center transition" onclick="changeDirection('LEFT')">◀</button>
+        <button class="bg-zinc-800 hover:bg-zinc-700 active:bg-amber-500 text-white rounded-xl p-5 text-xl flex justify-center items-center transition" onclick="changeDirection('DOWN')">▼</button>
+        <button class="bg-zinc-800 hover:bg-zinc-700 active:bg-amber-500 text-white rounded-xl p-5 text-xl flex justify-center items-center transition" onclick="changeDirection('RIGHT')">▶</button>
+      </div>
+      <button id="btn-start-snake" class="w-full bg-amber-400 hover:bg-amber-300 text-black font-bold px-4 py-4 rounded-full transition text-xs tracking-widest uppercase mt-2">
+        Gastar 1 Ficha e Jogar
+      </button>
+    </div>
+  </div>
+
+  <!-- MODAL: BRAT MATCH -->
+  <div id="match-modal" class="fixed inset-0 z-[200] bg-black/95 flex flex-col items-center justify-center p-4 backdrop-blur-sm opacity-0 visibility-hidden transition-all" style="visibility: hidden;">
+    <div class="bg-[#121216] border border-amber-500/50 rounded-3xl p-6 max-w-sm w-full text-center shadow-[0_0_80px_rgba(212,175,55,0.2)]">
+      <div class="flex justify-between items-center mb-4">
+        <h3 class="text-amber-400 text-xs font-bold tracking-[0.2em] uppercase">Brat Match</h3>
+        <button class="close-modal text-zinc-500 hover:text-white text-3xl leading-none">&times;</button>
+      </div>
+      <div class="flex justify-between text-xs text-white mb-4 font-mono">
+        <span>Pares: <span id="match-score">0</span>/6</span>
+        <span class="text-amber-400">Tempo: <span id="match-timer">60</span>s</span>
+      </div>
+      
+      <!-- Tabuleiro da Memória -->
+      <div class="memory-board mb-6" id="memory-board">
+        <!-- Cartões injetados via JS -->
       </div>
 
-      <button id="btn-start-snake" class="w-full bg-amber-400 hover:bg-amber-300 text-black font-bold px-4 py-4 rounded-full transition text-xs tracking-widest uppercase shadow-lg shadow-amber-500/10 mt-2">
-        Iniciar Partida (<span id="btn-vidas"></span> Vidas)
+      <button id="btn-start-match" class="w-full bg-amber-400 hover:bg-amber-300 text-black font-bold px-4 py-4 rounded-full transition text-xs tracking-widest uppercase mt-2">
+        Gastar 1 Ficha e Jogar
       </button>
     </div>
   </div>
 
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      // 1. SISTEMA FINANCEIRO E VIDAS
+      // --- SISTEMA FINANCEIRO E FICHAS GLOBAIS ---
       const LIMITE_MENSAL = 10.00;
       const CARENCIA_MS = 48 * 60 * 60 * 1000; 
 
       let saldoAtual = parseFloat(localStorage.getItem('brat_cashback')) || 0;
       let ultimoJogo = parseInt(localStorage.getItem('brat_last_played')) || 0;
-      
-      // Carrega as vidas. Se não existir, dá 3 vidas.
       let vidas = parseInt(localStorage.getItem('brat_vidas'));
       if (isNaN(vidas)) vidas = 3;
-      
+
       const saldoDisplay = document.getElementById('saldo-display');
       const carenciaStatus = document.getElementById('carencia-status');
-      const btnJogarSnake = document.getElementById('btn-jogar-snake');
+      const vidasIcons = document.getElementById('vidas-icons');
       const btnResgatar = document.getElementById('btn-resgatar-cashback');
-      const vidasCount = document.getElementById('vidas-count');
-      const btnVidasText = document.getElementById('btn-vidas');
+      const btnsGame = document.querySelectorAll('.btn-game');
 
       function atualizarCarteira() {
         saldoDisplay.innerText = saldoAtual.toFixed(2).replace('.', ',');
-        vidasCount.innerText = vidas;
-        btnVidasText.innerText = vidas;
+        
+        // Desenhar Fichas
+        vidasIcons.innerHTML = '';
+        for(let i=0; i<3; i++) {
+          if (i < vidas) {
+            vidasIcons.innerHTML += `<svg class="w-4 h-4 text-amber-400 drop-shadow-[0_0_5px_rgba(212,175,55,0.8)]" fill="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6" fill="#18181B"></circle></svg>`;
+          } else {
+            vidasIcons.innerHTML += `<svg class="w-4 h-4 text-zinc-700" fill="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle></svg>`;
+          }
+        }
         
         const agora = Date.now();
         const tempoRestante = (ultimoJogo + CARENCIA_MS) - agora;
 
-        // Se o tempo de carência ainda estiver a correr (porque perdeu as 3 vidas)
-        if (tempoRestante > 0) {
-          btnJogarSnake.disabled = true;
+        if (tempoRestante > 0 && vidas <= 0) {
+          btnsGame.forEach(btn => btn.disabled = true);
           const horasFaltam = Math.ceil(tempoRestante / (1000 * 60 * 60));
-          carenciaStatus.innerText = `Recarrega em ${horasFaltam}h`;
+          carenciaStatus.innerText = `Fichas em ${horasFaltam}h`;
           carenciaStatus.classList.replace('text-emerald-500', 'text-amber-500');
-          vidasCount.innerText = "0";
         } else {
-          // Se o tempo já passou, e as vidas estão a zero, recarrega as 3 vidas
           if (vidas <= 0 && ultimoJogo > 0) {
-            vidas = 3;
-            localStorage.setItem('brat_vidas', 3);
-            vidasCount.innerText = "3";
-            btnVidasText.innerText = "3";
+            vidas = 3; localStorage.setItem('brat_vidas', 3);
+            atualizarCarteira(); return;
           }
-          btnJogarSnake.disabled = false;
+          btnsGame.forEach(btn => btn.disabled = false);
           carenciaStatus.innerText = 'Jogos Liberados';
           carenciaStatus.classList.replace('text-amber-500', 'text-emerald-500');
         }
 
         if (saldoAtual >= LIMITE_MENSAL) {
-          btnJogarSnake.disabled = true;
+          btnsGame.forEach(btn => btn.disabled = true);
           carenciaStatus.innerText = 'Limite Mensal Atingido';
           carenciaStatus.classList.replace('text-emerald-500', 'text-red-500');
         }
       }
-
       atualizarCarteira();
 
-      // RESET DE TESTES PARA O ANFITRIÃO
-      saldoDisplay.addEventListener('dblclick', () => {
+      // Reset Oculto para Anfitrião
+      document.getElementById('saldo-display-container').addEventListener('dblclick', () => {
         localStorage.removeItem('brat_cashback');
         localStorage.removeItem('brat_last_played');
         localStorage.setItem('brat_vidas', 3);
-        alert('Carteira, Vidas e Carência resetadas para testes!');
+        alert('Modo Teste: Carteira e Fichas resetadas!');
         window.location.reload();
       });
 
       btnResgatar.addEventListener('click', () => {
-        if (saldoAtual <= 0) {
-          alert("Não tem saldo disponível para resgatar.");
-          return;
-        }
+        if (saldoAtual <= 0) return alert("Sem saldo para resgatar.");
         const dataStr = new Date().toLocaleDateString('pt-BR');
         const msg = encodeURIComponent(`Olá! Sou um jogador do Brat Play e gostaria de gerar meu cupom de desconto.\n\n*Saldo de Cashback:* R$ ${saldoAtual.toFixed(2).replace('.', ',')}\n*Data:* ${dataStr}`);
-        
-        localStorage.setItem('brat_cashback', 0);
-        saldoAtual = 0;
-        atualizarCarteira();
-        
+        localStorage.setItem('brat_cashback', 0); saldoAtual = 0; atualizarCarteira();
         window.open(`https://wa.me/5511977889397?text=${msg}`, '_blank');
       });
 
-      // 2. MOTOR DO JOGO BRAT SNAKE
-      const snakeModal = document.getElementById('snake-modal');
-      const btnCloseSnake = document.getElementById('close-snake');
-      const btnStartSnake = document.getElementById('btn-start-snake');
-      const canvas = document.getElementById('snake-game');
-      const ctx = canvas.getContext('2d');
-      
-      const box = 20; 
-      let snake = [];
-      let food = {};
-      let d = "";
-      let score = 0;
-      let gameInterval;
-
-      btnJogarSnake.addEventListener('click', () => {
-        snakeModal.style.opacity = '1';
-        snakeModal.style.visibility = 'visible';
-      });
-
-      btnCloseSnake.addEventListener('click', () => {
-        snakeModal.style.opacity = '0';
-        snakeModal.style.visibility = 'hidden';
-        clearInterval(gameInterval);
-        atualizarCarteira(); // Atualiza UI ao fechar
-      });
-
-      btnStartSnake.addEventListener('click', initGame);
-
-      window.changeDirection = function(direction) {
-        if(direction == "LEFT" && d != "RIGHT") d = "LEFT";
-        if(direction == "UP" && d != "DOWN") d = "UP";
-        if(direction == "RIGHT" && d != "LEFT") d = "RIGHT";
-        if(direction == "DOWN" && d != "UP") d = "DOWN";
-      }
-
-      document.addEventListener("keydown", (event) => {
-        if(event.keyCode == 37 && d != "RIGHT") d = "LEFT";
-        if(event.keyCode == 38 && d != "DOWN") d = "UP";
-        if(event.keyCode == 39 && d != "LEFT") d = "RIGHT";
-        if(event.keyCode == 40 && d != "UP") d = "DOWN";
-      });
-
-      let touchStartX = 0;
-      let touchStartY = 0;
-      
-      canvas.addEventListener('touchstart', function(e) {
-        touchStartX = e.changedTouches[0].screenX;
-        touchStartY = e.changedTouches[0].screenY;
-      }, {passive: true});
-
-      canvas.addEventListener('touchend', function(e) {
-        let touchEndX = e.changedTouches[0].screenX;
-        let touchEndY = e.changedTouches[0].screenY;
-        handleSwipe(touchStartX, touchStartY, touchEndX, touchEndY);
-      }, {passive: true});
-
-      function handleSwipe(startX, startY, endX, endY) {
-        let diffX = endX - startX;
-        let diffY = endY - startY;
-        
-        if (Math.abs(diffX) > Math.abs(diffY)) {
-          if (Math.abs(diffX) > 30) {
-            if (diffX > 0 && d != "LEFT") d = "RIGHT";
-            else if (diffX < 0 && d != "RIGHT") d = "LEFT";
-          }
-        } else {
-          if (Math.abs(diffY) > 30) {
-            if (diffY > 0 && d != "UP") d = "DOWN";
-            else if (diffY < 0 && d != "DOWN") d = "UP";
-          }
-        }
-      }
-
-      function initGame() {
-        if (vidas <= 0) return;
-        
-        btnStartSnake.style.display = 'none';
-        snake = [];
-        snake[0] = { x: 7 * box, y: 7 * box };
-        score = 0;
-        document.getElementById('snake-score').innerText = "0";
-        document.getElementById('snake-ganho').innerText = "0,00";
-        d = "RIGHT";
-        
-        food = {
-          x: Math.floor(Math.random() * 13 + 1) * box,
-          y: Math.floor(Math.random() * 13 + 1) * box
-        };
-
-        clearInterval(gameInterval);
-        gameInterval = setInterval(drawGame, 220); 
-      }
-
-      function collision(head, array) {
-        for(let i = 0; i < array.length; i++) {
-          if(head.x == array[i].x && head.y == array[i].y) return true;
-        }
-        return false;
-      }
-
-      function drawGame() {
-        ctx.fillStyle = "#000";
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-        for(let i = 0; i < snake.length; i++) {
-          ctx.fillStyle = (i == 0) ? "#D4AF37" : "#a18222"; 
-          ctx.fillRect(snake[i].x, snake[i].y, box, box);
-          ctx.strokeStyle = "#000";
-          ctx.strokeRect(snake[i].x, snake[i].y, box, box);
-        }
-
-        ctx.fillStyle = "#d97706";
-        ctx.beginPath();
-        ctx.arc(food.x + box/2, food.y + box/2, box/2.2, 0, 2 * Math.PI);
-        ctx.fill();
-
-        let snakeX = snake[0].x;
-        let snakeY = snake[0].y;
-
-        if(d == "LEFT") snakeX -= box;
-        if(d == "UP") snakeY -= box;
-        if(d == "RIGHT") snakeX += box;
-        if(d == "DOWN") snakeY += box;
-
-        if(snakeX < 0 || snakeX >= canvas.width || snakeY < 0 || snakeY >= canvas.height || collision({x:snakeX,y:snakeY}, snake)) {
-          clearInterval(gameInterval);
-          finalizarPartida();
-          return;
-        }
-
-        if(snakeX == food.x && snakeY == food.y) {
-          score++;
-          document.getElementById('snake-score').innerText = score;
-          document.getElementById('snake-ganho').innerText = (score * 0.05).toFixed(2).replace('.', ',');
-          
-          food = {
-            x: Math.floor(Math.random() * 13 + 1) * box,
-            y: Math.floor(Math.random() * 13 + 1) * box
-          };
-        } else {
-          snake.pop(); 
-        }
-
-        let newHead = { x: snakeX, y: snakeY };
-        snake.unshift(newHead); 
-      }
-
-      function finalizarPartida() {
-        const ganho = score * 0.05;
-        
-        // Desconta 1 vida
-        vidas--;
-        localStorage.setItem('brat_vidas', vidas);
-        
+      function descontarFichaEGanhar(ganho, mensagem, customAction) {
+        vidas--; localStorage.setItem('brat_vidas', vidas);
         if (saldoAtual + ganho > LIMITE_MENSAL) {
           const permitido = LIMITE_MENSAL - saldoAtual;
           saldoAtual += permitido;
-          alert(`Fim de jogo! Fez ${score} pontos. Ganhou R$ ${permitido.toFixed(2)} (Atingiu o limite de R$ 10 mensais!). Vidas restantes: ${vidas}`);
+          alert(`${mensagem} Ganhou R$ ${permitido.toFixed(2)} (Limite Atingido!). Fichas: ${vidas}`);
         } else {
           saldoAtual += ganho;
-          alert(`Fim de jogo! Faturou R$ ${ganho.toFixed(2)} de Cashback. Vidas restantes: ${vidas}`);
+          alert(`${mensagem} Faturou R$ ${ganho.toFixed(2)} de Cashback. Fichas: ${vidas}`);
+        }
+        localStorage.setItem('brat_cashback', saldoAtual);
+        if (vidas <= 0) { localStorage.setItem('brat_last_played', Date.now()); alert("Acabaram as fichas! Recarga em 48 horas."); }
+        atualizarCarteira();
+        if(customAction) customAction();
+      }
+
+      // --- LOGICA DOS MODAIS ---
+      document.querySelectorAll('.close-modal').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.target.closest('.fixed').style.opacity = '0';
+          e.target.closest('.fixed').style.visibility = 'hidden';
+          if(typeof gameInterval !== 'undefined') clearInterval(gameInterval);
+          if(typeof matchInterval !== 'undefined') clearInterval(matchInterval);
+          atualizarCarteira();
+        });
+      });
+
+      // --- 1. BRAT SNAKE ---
+      const snakeModal = document.getElementById('snake-modal');
+      const btnStartSnake = document.getElementById('btn-start-snake');
+      const canvas = document.getElementById('snake-game');
+      const ctx = canvas.getContext('2d');
+      const box = 20; let snake = [], food = {}, d = "", score = 0, gameInterval;
+
+      document.getElementById('btn-open-snake').addEventListener('click', () => {
+        snakeModal.style.opacity = '1'; snakeModal.style.visibility = 'visible';
+        btnStartSnake.style.display = 'block';
+      });
+
+      btnStartSnake.addEventListener('click', () => {
+        if (vidas <= 0) return;
+        btnStartSnake.style.display = 'none';
+        snake = [{ x: 7 * box, y: 7 * box }]; score = 0; d = "RIGHT";
+        document.getElementById('snake-score').innerText = "0";
+        document.getElementById('snake-ganho').innerText = "0,00";
+        food = { x: Math.floor(Math.random() * 13 + 1) * box, y: Math.floor(Math.random() * 13 + 1) * box };
+        clearInterval(gameInterval); gameInterval = setInterval(drawSnake, 220);
+      });
+
+      window.changeDirection = function(dir) {
+        if(dir=="LEFT" && d!="RIGHT") d="LEFT"; else if(dir=="UP" && d!="DOWN") d="UP";
+        else if(dir=="RIGHT" && d!="LEFT") d="RIGHT"; else if(dir=="DOWN" && d!="UP") d="DOWN";
+      }
+
+      // Swipe support
+      let touchStartX = 0, touchStartY = 0;
+      canvas.addEventListener('touchstart', e => { touchStartX = e.changedTouches[0].screenX; touchStartY = e.changedTouches[0].screenY; }, {passive: true});
+      canvas.addEventListener('touchend', e => {
+        let diffX = e.changedTouches[0].screenX - touchStartX, diffY = e.changedTouches[0].screenY - touchStartY;
+        if (Math.abs(diffX) > Math.abs(diffY)) { if (Math.abs(diffX)>30) { if(diffX>0 && d!="LEFT") d="RIGHT"; else if(diffX<0 && d!="RIGHT") d="LEFT"; } } 
+        else { if (Math.abs(diffY)>30) { if(diffY>0 && d!="UP") d="DOWN"; else if(diffY<0 && d!="DOWN") d="UP"; } }
+      }, {passive: true});
+
+      function drawSnake() {
+        ctx.fillStyle = "#000"; ctx.fillRect(0, 0, canvas.width, canvas.height);
+        for(let i=0; i<snake.length; i++) {
+          ctx.fillStyle = (i==0) ? "#D4AF37" : "#a18222"; ctx.fillRect(snake[i].x, snake[i].y, box, box);
+          ctx.strokeStyle = "#000"; ctx.strokeRect(snake[i].x, snake[i].y, box, box);
+        }
+        ctx.fillStyle = "#d97706"; ctx.beginPath(); ctx.arc(food.x+box/2, food.y+box/2, box/2.2, 0, 2*Math.PI); ctx.fill();
+
+        let snakeX = snake[0].x, snakeY = snake[0].y;
+        if(d=="LEFT") snakeX-=box; if(d=="UP") snakeY-=box; if(d=="RIGHT") snakeX+=box; if(d=="DOWN") snakeY+=box;
+
+        if(snakeX<0 || snakeX>=canvas.width || snakeY<0 || snakeY>=canvas.height || snake.some((s,i)=> i!==0 && s.x===snakeX && s.y===snakeY)) {
+          clearInterval(gameInterval);
+          descontarFichaEGanhar(score * 0.05, `Fim de Jogo! Devorou ${score} burgers.`, () => {
+            if(vidas <= 0) { snakeModal.style.opacity = '0'; snakeModal.style.visibility = 'hidden'; } else { btnStartSnake.style.display = 'block'; }
+          });
+          return;
         }
 
-        localStorage.setItem('brat_cashback', saldoAtual);
-        
-        // Se acabaram as vidas, dispara o cronómetro de 48h
-        if (vidas <= 0) {
-          localStorage.setItem('brat_last_played', Date.now());
-          alert("Acabaram as suas vidas! A carteira vai recarregar novas fichas em 48 horas.");
-          snakeModal.style.opacity = '0';
-          snakeModal.style.visibility = 'hidden';
-        } else {
-          btnStartSnake.style.display = 'block';
-          btnVidasText.innerText = vidas;
-        }
-        
-        atualizarCarteira();
+        if(snakeX==food.x && snakeY==food.y) {
+          score++; document.getElementById('snake-score').innerText = score;
+          document.getElementById('snake-ganho').innerText = (score*0.05).toFixed(2).replace('.',',');
+          food = { x: Math.floor(Math.random()*13+1)*box, y: Math.floor(Math.random()*13+1)*box };
+        } else { snake.pop(); }
+        snake.unshift({ x: snakeX, y: snakeY });
       }
+
+      // --- 2. BRAT MATCH ---
+      const matchModal = document.getElementById('match-modal');
+      const btnStartMatch = document.getElementById('btn-start-match');
+      const board = document.getElementById('memory-board');
+      const timerDisplay = document.getElementById('match-timer');
+      const scoreDisplay = document.getElementById('match-score');
+      
+      const emojis = ['🍔', '🥓', '🧀', '🍳', '🍟', '🥩'];
+      let cardsArr = [], hasFlippedCard = false, lockBoard = false, firstCard, secondCard;
+      let matchScore = 0, matchTimer = 60, matchInterval;
+
+      document.getElementById('btn-open-match').addEventListener('click', () => {
+        matchModal.style.opacity = '1'; matchModal.style.visibility = 'visible';
+        btnStartMatch.style.display = 'block'; board.innerHTML = '';
+        timerDisplay.innerText = "60"; scoreDisplay.innerText = "0";
+      });
+
+      btnStartMatch.addEventListener('click', () => {
+        if (vidas <= 0) return;
+        btnStartMatch.style.display = 'none';
+        matchScore = 0; matchTimer = 60; scoreDisplay.innerText = "0"; timerDisplay.innerText = matchTimer;
+        
+        cardsArr = [...emojis, ...emojis].sort(() => 0.5 - Math.random());
+        board.innerHTML = '';
+        cardsArr.forEach(emoji => {
+          const card = document.createElement('div'); card.classList.add('memory-card'); card.dataset.emoji = emoji;
+          card.innerHTML = `<div class="memory-front">${emoji}</div><div class="memory-back"></div>`;
+          card.addEventListener('click', flipCard); board.appendChild(card);
+        });
+
+        clearInterval(matchInterval);
+        matchInterval = setInterval(() => {
+          matchTimer--; timerDisplay.innerText = matchTimer;
+          if (matchTimer <= 0) {
+            clearInterval(matchInterval); lockBoard = true;
+            descontarFichaEGanhar(0, `O tempo acabou! Fez ${matchScore} pares.`, () => {
+              if(vidas <= 0) { matchModal.style.opacity = '0'; matchModal.style.visibility = 'hidden'; } else { btnStartMatch.style.display = 'block'; }
+            });
+          }
+        }, 1000);
+      });
+
+      function flipCard() {
+        if (lockBoard || this === firstCard) return;
+        this.classList.add('flip');
+        if (!hasFlippedCard) { hasFlippedCard = true; firstCard = this; return; }
+        secondCard = this; checkForMatch();
+      }
+
+      function checkForMatch() {
+        let isMatch = firstCard.dataset.emoji === secondCard.dataset.emoji;
+        isMatch ? disableCards() : unflipCards();
+      }
+
+      function disableCards() {
+        firstCard.removeEventListener('click', flipCard); secondCard.removeEventListener('click', flipCard);
+        matchScore++; scoreDisplay.innerText = matchScore; resetBoard();
+        if (matchScore === 6) {
+          clearInterval(matchInterval);
+          setTimeout(() => {
+            descontarFichaEGanhar(0.50, `Vitória! Tempo restante: ${matchTimer}s.`, () => {
+              if(vidas <= 0) { matchModal.style.opacity = '0'; matchModal.style.visibility = 'hidden'; } else { btnStartMatch.style.display = 'block'; }
+            });
+          }, 500);
+        }
+      }
+
+      function unflipCards() {
+        lockBoard = true;
+        setTimeout(() => { firstCard.classList.remove('flip'); secondCard.classList.remove('flip'); resetBoard(); }, 1000);
+      }
+
+      function resetBoard() { [hasFlippedCard, lockBoard] = [false, false]; [firstCard, secondCard] = [null, null]; }
     });
   </script>
 </body>
