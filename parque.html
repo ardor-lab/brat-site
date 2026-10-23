@@ -11,15 +11,6 @@
   
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
 
-  <script>
-    // CHAVE MESTRA: Se o link tiver "?admin", destranca a fechadura para testes do dono
-    if (window.location.search.includes('admin')) {
-      localStorage.removeItem('brat_roleta_girada');
-    } else if (localStorage.getItem('brat_roleta_girada') === 'true') {
-      window.location.replace('index.html');
-    }
-  </script>
-
   <style>
     body { font-family: 'Montserrat', sans-serif; background-color: #08080A; color: #f4f4f5; }
     
@@ -43,14 +34,14 @@
       border-radius: 50%;
       position: relative;
       background: conic-gradient(
-        #18181B 0deg 45deg,       /* 1. Brownie */
-        #27272A 45deg 90deg,      /* 2. Cupom 10 */
-        #18181B 90deg 135deg,     /* 3. MS Ovo */
-        #27272A 135deg 180deg,    /* 4. Drink */
-        #18181B 180deg 225deg,    /* 5. Fritas */
-        #D4AF37 225deg 270deg,    /* 6. Cheeseburguer */
-        #0a0a0c 270deg 315deg,    /* 7. MS Oreo */
-        #D4AF37 315deg 360deg     /* 8. Cupom 50 */
+        #18181B 0deg 45deg,       
+        #27272A 45deg 90deg,      
+        #18181B 90deg 135deg,     
+        #27272A 135deg 180deg,    
+        #18181B 180deg 225deg,    
+        #D4AF37 225deg 270deg,    
+        #0a0a0c 270deg 315deg,    
+        #D4AF37 315deg 360deg     
       );
       transition: transform 6s cubic-bezier(0.15, 0.9, 0.15, 1); 
     }
