@@ -82,16 +82,16 @@
     
     <!-- 1. ROLETA -->
     <div class="bg-[#121216] border border-zinc-800 rounded-2xl h-40 relative overflow-hidden flex flex-col justify-center items-center text-center shadow-lg group">
-      <!-- Imagem ajustada para bg-contain bg-no-repeat para evitar o zoom desproporcional -->
-      <div class="absolute inset-0 bg-contain bg-center bg-no-repeat opacity-60" style="background-image: url('roleta-print.jpg'); filter: blur(3px);"></div>
-      <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-black/20 group-hover:bg-black/60 transition-colors"></div>
+      <!-- Opacidade aumentada (80%) e desfoque quase zerado (0.5px) para leitura clara dos prémios -->
+      <div class="absolute inset-0 bg-contain bg-center bg-no-repeat opacity-80" style="background-image: url('roleta-print.jpg'); filter: blur(0.5px);"></div>
+      <div class="absolute inset-0 bg-gradient-to-t from-[#121216] via-black/50 to-black/20 group-hover:bg-black/40 transition-colors"></div>
       
-      <div class="relative z-10 flex flex-col items-center p-4 w-full">
-        <div class="flex items-center gap-3 mb-2">
-          <svg class="w-8 h-8 text-amber-400 golden-lock" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C9.243 2 7 4.243 7 7v3H6c-1.103 0-2 .897-2 2v8c0 1.103.897 2 2 2h12c1.103 0 2-.897 2-2v-8c0-1.103-.897-2-2-2h-1V7c0-2.757-2.243-5-5-5zm-3 5c0-1.654 1.346-3 3-3s3 1.346 3 3v3H9V7zm8 7v6H7v-6h10z"/></svg>
-          <h3 class="text-white font-bold tracking-widest uppercase text-sm">A Rodada da Casa</h3>
+      <div class="relative z-10 flex flex-col items-center p-4 w-full mt-2">
+        <div class="flex items-center gap-3 mb-1 bg-black/40 px-4 py-2 rounded-full backdrop-blur-sm border border-zinc-700/50">
+          <svg class="w-6 h-6 text-amber-400 golden-lock" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C9.243 2 7 4.243 7 7v3H6c-1.103 0-2 .897-2 2v8c0 1.103.897 2 2 2h12c1.103 0 2-.897 2-2v-8c0-1.103-.897-2-2-2h-1V7c0-2.757-2.243-5-5-5zm-3 5c0-1.654 1.346-3 3-3s3 1.346 3 3v3H9V7zm8 7v6H7v-6h10z"/></svg>
+          <h3 class="text-white font-bold tracking-widest uppercase text-sm drop-shadow-md">A Rodada da Casa</h3>
         </div>
-        <p class="text-zinc-300 text-[10px] px-2 leading-relaxed font-light">Avalie-nos no salão e liberte recompensas premium ocultas.</p>
+        <p class="text-zinc-200 text-[10px] px-2 leading-relaxed font-semibold drop-shadow-md mt-1">Avalie-nos no salão e liberte recompensas ocultas.</p>
       </div>
     </div>
 
