@@ -11,6 +11,15 @@
   
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
 
+  <script>
+    // MODO LABORATÓRIO VS MODO SALÃO
+    const isTestMode = window.location.search.includes('admin');
+    
+    if (!isTestMode && localStorage.getItem('brat_roleta_girada') === 'true') {
+      window.location.replace('index.html');
+    }
+  </script>
+
   <style>
     body { font-family: 'Montserrat', sans-serif; background-color: #08080A; color: #f4f4f5; }
     
@@ -102,7 +111,7 @@
 
   <div class="text-center max-w-sm mb-6 space-y-2 relative z-10 shrink-0">
     <h1 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">A Rodada da Casa</h1>
-    <p class="text-zinc-400 text-xs sm:text-sm font-light leading-relaxed">Avalie a nossa casa e destrave a roleta para garantir a sua recompensa de hoje.</p>
+    <p class="text-zinc-400 text-xs sm:text-sm font-light leading-relaxed">Avalie a nossa casa e destrave as suas recompensas.</p>
   </div>
 
   <div class="relative mb-6 z-10 shrink-0 mt-2">
@@ -141,7 +150,7 @@
   <div id="resultado-modal" class="fixed inset-0 z-[200] bg-black/95 flex flex-col items-center justify-center p-6 backdrop-blur-sm">
     <div class="bg-[#121216] border border-amber-500/50 rounded-3xl p-8 max-w-sm w-full text-center shadow-[0_0_80px_rgba(212,175,55,0.2)]">
       <span class="text-4xl mb-4 block">🎉</span>
-      <h3 class="text-amber-400 text-xs font-bold tracking-[0.2em] uppercase mb-2">Recompensa Desbloqueada</h3>
+      <h3 class="text-amber-400 text-xs font-bold tracking-[0.2em] uppercase mb-2">A Rodada da Casa</h3>
       <h2 id="premio-texto" class="text-2xl font-extrabold text-white mb-6">Prémio</h2>
       
       <div class="bg-black border border-zinc-800 rounded-xl p-4 mb-6">
@@ -166,7 +175,6 @@
       const wheel = document.getElementById('wheel');
       const lockCenter = document.getElementById('lock-center');
       const lockIcon = document.getElementById('lock-icon');
-      
       const modal = document.getElementById('resultado-modal');
       const premioTexto = document.getElementById('premio-texto');
       const dataHoraTexto = document.getElementById('data-hora-texto');
@@ -262,11 +270,20 @@
       }
 
       btnResgatar.addEventListener('click', () => {
-        localStorage.setItem('brat_roleta_girada', 'true');
+        // Se estiver no Modo Laboratório (?admin), NÃO grava a fechadura
+        if (!isTestMode) {
+          localStorage.setItem('brat_roleta_girada', 'true');
+        }
+        
         const msg = encodeURIComponent(`Olá! Estou na Brat e acabei de jogar A Rodada da Casa.\n\n*Meu Prêmio:* ${premioGanho}\n*Código de Segurança:* ${dataHoraTexto.innerText}`);
         window.open(`https://wa.me/5511977889397?text=${msg}`, '_blank');
         
-        window.location.replace('parque.html');
+        // Se for admin, apenas recarrega para testar de novo; se for cliente, envia pro Parque
+        if (isTestMode) {
+          window.location.reload();
+        } else {
+          window.location.replace('parque.html');
+        }
       });
     });
   </script>
