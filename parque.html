@@ -25,7 +25,6 @@
       box-shadow: 0 0 20px rgba(212, 175, 55, 0.2); touch-action: none;
     }
 
-    /* CSS do Brat Match (Memória) */
     .memory-board {
       display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px;
       width: 100%; max-width: 280px; margin: 0 auto; perspective: 1000px;
@@ -61,37 +60,37 @@
       <p class="text-zinc-400 text-[10px] uppercase tracking-widest font-bold mb-1">Seu Cashback Disponível</p>
       <h2 class="text-4xl font-extrabold text-amber-400 tracking-tight" id="saldo-display-container">R$ <span id="saldo-display">0,00</span></h2>
       <div class="flex justify-between items-center mt-4 text-[9px] text-zinc-500 uppercase tracking-wider font-bold">
-        <span>Limite Mensal: R$ 10,00</span>
+        <span>Limite Semanal: R$ 10,00</span>
         <span id="carencia-status" class="text-emerald-500">Jogos Liberados</span>
       </div>
       
       <button id="btn-resgatar-cashback" class="mt-5 w-full bg-white hover:bg-zinc-200 text-black font-bold px-4 py-3 rounded-full transition text-xs tracking-widest uppercase shadow-lg">
         Gerar Cupom de Desconto
       </button>
+      <p class="text-zinc-600 text-[8px] uppercase tracking-widest mt-3">*Limite de 1 resgate por pessoa</p>
     </div>
 
     <div class="bg-zinc-900 border border-zinc-800 rounded-full px-5 py-2 flex items-center gap-3 shadow-md">
       <span class="text-zinc-400 text-[10px] uppercase tracking-widest font-bold">Fichas Restantes:</span>
       <div class="flex gap-1" id="vidas-icons">
-        <!-- Preenchido via JS -->
+        <!-- Preenchido via JS (Agora 5 vidas) -->
       </div>
     </div>
   </header>
 
   <main class="w-full max-w-md space-y-4 z-10 shrink-0 mb-10">
     
-    <!-- 1. ROLETA -->
+    <!-- 1. ROLETA (Visibilidade Máxima) -->
     <div class="bg-[#121216] border border-zinc-800 rounded-2xl h-40 relative overflow-hidden flex flex-col justify-center items-center text-center shadow-lg group">
-      <!-- Opacidade aumentada (80%) e desfoque quase zerado (0.5px) para leitura clara dos prémios -->
-      <div class="absolute inset-0 bg-contain bg-center bg-no-repeat opacity-80" style="background-image: url('roleta-print.jpg'); filter: blur(0.5px);"></div>
-      <div class="absolute inset-0 bg-gradient-to-t from-[#121216] via-black/50 to-black/20 group-hover:bg-black/40 transition-colors"></div>
+      <div class="absolute inset-0 bg-contain bg-center bg-no-repeat opacity-100" style="background-image: url('roleta-print.jpg');"></div>
+      <div class="absolute inset-0 bg-gradient-to-t from-[#121216] via-black/30 to-transparent transition-colors"></div>
       
       <div class="relative z-10 flex flex-col items-center p-4 w-full mt-2">
-        <div class="flex items-center gap-3 mb-1 bg-black/40 px-4 py-2 rounded-full backdrop-blur-sm border border-zinc-700/50">
+        <div class="flex items-center gap-3 mb-1 bg-black/50 px-4 py-2 rounded-full backdrop-blur-sm border border-zinc-700/50">
           <svg class="w-6 h-6 text-amber-400 golden-lock" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C9.243 2 7 4.243 7 7v3H6c-1.103 0-2 .897-2 2v8c0 1.103.897 2 2 2h12c1.103 0 2-.897 2-2v-8c0-1.103-.897-2-2-2h-1V7c0-2.757-2.243-5-5-5zm-3 5c0-1.654 1.346-3 3-3s3 1.346 3 3v3H9V7zm8 7v6H7v-6h10z"/></svg>
-          <h3 class="text-white font-bold tracking-widest uppercase text-sm drop-shadow-md">A Rodada da Casa</h3>
+          <h3 class="text-white font-bold tracking-widest uppercase text-sm drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)]">A Rodada da Casa</h3>
         </div>
-        <p class="text-zinc-200 text-[10px] px-2 leading-relaxed font-semibold drop-shadow-md mt-1">Avalie-nos no salão e liberte recompensas ocultas.</p>
+        <p class="text-white text-[10px] px-2 leading-relaxed font-bold drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)] mt-1">Avalie-nos no salão e liberte recompensas ocultas.</p>
       </div>
     </div>
 
@@ -99,7 +98,7 @@
     <div class="bg-zinc-900/80 border border-zinc-800 hover:border-amber-500/30 rounded-2xl p-5 transition flex items-center justify-between shadow-lg">
       <div>
         <h3 class="text-white font-bold tracking-widest uppercase text-sm">Brat Snake</h3>
-        <p class="text-amber-400 text-xs font-semibold mt-1">Acumula R$ 0,05 por Burger</p>
+        <p class="text-amber-400 text-xs font-semibold mt-1">Acumula R$ 0,20 por Burger</p>
         <p class="text-zinc-500 text-[9px] uppercase mt-1">Custo: 1 Ficha</p>
       </div>
       <button id="btn-open-snake" class="btn-game bg-amber-400 hover:bg-amber-300 disabled:bg-zinc-800 disabled:text-zinc-600 disabled:cursor-not-allowed text-black font-bold w-12 h-12 rounded-full flex items-center justify-center transition shadow-[0_0_15px_rgba(212,175,55,0.2)] shrink-0">
@@ -111,7 +110,7 @@
     <div class="bg-zinc-900/80 border border-zinc-800 hover:border-amber-500/30 rounded-2xl p-5 transition flex items-center justify-between shadow-lg">
       <div>
         <h3 class="text-white font-bold tracking-widest uppercase text-sm">Brat Match</h3>
-        <p class="text-amber-400 text-xs font-semibold mt-1">Ganha R$ 0,50 se vencer</p>
+        <p class="text-amber-400 text-xs font-semibold mt-1">Ganha R$ 2,00 se vencer</p>
         <p class="text-zinc-500 text-[9px] uppercase mt-1">Custo: 1 Ficha</p>
       </div>
       <button id="btn-open-match" class="btn-game bg-amber-400 hover:bg-amber-300 disabled:bg-zinc-800 disabled:text-zinc-600 disabled:cursor-not-allowed text-black font-bold w-12 h-12 rounded-full flex items-center justify-center transition shadow-[0_0_15px_rgba(212,175,55,0.2)] shrink-0">
@@ -159,9 +158,7 @@
         <span class="text-amber-400">Tempo: <span id="match-timer">60</span>s</span>
       </div>
       
-      <div class="memory-board mb-6" id="memory-board">
-        <!-- Cartões injetados via JS -->
-      </div>
+      <div class="memory-board mb-6" id="memory-board"></div>
 
       <button id="btn-start-match" class="w-full bg-amber-400 hover:bg-amber-300 text-black font-bold px-4 py-4 rounded-full transition text-xs tracking-widest uppercase mt-2">
         Gastar 1 Ficha e Jogar
@@ -171,13 +168,28 @@
 
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      const LIMITE_MENSAL = 10.00;
-      const CARENCIA_MS = 48 * 60 * 60 * 1000; 
+      // Configuração Financeira Semanal e Diária
+      const LIMITE_SEMANAL = 10.00;
+      const CARENCIA_VIDAS_MS = 24 * 60 * 60 * 1000; 
+      const CICLO_SEMANA_MS = 7 * 24 * 60 * 60 * 1000;
 
       let saldoAtual = parseFloat(localStorage.getItem('brat_cashback')) || 0;
+      let ganhosSemana = parseFloat(localStorage.getItem('brat_ganhos_semana')) || 0;
+      let inicioSemana = parseInt(localStorage.getItem('brat_inicio_semana')) || Date.now();
       let ultimoJogo = parseInt(localStorage.getItem('brat_last_played')) || 0;
       let vidas = parseInt(localStorage.getItem('brat_vidas'));
-      if (isNaN(vidas)) vidas = 3;
+      if (isNaN(vidas)) vidas = 5;
+
+      // Zera o limite de ganhos se já passou 1 semana
+      if (Date.now() - inicioSemana > CICLO_SEMANA_MS) {
+        ganhosSemana = 0;
+        inicioSemana = Date.now();
+        localStorage.setItem('brat_inicio_semana', inicioSemana);
+        localStorage.setItem('brat_ganhos_semana', ganhosSemana);
+      }
+
+      // Evita NaN no primeiro carregamento
+      localStorage.setItem('brat_inicio_semana', inicioSemana);
 
       const saldoDisplay = document.getElementById('saldo-display');
       const carenciaStatus = document.getElementById('carencia-status');
@@ -189,7 +201,7 @@
         saldoDisplay.innerText = saldoAtual.toFixed(2).replace('.', ',');
         
         vidasIcons.innerHTML = '';
-        for(let i=0; i<3; i++) {
+        for(let i=0; i<5; i++) {
           if (i < vidas) {
             vidasIcons.innerHTML += `<svg class="w-4 h-4 text-amber-400 drop-shadow-[0_0_5px_rgba(212,175,55,0.8)]" fill="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6" fill="#18181B"></circle></svg>`;
           } else {
@@ -198,7 +210,7 @@
         }
         
         const agora = Date.now();
-        const tempoRestante = (ultimoJogo + CARENCIA_MS) - agora;
+        const tempoRestante = (ultimoJogo + CARENCIA_VIDAS_MS) - agora;
 
         if (tempoRestante > 0 && vidas <= 0) {
           btnsGame.forEach(btn => btn.disabled = true);
@@ -207,7 +219,7 @@
           carenciaStatus.classList.replace('text-emerald-500', 'text-amber-500');
         } else {
           if (vidas <= 0 && ultimoJogo > 0) {
-            vidas = 3; localStorage.setItem('brat_vidas', 3);
+            vidas = 5; localStorage.setItem('brat_vidas', 5);
             atualizarCarteira(); return;
           }
           btnsGame.forEach(btn => btn.disabled = false);
@@ -215,9 +227,9 @@
           carenciaStatus.classList.replace('text-amber-500', 'text-emerald-500');
         }
 
-        if (saldoAtual >= LIMITE_MENSAL) {
+        if (ganhosSemana >= LIMITE_SEMANAL) {
           btnsGame.forEach(btn => btn.disabled = true);
-          carenciaStatus.innerText = 'Limite Mensal Atingido';
+          carenciaStatus.innerText = 'Limite Semanal Atingido';
           carenciaStatus.classList.replace('text-emerald-500', 'text-red-500');
         }
       }
@@ -226,31 +238,41 @@
       document.getElementById('saldo-display-container').addEventListener('dblclick', () => {
         localStorage.removeItem('brat_cashback');
         localStorage.removeItem('brat_last_played');
-        localStorage.setItem('brat_vidas', 3);
-        alert('Modo Teste: Carteira e Fichas resetadas!');
+        localStorage.removeItem('brat_ganhos_semana');
+        localStorage.removeItem('brat_inicio_semana');
+        localStorage.setItem('brat_vidas', 5);
+        alert('Modo Teste: Carteira, Limite Semanal e Fichas resetados!');
         window.location.reload();
       });
 
       btnResgatar.addEventListener('click', () => {
         if (saldoAtual <= 0) return alert("Sem saldo para resgatar.");
         const dataStr = new Date().toLocaleDateString('pt-BR');
-        const msg = encodeURIComponent(`Olá! Sou um jogador do Brat Play e gostaria de gerar meu cupom de desconto.\n\n*Saldo de Cashback:* R$ ${saldoAtual.toFixed(2).replace('.', ',')}\n*Data:* ${dataStr}`);
+        const msg = encodeURIComponent(`Olá! Estou na loja e gostaria de aplicar meu desconto de Cashback do Brat Play.\n\n*Desconto Gerado:* R$ ${saldoAtual.toFixed(2).replace('.', ',')}\n*Data:* ${dataStr}\n\n_Declaro que este é o meu resgate individual (1 por pessoa/conta)._`);
         localStorage.setItem('brat_cashback', 0); saldoAtual = 0; atualizarCarteira();
         window.open(`https://wa.me/5511977889397?text=${msg}`, '_blank');
       });
 
       function descontarFichaEGanhar(ganho, mensagem, customAction) {
         vidas--; localStorage.setItem('brat_vidas', vidas);
-        if (saldoAtual + ganho > LIMITE_MENSAL) {
-          const permitido = LIMITE_MENSAL - saldoAtual;
-          saldoAtual += permitido;
-          alert(`${mensagem} Ganhou R$ ${permitido.toFixed(2)} (Limite Atingido!). Fichas: ${vidas}`);
-        } else {
-          saldoAtual += ganho;
-          alert(`${mensagem} Faturou R$ ${ganho.toFixed(2)} de Cashback. Fichas: ${vidas}`);
+        
+        let ganhoReal = ganho;
+        if (ganhosSemana + ganho > LIMITE_SEMANAL) {
+          ganhoReal = LIMITE_SEMANAL - ganhosSemana;
         }
+
+        saldoAtual += ganhoReal;
+        ganhosSemana += ganhoReal;
         localStorage.setItem('brat_cashback', saldoAtual);
-        if (vidas <= 0) { localStorage.setItem('brat_last_played', Date.now()); alert("Acabaram as fichas! Recarga em 48 horas."); }
+        localStorage.setItem('brat_ganhos_semana', ganhosSemana);
+
+        if (ganhoReal < ganho || ganhosSemana >= LIMITE_SEMANAL) {
+          alert(`${mensagem} Ganhou R$ ${ganhoReal.toFixed(2)} (Limite Semanal Atingido!). Fichas: ${vidas}`);
+        } else {
+          alert(`${mensagem} Faturou R$ ${ganhoReal.toFixed(2)} de Cashback. Fichas: ${vidas}`);
+        }
+        
+        if (vidas <= 0) { localStorage.setItem('brat_last_played', Date.now()); alert("Acabaram as fichas! Voltam em 24 horas."); }
         atualizarCarteira();
         if(customAction) customAction();
       }
@@ -313,7 +335,7 @@
 
         if(snakeX<0 || snakeX>=canvas.width || snakeY<0 || snakeY>=canvas.height || snake.some((s,i)=> i!==0 && s.x===snakeX && s.y===snakeY)) {
           clearInterval(gameInterval);
-          descontarFichaEGanhar(score * 0.05, `Fim de Jogo! Devorou ${score} burgers.`, () => {
+          descontarFichaEGanhar(score * 0.20, `Fim de Jogo! Devorou ${score} burgers.`, () => {
             if(vidas <= 0) { snakeModal.style.opacity = '0'; snakeModal.style.visibility = 'hidden'; } else { btnStartSnake.style.display = 'block'; }
           });
           return;
@@ -321,7 +343,7 @@
 
         if(snakeX==food.x && snakeY==food.y) {
           score++; document.getElementById('snake-score').innerText = score;
-          document.getElementById('snake-ganho').innerText = (score*0.05).toFixed(2).replace('.',',');
+          document.getElementById('snake-ganho').innerText = (score*0.20).toFixed(2).replace('.',',');
           food = { x: Math.floor(Math.random()*13+1)*box, y: Math.floor(Math.random()*13+1)*box };
         } else { snake.pop(); }
         snake.unshift({ x: snakeX, y: snakeY });
@@ -387,7 +409,7 @@
         if (matchScore === 6) {
           clearInterval(matchInterval);
           setTimeout(() => {
-            descontarFichaEGanhar(0.50, `Vitória! Tempo restante: ${matchTimer}s.`, () => {
+            descontarFichaEGanhar(2.00, `Vitória! Tempo restante: ${matchTimer}s.`, () => {
               if(vidas <= 0) { matchModal.style.opacity = '0'; matchModal.style.visibility = 'hidden'; } else { btnStartMatch.style.display = 'block'; }
             });
           }, 500);
