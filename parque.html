@@ -82,8 +82,8 @@
     
     <!-- 1. ROLETA -->
     <div class="bg-[#121216] border border-zinc-800 rounded-2xl h-40 relative overflow-hidden flex flex-col justify-center items-center text-center shadow-lg group">
-      <!-- Imagem corrigida rigorosamente para .jpg -->
-      <div class="absolute inset-0 bg-cover bg-center opacity-60" style="background-image: url('roleta-print.jpg'); filter: blur(3px);"></div>
+      <!-- Imagem ajustada para bg-contain bg-no-repeat para evitar o zoom desproporcional -->
+      <div class="absolute inset-0 bg-contain bg-center bg-no-repeat opacity-60" style="background-image: url('roleta-print.jpg'); filter: blur(3px);"></div>
       <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-black/20 group-hover:bg-black/60 transition-colors"></div>
       
       <div class="relative z-10 flex flex-col items-center p-4 w-full">
