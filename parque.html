@@ -4,6 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Brat Play | Parque de Diversões</title>
+  
+  <!-- Ícone da Aba do Navegador -->
+  <link rel="icon" type="image/png" href="b-icon.png">
+
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -49,6 +53,14 @@
   <div class="absolute inset-0 bg-[radial-gradient(circle_at_top,_var(--tw-gradient-stops))] from-amber-950/20 via-transparent to-transparent -z-10 fixed"></div>
 
   <header class="w-full max-w-md flex flex-col items-center gap-6 mb-8 z-10 shrink-0">
+    <!-- PORTA DE SAÍDA PARA O ECOSSISTEMA PRINCIPAL -->
+    <div class="w-full flex justify-start -mb-2">
+      <a href="index.html" class="text-zinc-500 hover:text-amber-400 flex items-center gap-1 text-[10px] uppercase tracking-widest font-bold transition">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"></path></svg>
+        Voltar ao Site
+      </a>
+    </div>
+
     <a href="index.html" class="hover:scale-105 transition-transform">
       <img src="logo-topo.png" alt="Brat" class="h-10 object-contain drop-shadow-md">
     </a>
@@ -73,7 +85,7 @@
     <div class="bg-zinc-900 border border-zinc-800 rounded-full px-5 py-2 flex items-center gap-3 shadow-md">
       <span class="text-zinc-400 text-[10px] uppercase tracking-widest font-bold">Fichas Restantes:</span>
       <div class="flex gap-1" id="vidas-icons">
-        <!-- Preenchido via JS (Agora 5 vidas) -->
+        <!-- Preenchido via JS -->
       </div>
     </div>
   </header>
@@ -168,7 +180,6 @@
 
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      // Configuração Financeira Semanal e Diária
       const LIMITE_SEMANAL = 10.00;
       const CARENCIA_VIDAS_MS = 24 * 60 * 60 * 1000; 
       const CICLO_SEMANA_MS = 7 * 24 * 60 * 60 * 1000;
@@ -180,15 +191,12 @@
       let vidas = parseInt(localStorage.getItem('brat_vidas'));
       if (isNaN(vidas)) vidas = 5;
 
-      // Zera o limite de ganhos se já passou 1 semana
       if (Date.now() - inicioSemana > CICLO_SEMANA_MS) {
         ganhosSemana = 0;
         inicioSemana = Date.now();
         localStorage.setItem('brat_inicio_semana', inicioSemana);
         localStorage.setItem('brat_ganhos_semana', ganhosSemana);
       }
-
-      // Evita NaN no primeiro carregamento
       localStorage.setItem('brat_inicio_semana', inicioSemana);
 
       const saldoDisplay = document.getElementById('saldo-display');
@@ -287,7 +295,6 @@
         });
       });
 
-      // BRAT SNAKE
       const snakeModal = document.getElementById('snake-modal');
       const btnStartSnake = document.getElementById('btn-start-snake');
       const canvas = document.getElementById('snake-game');
@@ -349,7 +356,6 @@
         snake.unshift({ x: snakeX, y: snakeY });
       }
 
-      // BRAT MATCH
       const matchModal = document.getElementById('match-modal');
       const btnStartMatch = document.getElementById('btn-start-match');
       const board = document.getElementById('memory-board');
