@@ -70,7 +70,6 @@
       </button>
     </div>
 
-    <!-- Interface Global de Vidas -->
     <div class="bg-zinc-900 border border-zinc-800 rounded-full px-5 py-2 flex items-center gap-3 shadow-md">
       <span class="text-zinc-400 text-[10px] uppercase tracking-widest font-bold">Fichas Restantes:</span>
       <div class="flex gap-1" id="vidas-icons">
@@ -83,7 +82,8 @@
     
     <!-- 1. ROLETA -->
     <div class="bg-[#121216] border border-zinc-800 rounded-2xl h-40 relative overflow-hidden flex flex-col justify-center items-center text-center shadow-lg group">
-      <div class="absolute inset-0 bg-[url('roleta-print.jpg')] bg-cover bg-center" style="filter: blur(5px) brightness(0.35); transform: scale(1.05);"></div>
+      <!-- Fundo corrigido com estilo inline -->
+      <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('roleta-print.jpg'); filter: blur(5px) brightness(0.35); transform: scale(1.05);"></div>
       <div class="absolute inset-0 bg-black/40 group-hover:bg-black/50 transition-colors"></div>
       
       <div class="relative z-10 flex flex-col items-center p-4 w-full">
@@ -159,7 +159,6 @@
         <span class="text-amber-400">Tempo: <span id="match-timer">60</span>s</span>
       </div>
       
-      <!-- Tabuleiro da Memória -->
       <div class="memory-board mb-6" id="memory-board">
         <!-- Cartões injetados via JS -->
       </div>
@@ -171,242 +170,3 @@
   </div>
 
   <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      // --- SISTEMA FINANCEIRO E FICHAS GLOBAIS ---
-      const LIMITE_MENSAL = 10.00;
-      const CARENCIA_MS = 48 * 60 * 60 * 1000; 
-
-      let saldoAtual = parseFloat(localStorage.getItem('brat_cashback')) || 0;
-      let ultimoJogo = parseInt(localStorage.getItem('brat_last_played')) || 0;
-      let vidas = parseInt(localStorage.getItem('brat_vidas'));
-      if (isNaN(vidas)) vidas = 3;
-
-      const saldoDisplay = document.getElementById('saldo-display');
-      const carenciaStatus = document.getElementById('carencia-status');
-      const vidasIcons = document.getElementById('vidas-icons');
-      const btnResgatar = document.getElementById('btn-resgatar-cashback');
-      const btnsGame = document.querySelectorAll('.btn-game');
-
-      function atualizarCarteira() {
-        saldoDisplay.innerText = saldoAtual.toFixed(2).replace('.', ',');
-        
-        // Desenhar Fichas
-        vidasIcons.innerHTML = '';
-        for(let i=0; i<3; i++) {
-          if (i < vidas) {
-            vidasIcons.innerHTML += `<svg class="w-4 h-4 text-amber-400 drop-shadow-[0_0_5px_rgba(212,175,55,0.8)]" fill="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6" fill="#18181B"></circle></svg>`;
-          } else {
-            vidasIcons.innerHTML += `<svg class="w-4 h-4 text-zinc-700" fill="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle></svg>`;
-          }
-        }
-        
-        const agora = Date.now();
-        const tempoRestante = (ultimoJogo + CARENCIA_MS) - agora;
-
-        if (tempoRestante > 0 && vidas <= 0) {
-          btnsGame.forEach(btn => btn.disabled = true);
-          const horasFaltam = Math.ceil(tempoRestante / (1000 * 60 * 60));
-          carenciaStatus.innerText = `Fichas em ${horasFaltam}h`;
-          carenciaStatus.classList.replace('text-emerald-500', 'text-amber-500');
-        } else {
-          if (vidas <= 0 && ultimoJogo > 0) {
-            vidas = 3; localStorage.setItem('brat_vidas', 3);
-            atualizarCarteira(); return;
-          }
-          btnsGame.forEach(btn => btn.disabled = false);
-          carenciaStatus.innerText = 'Jogos Liberados';
-          carenciaStatus.classList.replace('text-amber-500', 'text-emerald-500');
-        }
-
-        if (saldoAtual >= LIMITE_MENSAL) {
-          btnsGame.forEach(btn => btn.disabled = true);
-          carenciaStatus.innerText = 'Limite Mensal Atingido';
-          carenciaStatus.classList.replace('text-emerald-500', 'text-red-500');
-        }
-      }
-      atualizarCarteira();
-
-      // Reset Oculto para Anfitrião
-      document.getElementById('saldo-display-container').addEventListener('dblclick', () => {
-        localStorage.removeItem('brat_cashback');
-        localStorage.removeItem('brat_last_played');
-        localStorage.setItem('brat_vidas', 3);
-        alert('Modo Teste: Carteira e Fichas resetadas!');
-        window.location.reload();
-      });
-
-      btnResgatar.addEventListener('click', () => {
-        if (saldoAtual <= 0) return alert("Sem saldo para resgatar.");
-        const dataStr = new Date().toLocaleDateString('pt-BR');
-        const msg = encodeURIComponent(`Olá! Sou um jogador do Brat Play e gostaria de gerar meu cupom de desconto.\n\n*Saldo de Cashback:* R$ ${saldoAtual.toFixed(2).replace('.', ',')}\n*Data:* ${dataStr}`);
-        localStorage.setItem('brat_cashback', 0); saldoAtual = 0; atualizarCarteira();
-        window.open(`https://wa.me/5511977889397?text=${msg}`, '_blank');
-      });
-
-      function descontarFichaEGanhar(ganho, mensagem, customAction) {
-        vidas--; localStorage.setItem('brat_vidas', vidas);
-        if (saldoAtual + ganho > LIMITE_MENSAL) {
-          const permitido = LIMITE_MENSAL - saldoAtual;
-          saldoAtual += permitido;
-          alert(`${mensagem} Ganhou R$ ${permitido.toFixed(2)} (Limite Atingido!). Fichas: ${vidas}`);
-        } else {
-          saldoAtual += ganho;
-          alert(`${mensagem} Faturou R$ ${ganho.toFixed(2)} de Cashback. Fichas: ${vidas}`);
-        }
-        localStorage.setItem('brat_cashback', saldoAtual);
-        if (vidas <= 0) { localStorage.setItem('brat_last_played', Date.now()); alert("Acabaram as fichas! Recarga em 48 horas."); }
-        atualizarCarteira();
-        if(customAction) customAction();
-      }
-
-      // --- LOGICA DOS MODAIS ---
-      document.querySelectorAll('.close-modal').forEach(btn => {
-        btn.addEventListener('click', (e) => {
-          e.target.closest('.fixed').style.opacity = '0';
-          e.target.closest('.fixed').style.visibility = 'hidden';
-          if(typeof gameInterval !== 'undefined') clearInterval(gameInterval);
-          if(typeof matchInterval !== 'undefined') clearInterval(matchInterval);
-          atualizarCarteira();
-        });
-      });
-
-      // --- 1. BRAT SNAKE ---
-      const snakeModal = document.getElementById('snake-modal');
-      const btnStartSnake = document.getElementById('btn-start-snake');
-      const canvas = document.getElementById('snake-game');
-      const ctx = canvas.getContext('2d');
-      const box = 20; let snake = [], food = {}, d = "", score = 0, gameInterval;
-
-      document.getElementById('btn-open-snake').addEventListener('click', () => {
-        snakeModal.style.opacity = '1'; snakeModal.style.visibility = 'visible';
-        btnStartSnake.style.display = 'block';
-      });
-
-      btnStartSnake.addEventListener('click', () => {
-        if (vidas <= 0) return;
-        btnStartSnake.style.display = 'none';
-        snake = [{ x: 7 * box, y: 7 * box }]; score = 0; d = "RIGHT";
-        document.getElementById('snake-score').innerText = "0";
-        document.getElementById('snake-ganho').innerText = "0,00";
-        food = { x: Math.floor(Math.random() * 13 + 1) * box, y: Math.floor(Math.random() * 13 + 1) * box };
-        clearInterval(gameInterval); gameInterval = setInterval(drawSnake, 220);
-      });
-
-      window.changeDirection = function(dir) {
-        if(dir=="LEFT" && d!="RIGHT") d="LEFT"; else if(dir=="UP" && d!="DOWN") d="UP";
-        else if(dir=="RIGHT" && d!="LEFT") d="RIGHT"; else if(dir=="DOWN" && d!="UP") d="DOWN";
-      }
-
-      // Swipe support
-      let touchStartX = 0, touchStartY = 0;
-      canvas.addEventListener('touchstart', e => { touchStartX = e.changedTouches[0].screenX; touchStartY = e.changedTouches[0].screenY; }, {passive: true});
-      canvas.addEventListener('touchend', e => {
-        let diffX = e.changedTouches[0].screenX - touchStartX, diffY = e.changedTouches[0].screenY - touchStartY;
-        if (Math.abs(diffX) > Math.abs(diffY)) { if (Math.abs(diffX)>30) { if(diffX>0 && d!="LEFT") d="RIGHT"; else if(diffX<0 && d!="RIGHT") d="LEFT"; } } 
-        else { if (Math.abs(diffY)>30) { if(diffY>0 && d!="UP") d="DOWN"; else if(diffY<0 && d!="DOWN") d="UP"; } }
-      }, {passive: true});
-
-      function drawSnake() {
-        ctx.fillStyle = "#000"; ctx.fillRect(0, 0, canvas.width, canvas.height);
-        for(let i=0; i<snake.length; i++) {
-          ctx.fillStyle = (i==0) ? "#D4AF37" : "#a18222"; ctx.fillRect(snake[i].x, snake[i].y, box, box);
-          ctx.strokeStyle = "#000"; ctx.strokeRect(snake[i].x, snake[i].y, box, box);
-        }
-        ctx.fillStyle = "#d97706"; ctx.beginPath(); ctx.arc(food.x+box/2, food.y+box/2, box/2.2, 0, 2*Math.PI); ctx.fill();
-
-        let snakeX = snake[0].x, snakeY = snake[0].y;
-        if(d=="LEFT") snakeX-=box; if(d=="UP") snakeY-=box; if(d=="RIGHT") snakeX+=box; if(d=="DOWN") snakeY+=box;
-
-        if(snakeX<0 || snakeX>=canvas.width || snakeY<0 || snakeY>=canvas.height || snake.some((s,i)=> i!==0 && s.x===snakeX && s.y===snakeY)) {
-          clearInterval(gameInterval);
-          descontarFichaEGanhar(score * 0.05, `Fim de Jogo! Devorou ${score} burgers.`, () => {
-            if(vidas <= 0) { snakeModal.style.opacity = '0'; snakeModal.style.visibility = 'hidden'; } else { btnStartSnake.style.display = 'block'; }
-          });
-          return;
-        }
-
-        if(snakeX==food.x && snakeY==food.y) {
-          score++; document.getElementById('snake-score').innerText = score;
-          document.getElementById('snake-ganho').innerText = (score*0.05).toFixed(2).replace('.',',');
-          food = { x: Math.floor(Math.random()*13+1)*box, y: Math.floor(Math.random()*13+1)*box };
-        } else { snake.pop(); }
-        snake.unshift({ x: snakeX, y: snakeY });
-      }
-
-      // --- 2. BRAT MATCH ---
-      const matchModal = document.getElementById('match-modal');
-      const btnStartMatch = document.getElementById('btn-start-match');
-      const board = document.getElementById('memory-board');
-      const timerDisplay = document.getElementById('match-timer');
-      const scoreDisplay = document.getElementById('match-score');
-      
-      const emojis = ['🍔', '🥓', '🧀', '🍳', '🍟', '🥩'];
-      let cardsArr = [], hasFlippedCard = false, lockBoard = false, firstCard, secondCard;
-      let matchScore = 0, matchTimer = 60, matchInterval;
-
-      document.getElementById('btn-open-match').addEventListener('click', () => {
-        matchModal.style.opacity = '1'; matchModal.style.visibility = 'visible';
-        btnStartMatch.style.display = 'block'; board.innerHTML = '';
-        timerDisplay.innerText = "60"; scoreDisplay.innerText = "0";
-      });
-
-      btnStartMatch.addEventListener('click', () => {
-        if (vidas <= 0) return;
-        btnStartMatch.style.display = 'none';
-        matchScore = 0; matchTimer = 60; scoreDisplay.innerText = "0"; timerDisplay.innerText = matchTimer;
-        
-        cardsArr = [...emojis, ...emojis].sort(() => 0.5 - Math.random());
-        board.innerHTML = '';
-        cardsArr.forEach(emoji => {
-          const card = document.createElement('div'); card.classList.add('memory-card'); card.dataset.emoji = emoji;
-          card.innerHTML = `<div class="memory-front">${emoji}</div><div class="memory-back"></div>`;
-          card.addEventListener('click', flipCard); board.appendChild(card);
-        });
-
-        clearInterval(matchInterval);
-        matchInterval = setInterval(() => {
-          matchTimer--; timerDisplay.innerText = matchTimer;
-          if (matchTimer <= 0) {
-            clearInterval(matchInterval); lockBoard = true;
-            descontarFichaEGanhar(0, `O tempo acabou! Fez ${matchScore} pares.`, () => {
-              if(vidas <= 0) { matchModal.style.opacity = '0'; matchModal.style.visibility = 'hidden'; } else { btnStartMatch.style.display = 'block'; }
-            });
-          }
-        }, 1000);
-      });
-
-      function flipCard() {
-        if (lockBoard || this === firstCard) return;
-        this.classList.add('flip');
-        if (!hasFlippedCard) { hasFlippedCard = true; firstCard = this; return; }
-        secondCard = this; checkForMatch();
-      }
-
-      function checkForMatch() {
-        let isMatch = firstCard.dataset.emoji === secondCard.dataset.emoji;
-        isMatch ? disableCards() : unflipCards();
-      }
-
-      function disableCards() {
-        firstCard.removeEventListener('click', flipCard); secondCard.removeEventListener('click', flipCard);
-        matchScore++; scoreDisplay.innerText = matchScore; resetBoard();
-        if (matchScore === 6) {
-          clearInterval(matchInterval);
-          setTimeout(() => {
-            descontarFichaEGanhar(0.50, `Vitória! Tempo restante: ${matchTimer}s.`, () => {
-              if(vidas <= 0) { matchModal.style.opacity = '0'; matchModal.style.visibility = 'hidden'; } else { btnStartMatch.style.display = 'block'; }
-            });
-          }, 500);
-        }
-      }
-
-      function unflipCards() {
-        lockBoard = true;
-        setTimeout(() => { firstCard.classList.remove('flip'); secondCard.classList.remove('flip'); resetBoard(); }, 1000);
-      }
-
-      function resetBoard() { [hasFlippedCard, lockBoard] = [false, false]; [firstCard, secondCard] = [null, null]; }
-    });
-  </script>
-</body>
-</html>
