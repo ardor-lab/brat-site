@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>A Cozinha | Brat Burger</title>
+  <link rel="icon" type="image/png" href="b-icon.png">
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,700;0,900;1,300&display=swap" rel="stylesheet">
+  
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Montserrat', 'sans-serif'] }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body, html { 
+      margin: 0; padding: 0; width: 100%; height: 100%; 
+      background-color: #000; color: #fff; font-family: 'Montserrat', sans-serif;
+      overflow: hidden; /* Esconde o scroll tradicional na página toda */
+    }
+
+    /* O SEGREDO DO SNAP SCROLLING */
+    .snap-container {
+      height: 100vh;
+      overflow-y: scroll;
+      scroll-snap-type: y mandatory;
+      scroll-behavior: smooth;
+      -ms-overflow-style: none; /* IE and Edge */
+      scrollbar-width: none; /* Firefox */
+    }
+    .snap-container::-webkit-scrollbar { display: none; /* Chrome, Safari */ }
+
+    .snap-section {
+      height: 100vh;
+      width: 100%;
+      scroll-snap-align: start;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end; /* Texto sempre colado em baixo */
+    }
+
+    .cinematic-bg {
+      position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+      object-fit: cover; z-index: 1;
+      /* Efeito de zoom muito lento para dar vida caso seja foto, mas perfeito para GIFs */
+      transform: scale(1.02);
+      transition: transform 10s ease-out;
+    }
+
+    .snap-section:hover .cinematic-bg { transform: scale(1.05); }
+
+    .dark-gradient {
+      position: absolute; inset: 0; z-index: 2;
+      background: linear-gradient(to top, rgba(8,8,10,1) 0%, rgba(8,8,10,0.8) 20%, rgba(8,8,10,0.2) 60%, rgba(8,8,10,0.5) 100%);
+    }
+  </style>
+</head>
+<body class="antialiased selection:bg-amber-400 selection:text-black">
+
+  <!-- NAVEGAÇÃO FLUTUANTE INVISÍVEL -->
+  <header class="fixed top-0 inset-x-0 z-50 p-5 flex items-center justify-between pointer-events-none">
+    <a href="index.html" class="pointer-events-auto bg-black/40 backdrop-blur-md border border-white/10 px-4 py-2 rounded-full text-white text-[10px] uppercase tracking-widest font-bold hover:border-amber-400 hover:text-amber-400 transition">
+      ← Voltar à Entrada
+    </a>
+    <img src="logo-topo.png" alt="Brat" class="h-8 object-contain drop-shadow-[0_0_15px_rgba(0,0,0,0.8)]">
+    <div class="w-[100px]"></div> <!-- Espaçador para centrar o logo -->
+  </header>
+
+  <!-- INDICADOR DE SCROLL -->
+  <div class="fixed right-4 top-1/2 -translate-y-1/2 z-50 flex flex-col gap-3 pointer-events-none opacity-50">
+    <div class="w-1.5 h-1.5 rounded-full bg-amber-400 shadow-[0_0_10px_rgba(212,175,55,1)]"></div>
+    <div class="w-1 h-1 rounded-full bg-white/50 mx-auto"></div>
+    <div class="w-1 h-1 rounded-full bg-white/50 mx-auto"></div>
+  </div>
+
+  <div class="fixed bottom-6 inset-x-0 z-40 flex justify-center pointer-events-none animate-bounce opacity-70">
+    <svg class="w-6 h-6 text-white drop-shadow-md" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
+  </div>
+
+  <!-- CONTAINER DE ROLAGEM MAGNÉTICA -->
+  <main class="snap-container">
+    
+    <!-- PRATO 1: REI DO CHURRASCO -->
+    <section class="snap-section">
+      <img src="rei.gif" alt="Rei do Churrasco" class="cinematic-bg">
+      <div class="dark-gradient"></div>
+      
+      <div class="relative z-10 w-full max-w-5xl mx-auto px-6 pb-24 sm:pb-32 flex flex-col gap-4">
+        <div>
+          <span class="inline-block border border-amber-500/50 bg-amber-500/20 text-amber-400 text-[9px] uppercase tracking-[0.3em] font-bold px-3 py-1 rounded-full mb-4 backdrop-blur-sm shadow-[0_0_15px_rgba(212,175,55,0.2)]">
+            A Assinatura
+          </span>
+          <h1 class="text-5xl sm:text-7xl font-black text-white leading-[0.9] tracking-tighter drop-shadow-2xl">
+            REI DO<br>CHURRASCO
+          </h1>
+        </div>
+        
+        <p class="text-zinc-300 text-sm sm:text-base font-light max-w-md leading-relaxed drop-shadow-md">
+          Baby beef grelhado sob fogo forte, coroado pelo nosso Melt de provolone artesanal derretido. O equilíbrio perfeito entre a intensidade da defumação e a textura aveludada.
+        </p>
+        
+        <div class="flex items-center gap-6 mt-4">
+          <span class="text-3xl font-black text-white drop-shadow-lg">R$ 72</span>
+          <a href="https://wa.me/5511977889397?text=Olá!%20A%20vitrine%20abriu%20o%20meu%20apetite.%20Quero%20pedir%20o%20Rei%20do%20Churrasco." class="bg-white hover:bg-zinc-200 text-black text-xs font-bold px-8 py-4 rounded-full uppercase tracking-widest transition transform hover:scale-105 shadow-[0_0_30px_rgba(255,255,255,0.3)]">
+            Pedir Agora
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRATO 2: MATILDA CAKE -->
+    <section class="snap-section">
+      <img src="matilda.gif" alt="Matilda Cake" class="cinematic-bg">
+      <div class="dark-gradient"></div>
+      
+      <div class="relative z-10 w-full max-w-5xl mx-auto px-6 pb-24 sm:pb-32 flex flex-col gap-4">
+        <div>
+          <span class="inline-block border border-amber-500/50 bg-amber-500/20 text-amber-400 text-[9px] uppercase tracking-[0.3em] font-bold px-3 py-1 rounded-full mb-4 backdrop-blur-sm shadow-[0_0_15px_rgba(212,175,55,0.2)]">
+            O Êxtase
+          </span>
+          <h1 class="text-5xl sm:text-7xl font-black text-white leading-[0.9] tracking-tighter drop-shadow-2xl">
+            MATILDA<br>CAKE
+          </h1>
+        </div>
+        
+        <p class="text-zinc-300 text-sm sm:text-base font-light max-w-md leading-relaxed drop-shadow-md">
+          Massa de chocolate absurdamente aerada com uma cascata de ganache quente que abraça o bolo. A indulgência final servida com sorvete.
+        </p>
+        
+        <div class="flex items-center gap-6 mt-4">
+          <span class="text-3xl font-black text-white drop-shadow-lg">R$ 70</span>
+          <a href="https://wa.me/5511977889397?text=Olá!%20A%20vitrine%20abriu%20o%20meu%20apetite.%20Quero%20pedir%20o%20Matilda%20Cake." class="bg-amber-400 hover:bg-amber-300 text-black text-xs font-bold px-8 py-4 rounded-full uppercase tracking-widest transition transform hover:scale-105 shadow-[0_0_30px_rgba(212,175,55,0.4)]">
+            Pedir Agora
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRATO 3: BRAT MONSTER (Para exemplificar a rolagem infinita) -->
+    <section class="snap-section">
+      <!-- Substitua a imagem de fundo por um gif quando tiver -->
+      <img src="hero-bg.jpg" alt="Brat Monster" class="cinematic-bg" style="filter: brightness(0.6);">
+      <div class="dark-gradient"></div>
+      
+      <div class="relative z-10 w-full max-w-5xl mx-auto px-6 pb-24 sm:pb-32 flex flex-col gap-4">
+        <div>
+          <span class="inline-block border border-red-500/50 bg-red-500/20 text-red-400 text-[9px] uppercase tracking-[0.3em] font-bold px-3 py-1 rounded-full mb-4 backdrop-blur-sm shadow-[0_0_15px_rgba(239,68,68,0.2)]">
+            O Desafio
+          </span>
+          <h1 class="text-5xl sm:text-7xl font-black text-white leading-[0.9] tracking-tighter drop-shadow-2xl">
+            BRAT<br>MONSTER
+          </h1>
+        </div>
+        
+        <p class="text-zinc-300 text-sm sm:text-base font-light max-w-md leading-relaxed drop-shadow-md">
+          Dois discos de brisket, toscana artesanal, bacon defumado e queijo derretido. O peso da brutalidade, construído para quem não aceita perder.
+        </p>
+        
+        <div class="flex items-center gap-6 mt-4">
+          <span class="text-3xl font-black text-white drop-shadow-lg">R$ 99</span>
+          <a href="https://wa.me/5511977889397?text=Olá!%20A%20vitrine%20abriu%20o%20meu%20apetite.%20Quero%20enfrentar%20o%20Brat%20Monster." class="bg-red-600 hover:bg-red-500 text-white text-xs font-bold px-8 py-4 rounded-full uppercase tracking-widest transition transform hover:scale-105 shadow-[0_0_30px_rgba(239,68,68,0.4)]">
+            Encarar Desafio
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</body>
+</html>
