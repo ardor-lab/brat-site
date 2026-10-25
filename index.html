@@ -111,10 +111,12 @@
       <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight text-white leading-[1.10]">Esqueça o óbvio.<br><span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-amber-400 to-amber-600 drop-shadow-sm">Sua nova mesa está pronta.</span></h1>
       <p class="text-sm sm:text-lg text-zinc-300 font-light max-w-lg mx-auto leading-relaxed drop-shadow-md">Cortes nobres. Frigideira de ferro. O seu refúgio em São Caetano. <strong class="text-amber-400 font-semibold">Isso é Brat.</strong></p>
       
-      <div class="pt-6 flex flex-col sm:flex-row items-center justify-center gap-3 w-full sm:w-auto">
-        <a href="https://wa.me/5511977889397?text=Olá!%20Gostaria%20de%20fazer%20uma%20reserva%20e%20garantir%20as%20taças%20de%20vinho%20de%20boas-vindas." target="_blank" onclick="fbq('track', 'Lead');" class="w-full sm:w-auto bg-amber-400 hover:bg-amber-300 text-black font-bold px-8 py-3.5 rounded-full transition text-xs tracking-widest uppercase shadow-lg shadow-amber-500/10">Garantir Mesa + Taças de Vinho</a>
-        <!-- LINK ALTERADO PARA O PDF DIRETO -->
-        <a href="cardapio-brat.pdf" target="_blank" onclick="fbq('track', 'ViewContent');" class="w-full sm:w-auto border border-zinc-700 bg-zinc-900/60 backdrop-blur-md hover:bg-zinc-800 text-white font-semibold px-8 py-3.5 rounded-full transition text-xs tracking-widest uppercase shadow-lg">Ver Cardápio</a>
+      <div class="pt-6 flex flex-col sm:flex-row flex-wrap items-center justify-center gap-3 w-full">
+        <a href="https://wa.me/5511977889397?text=Olá!%20Gostaria%20de%20fazer%20uma%20reserva%20e%20garantir%20as%20taças%20de%20vinho%20de%20boas-vindas." target="_blank" onclick="fbq('track', 'Lead');" class="w-full sm:w-auto bg-amber-400 hover:bg-amber-300 text-black font-bold px-8 py-3.5 rounded-full transition text-xs tracking-widest uppercase shadow-lg shadow-amber-500/10">Garantir Mesa</a>
+        <a href="cardapio-brat.pdf" target="_blank" onclick="fbq('track', 'ViewContent');" class="w-full sm:w-auto border border-zinc-700 bg-zinc-900/60 backdrop-blur-md hover:bg-zinc-800 text-white font-semibold px-6 py-3.5 rounded-full transition text-xs tracking-widest uppercase shadow-lg">PDF Clássico</a>
+        <a href="cozinha.html" class="w-full sm:w-auto border border-amber-500/40 bg-amber-500/10 hover:bg-amber-500/20 text-amber-400 font-bold px-6 py-3.5 rounded-full transition text-xs tracking-widest uppercase shadow-lg flex items-center justify-center gap-2">
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg> Vitrine Visual
+        </a>
       </div>
     </div>
   </section>
@@ -169,8 +171,14 @@
       <h2 class="text-2xl sm:text-3xl font-extrabold text-white">Nosso Cardápio</h2>
       <p class="text-zinc-400 text-xs sm:text-sm font-light">Burgers artesanais de cortes nobres, pratos à la carte, coquetelaria autoral (como o Brat Kiss) e entradas pensadas para compartilhar.</p>
     </div>
-    <!-- LINK ALTERADO PARA O PDF DIRETO -->
-    <a href="cardapio-brat.pdf" target="_blank" onclick="fbq('track', 'ViewContent');" class="inline-block border border-amber-500/40 bg-amber-500/10 hover:bg-amber-500/20 text-amber-400 font-bold px-8 py-3.5 rounded-full text-xs tracking-widest uppercase transition">Ver Cardápio Completo</a>
+    
+    <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+      <a href="cardapio-brat.pdf" target="_blank" onclick="fbq('track', 'ViewContent');" class="inline-block border border-zinc-700 bg-zinc-900/60 hover:bg-zinc-800 text-white font-bold px-8 py-3.5 rounded-full text-xs tracking-widest uppercase transition shadow-lg">Cardápio em PDF</a>
+      <a href="cozinha.html" class="inline-flex items-center justify-center gap-2 border border-amber-500/40 bg-amber-500/10 hover:bg-amber-500/20 text-amber-400 font-bold px-8 py-3.5 rounded-full text-xs tracking-widest uppercase transition shadow-lg">
+        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+        Vitrine Visual
+      </a>
+    </div>
   </section>
 
   <section class="py-20 max-w-5xl mx-auto px-5 border-t border-zinc-900">
