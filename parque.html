@@ -106,7 +106,19 @@
       </div>
     </div>
 
-    <!-- 2. BRAT SNAKE -->
+    <!-- 2. BRAT SLOTS (O "TIGRINHO") -->
+    <div class="bg-zinc-900/80 border border-zinc-800 hover:border-amber-500/30 rounded-2xl p-5 transition flex items-center justify-between shadow-lg mt-4">
+      <div>
+        <h3 class="text-white font-bold tracking-widest uppercase text-sm">Brat Slots</h3>
+        <p class="text-amber-400 text-xs font-semibold mt-1">Jackpot de até R$ 5,00</p>
+        <p class="text-zinc-500 text-[9px] uppercase mt-1">Custo: 1 Ficha</p>
+      </div>
+      <button id="btn-open-slots" class="btn-game bg-amber-400 hover:bg-amber-300 disabled:bg-zinc-800 disabled:text-zinc-600 disabled:cursor-not-allowed text-black font-bold w-12 h-12 rounded-full flex items-center justify-center transition shadow-[0_0_15px_rgba(212,175,55,0.2)] shrink-0">
+        <svg class="w-5 h-5 ml-1" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+      </button>
+    </div>
+
+    <!-- 3. BRAT SNAKE -->
     <div class="bg-zinc-900/80 border border-zinc-800 hover:border-amber-500/30 rounded-2xl p-5 transition flex items-center justify-between shadow-lg">
       <div>
         <h3 class="text-white font-bold tracking-widest uppercase text-sm">Brat Snake</h3>
@@ -118,7 +130,7 @@
       </button>
     </div>
 
-    <!-- 3. BRAT MATCH -->
+    <!-- 4. BRAT MATCH -->
     <div class="bg-zinc-900/80 border border-zinc-800 hover:border-amber-500/30 rounded-2xl p-5 transition flex items-center justify-between shadow-lg">
       <div>
         <h3 class="text-white font-bold tracking-widest uppercase text-sm">Brat Match</h3>
@@ -131,6 +143,27 @@
     </div>
 
   </main>
+
+  <!-- MODAL: BRAT SLOTS -->
+  <div id="slots-modal" class="fixed inset-0 z-[200] bg-black/95 flex flex-col items-center justify-center p-4 backdrop-blur-sm opacity-0 visibility-hidden transition-all" style="visibility: hidden;">
+    <div class="bg-[#121216] border border-amber-500/50 rounded-3xl p-6 max-w-sm w-full text-center shadow-[0_0_80px_rgba(212,175,55,0.2)]">
+      <div class="flex justify-between items-center mb-6">
+        <h3 class="text-amber-400 text-xs font-bold tracking-[0.2em] uppercase">Brat Slots</h3>
+        <button class="close-modal text-zinc-500 hover:text-white text-3xl leading-none">&times;</button>
+      </div>
+      
+      <div class="flex justify-center gap-2 mb-8 bg-black p-4 rounded-xl border border-zinc-800 shadow-inner">
+        <div id="slot1" class="w-16 h-16 bg-zinc-900 rounded-lg flex items-center justify-center text-4xl border border-amber-500/30">🍔</div>
+        <div id="slot2" class="w-16 h-16 bg-zinc-900 rounded-lg flex items-center justify-center text-4xl border border-amber-500/30">🥩</div>
+        <div id="slot3" class="w-16 h-16 bg-zinc-900 rounded-lg flex items-center justify-center text-4xl border border-amber-500/30">🍟</div>
+      </div>
+
+      <button id="btn-spin-slots" class="w-full bg-amber-400 hover:bg-amber-300 text-black font-extrabold px-4 py-4 rounded-full transition text-sm tracking-widest uppercase">
+        Girar (1 Ficha)
+      </button>
+      <p class="text-zinc-500 text-[9px] uppercase tracking-widest mt-4">3 Iguais = Prêmio | 🏆🏆🏆 = Jackpot</p>
+    </div>
+  </div>
 
   <!-- MODAL: BRAT SNAKE -->
   <div id="snake-modal" class="fixed inset-0 z-[200] bg-black/95 flex flex-col items-center justify-center p-4 backdrop-blur-sm opacity-0 visibility-hidden transition-all" style="visibility: hidden;">
@@ -180,6 +213,7 @@
 
   <script>
     document.addEventListener('DOMContentLoaded', () => {
+      // ===== SISTEMA DE CARTEIRA E VIDAS =====
       const LIMITE_SEMANAL = 10.00;
       const CARENCIA_VIDAS_MS = 24 * 60 * 60 * 1000; 
       const CICLO_SEMANA_MS = 7 * 24 * 60 * 60 * 1000;
@@ -285,6 +319,7 @@
         if(customAction) customAction();
       }
 
+      // Fechar Modais
       document.querySelectorAll('.close-modal').forEach(btn => {
         btn.addEventListener('click', (e) => {
           e.target.closest('.fixed').style.opacity = '0';
@@ -295,6 +330,61 @@
         });
       });
 
+
+      // ===== LÓGICA: BRAT SLOTS (NOVO JOGO) =====
+      const slotsModal = document.getElementById('slots-modal');
+      const btnOpenSlots = document.getElementById('btn-open-slots');
+      const btnSpin = document.getElementById('btn-spin-slots');
+      const slotElements = [document.getElementById('slot1'), document.getElementById('slot2'), document.getElementById('slot3')];
+      
+      const slotIcons = ['🍔', '🥩', '🍟', '🥓', '🏆'];
+      let isSpinning = false;
+
+      if(btnOpenSlots) {
+        btnOpenSlots.addEventListener('click', () => {
+          slotsModal.style.opacity = '1'; slotsModal.style.visibility = 'visible';
+        });
+      }
+
+      if(btnSpin) {
+        btnSpin.addEventListener('click', () => {
+          if (vidas <= 0) return alert("Sem fichas suficientes!");
+          if (isSpinning) return;
+          isSpinning = true;
+          
+          let spins = 0;
+          const spinInterval = setInterval(() => {
+            slotElements.forEach(el => el.innerText = slotIcons[Math.floor(Math.random() * slotIcons.length)]);
+            spins++;
+            if (spins > 20) {
+              clearInterval(spinInterval);
+              
+              // Lógica de sorteio
+              const r1 = slotIcons[Math.floor(Math.random() * slotIcons.length)];
+              const r2 = slotIcons[Math.floor(Math.random() * slotIcons.length)];
+              // Para a casa não falir fácil, reduzimos um pouco a chance do terceiro bater
+              const r3 = Math.random() > 0.7 ? r1 : slotIcons[Math.floor(Math.random() * slotIcons.length)];
+              
+              slotElements[0].innerText = r1;
+              slotElements[1].innerText = r2;
+              slotElements[2].innerText = r3;
+              
+              setTimeout(() => {
+                isSpinning = false;
+                if (r1 === r2 && r2 === r3) {
+                  const prêmio = r1 === '🏆' ? 5.00 : 2.00;
+                  descontarFichaEGanhar(prêmio, `JACKPOT! Ganhou R$ ${prêmio.toFixed(2)}!`);
+                } else {
+                  descontarFichaEGanhar(0, "Não foi desta vez. Tente novamente!");
+                }
+              }, 500);
+            }
+          }, 50);
+        });
+      }
+
+
+      // ===== LÓGICA: BRAT SNAKE =====
       const snakeModal = document.getElementById('snake-modal');
       const btnStartSnake = document.getElementById('btn-start-snake');
       const canvas = document.getElementById('snake-game');
@@ -356,6 +446,8 @@
         snake.unshift({ x: snakeX, y: snakeY });
       }
 
+
+      // ===== LÓGICA: BRAT MATCH =====
       const matchModal = document.getElementById('match-modal');
       const btnStartMatch = document.getElementById('btn-start-match');
       const board = document.getElementById('memory-board');
