@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Brat Corporate | Eventos e Soluções para Empresas</title>
+  <meta name="description" content="Soluções corporativas, fechamento de salão e entregas em grande escala da Brat Burger & Steakhouse.">
+  
+  <link rel="icon" type="image/png" href="b-icon.png">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      theme: { extend: { fontFamily: { sans: ['Montserrat', 'sans-serif'] } } }
+    }
+  </script>
+
+  <style>
+    body { font-family: 'Montserrat', sans-serif; background-color: #08080A; color: #f4f4f5; }
+  </style>
+</head>
+<body class="antialiased selection:bg-amber-400 selection:text-black">
+
+  <header class="fixed top-0 inset-x-0 z-50 backdrop-blur-xl bg-[#08080A]/85 border-b border-zinc-800/60">
+    <div class="max-w-5xl mx-auto px-5 h-20 flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-3 hover:scale-105 transition">
+        <img src="logo-topo.png" alt="Brat" class="h-10 sm:h-14 object-contain">
+      </a>
+      <a href="index.html" class="border border-zinc-700 bg-zinc-900/60 hover:bg-zinc-800 text-white text-[10px] font-bold px-5 py-2.5 rounded-full transition tracking-widest uppercase">Voltar ao Site Principal</a>
+    </div>
+  </header>
+
+  <section class="pt-40 pb-20 px-5 text-center relative overflow-hidden">
+    <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-amber-900/20 via-[#08080A] to-[#08080A] -z-10"></div>
+    <div class="max-w-3xl mx-auto space-y-6">
+      <span class="text-xs uppercase tracking-[0.25em] text-amber-400 font-bold border border-amber-500/30 bg-amber-500/10 px-4 py-1.5 rounded-full">Brat Corporate</span>
+      <h1 class="text-3xl sm:text-5xl font-extrabold text-white leading-tight tracking-tight">Eleve o padrão dos seus eventos corporativos.</h1>
+      <p class="text-zinc-300 text-sm sm:text-base font-light leading-relaxed max-w-2xl mx-auto">Transformamos reuniões estratégicas, confraternizações e ações de RH em experiências de alta gastronomia. Sem improvisos, apenas rigor técnico e excelência.</p>
+    </div>
+  </section>
+
+  <section class="py-16 max-w-5xl mx-auto px-5">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      
+      <!-- Serviço 1: Salão -->
+      <div class="bg-[#121216] border border-zinc-800 rounded-3xl p-8 sm:p-10 hover:border-amber-500/40 transition flex flex-col justify-between shadow-xl">
+        <div>
+          <div class="w-14 h-14 bg-amber-500/10 rounded-full flex items-center justify-center border border-amber-500/30 mb-6">
+            <svg class="w-6 h-6 text-amber-400" fill="currentColor" viewBox="0 0 24 24"><path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10z"/></svg>
+          </div>
+          <h3 class="text-2xl font-bold text-white mb-3">Private Dining & Eventos</h3>
+          <p class="text-zinc-400 text-sm font-light leading-relaxed mb-6">Disponibilizamos nosso refúgio com teto retrátil, ambiente climatizado e taças de cristal para a sua equipe. Ideal para fechamento de salão, jantares de diretoria e confraternizações exclusivas de final de ano.</p>
+        </div>
+        <ul class="space-y-2 text-xs text-zinc-300 font-medium">
+          <li class="flex items-center gap-2"><span class="text-amber-400">✓</span> Capacidade flexível sob reserva</li>
+          <li class="flex items-center gap-2"><span class="text-amber-400">✓</span> Cardápio alinhado previamente</li>
+          <li class="flex items-center gap-2"><span class="text-amber-400">✓</span> Atendimento dedicado</li>
+        </ul>
+      </div>
+
+      <!-- Serviço 2: Delivery -->
+      <div class="bg-[#121216] border border-zinc-800 rounded-3xl p-8 sm:p-10 hover:border-amber-500/40 transition flex flex-col justify-between shadow-xl">
+        <div>
+          <div class="w-14 h-14 bg-amber-500/10 rounded-full flex items-center justify-center border border-amber-500/30 mb-6">
+            <svg class="w-6 h-6 text-amber-400" fill="currentColor" viewBox="0 0 24 24"><path d="M20 8h-3V4H3c-1.1 0-2 .9-2 2v11h2c0 1.66 1.34 3 3 3s3-1.34 3-3h6c0 1.66 1.34 3 3 3s3-1.34 3-3h2v-5l-3-4zM6 18.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm13.5-9l1.96 2.5H17V9.5h2.5zm-1.5 9c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/></svg>
+          </div>
+          <h3 class="text-2xl font-bold text-white mb-3">Corporate Delivery</h3>
+          <p class="text-zinc-400 text-sm font-light leading-relaxed mb-6">Levamos a Steakhouse até a sua empresa. Logística estruturada para grandes volumes de pedidos simultâneos, garantindo que o hambúrguer chegue com o mesmo padrão térmico e qualidade da nossa cozinha.</p>
+        </div>
+        <ul class="space-y-2 text-xs text-zinc-300 font-medium">
+          <li class="flex items-center gap-2"><span class="text-amber-400">✓</span> Catering para reuniões e plantões</li>
+          <li class="flex items-center gap-2"><span class="text-amber-400">✓</span> Entrega pontual programada</li>
+          <li class="flex items-center gap-2"><span class="text-amber-400">✓</span> Cortes nobres sem misturas industriais</li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="py-20 max-w-3xl mx-auto px-5 text-center">
+    <div class="bg-gradient-to-b from-zinc-900 to-[#121216] border border-zinc-800 rounded-3xl p-10 shadow-2xl">
+      <h2 class="text-2xl font-bold text-white mb-4">Pronto para impressionar sua equipe?</h2>
+      <p class="text-zinc-400 text-sm font-light mb-8 max-w-lg mx-auto">Fale diretamente com nosso Concierge Corporativo. Alinhamos orçamentos, datas e criamos a solução exata para a demanda da sua empresa.</p>
+      <a href="https://wa.me/5511977889397?text=Olá!%20Gostaria%20de%20falar%20com%20o%20Concierge%20Corporativo%20da%20Brat%20sobre%20eventos%20e%20entregas%20para%20minha%20empresa." target="_blank" class="inline-block bg-white hover:bg-zinc-200 text-black text-xs font-extrabold px-8 py-4 rounded-full transition uppercase tracking-widest shadow-lg shadow-white/10">Falar com Concierge Corporativo</a>
+    </div>
+  </section>
+
+  <footer class="py-10 border-t border-zinc-900 bg-black/40 text-center text-xs text-zinc-600">
+    <p>© Brat Burger & Steakhouse. Soluções Corporativas.</p>
+  </footer>
+
+</body>
+</html>
