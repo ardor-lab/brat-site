@@ -241,4 +241,187 @@
 
       function atualizarCarteira() {
         if(saldoAtual > LIMITE_CARTEIRA) saldoAtual = LIMITE_CARTEIRA;
-        saldo
+        saldoDisplay.innerText = saldoAtual.toFixed(2).replace('.', ',');
+        vidasIcons.innerHTML = '';
+        for(let i=0; i<5; i++) {
+          if (i < vidas) vidasIcons.innerHTML += `<svg class="w-4 h-4 text-amber-400 drop-shadow-[0_0_5px_rgba(212,175,55,0.8)]" fill="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6" fill="#18181B"></circle></svg>`;
+          else vidasIcons.innerHTML += `<svg class="w-4 h-4 text-zinc-700" fill="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle></svg>`;
+        }
+        
+        const tempoRestante = (ultimoJogo + CARENCIA_VIDAS_MS) - Date.now();
+        if (tempoRestante > 0 && vidas <= 0) {
+          document.getElementById('btn-open-snake').disabled = true; document.getElementById('btn-open-match').disabled = true;
+          carenciaStatus.innerText = `Fichas em ${Math.ceil(tempoRestante / (1000 * 60 * 60))}h`; carenciaStatus.classList.replace('text-emerald-500', 'text-amber-500');
+        } else {
+          if (vidas <= 0 && ultimoJogo > 0) { vidas = 5; localStorage.setItem('brat_vidas', 5); atualizarCarteira(); return; }
+          document.getElementById('btn-open-snake').disabled = false; document.getElementById('btn-open-match').disabled = false;
+          carenciaStatus.innerText = 'Jogos Liberados'; carenciaStatus.classList.replace('text-amber-500', 'text-emerald-500');
+        }
+        document.getElementById('btn-open-slots').disabled = false;
+      }
+      atualizarCarteira();
+
+      // Fechar modais
+      document.querySelectorAll('.close-modal').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.target.closest('.fixed').style.opacity = '0'; e.target.closest('.fixed').style.visibility = 'hidden';
+          if(typeof gameInterval !== 'undefined') clearInterval(gameInterval); if(typeof matchInterval !== 'undefined') clearInterval(matchInterval);
+          document.getElementById('resgate-actions').classList.add('hidden');
+          atualizarCarteira();
+        });
+      });
+
+      // ===== REGRAS MODAL =====
+      document.getElementById('btn-regras').addEventListener('click', () => {
+        document.getElementById('regras-modal').style.opacity = '1'; document.getElementById('regras-modal').style.visibility = 'visible';
+      });
+
+      // ===== LÓGICA DE RESGATE COM FAIXAS (TIERS) =====
+      const resgateModal = document.getElementById('resgate-modal');
+      const resgateActions = document.getElementById('resgate-actions');
+      let valorSelecionadoParaResgate = 0;
+      let pedidoMinimoRef = 0;
+
+      document.getElementById('btn-abrir-resgate').addEventListener('click', () => {
+        document.getElementById('resgate-saldo-atual').innerText = saldoAtual.toFixed(2).replace('.', ',');
+        resgateActions.classList.add('hidden');
+        document.querySelectorAll('.btn-tier').forEach(btn => {
+          const tier = parseFloat(btn.dataset.tier);
+          if(saldoAtual >= tier) { btn.disabled = false; btn.classList.remove('opacity-30'); } 
+          else { btn.disabled = true; btn.classList.add('opacity-30'); }
+        });
+        resgateModal.style.opacity = '1'; resgateModal.style.visibility = 'visible';
+      });
+
+      document.querySelectorAll('.btn-tier').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          valorSelecionadoParaResgate = parseFloat(e.currentTarget.dataset.tier);
+          pedidoMinimoRef = parseFloat(e.currentTarget.dataset.min);
+          document.getElementById('valor-selecionado').innerText = valorSelecionadoParaResgate.toFixed(2).replace('.', ',');
+          resgateActions.classList.remove('hidden');
+        });
+      });
+
+      function efetuarResgateFinal(tipo) {
+        const codigo = 'BRAT-' + Math.random().toString(36).substring(2, 6).toUpperCase();
+        const strValor = valorSelecionadoParaResgate.toFixed(2).replace('.', ',');
+        if (tipo === 'delivery') {
+          const msg = encodeURIComponent(`Olá! Vim do Brat Play VIP e quero usar meu resgate de R$ ${strValor}.\n\n*Código:* ${codigo}\n*Ciente do pedido mínimo:* R$ ${pedidoMinimoRef}\n\nPode gerar o meu cupom no CardápioWeb?`);
+          window.open(`https://wa.me/5511977889397?text=${msg}`, '_blank');
+        } else {
+          alert(`Mostre este código ao garçom (Pedido Mín: R$ ${pedidoMinimoRef}):\n\nCÓDIGO: ${codigo}\nVALOR: R$ ${strValor}\n\nTire um print desta tela!`);
+        }
+        saldoAtual -= valorSelecionadoParaResgate; localStorage.setItem('brat_cashback', saldoAtual);
+        atualizarCarteira(); resgateModal.style.opacity = '0'; resgateModal.style.visibility = 'hidden';
+      }
+      document.getElementById('btn-confirm-delivery').addEventListener('click', () => efetuarResgateFinal('delivery'));
+      document.getElementById('btn-confirm-salao').addEventListener('click', () => efetuarResgateFinal('salao'));
+
+
+      // ===== BRAT SLOTS (MATEMÁTICA LENTA) =====
+      const LIMIT_SLOTS = 10.00;
+      let currentMonth = new Date().getMonth() + "-" + new Date().getFullYear();
+      if(localStorage.getItem('brat_slots_month') !== currentMonth) {
+        localStorage.setItem('brat_slots_month', currentMonth); localStorage.setItem('brat_slots_local_balance', 2.00); localStorage.setItem('brat_slots_spins', 0);
+      }
+      let slotsLocalBalance = parseFloat(localStorage.getItem('brat_slots_local_balance')) || 0;
+      let consecutiveSpins = parseInt(localStorage.getItem('brat_slots_spins')) || 0;
+
+      const slotsModal = document.getElementById('slots-modal'); const btnSpin = document.getElementById('btn-spin-slots'); const btnInsert = document.getElementById('btn-insert-credit'); const btnCashout = document.getElementById('btn-cashout-slots'); const slotEls = [document.getElementById('slot1'), document.getElementById('slot2'), document.getElementById('slot3')]; const icons = ['🍔', '🥩', '🍟', '🥓', '🏆']; let isSpinning = false;
+
+      function updateSlotsUI() { document.getElementById('slots-local-balance').innerText = slotsLocalBalance.toFixed(2).replace('.', ','); }
+      document.getElementById('btn-open-slots').addEventListener('click', () => { updateSlotsUI(); slotsModal.style.opacity = '1'; slotsModal.style.visibility = 'visible'; });
+
+      btnInsert.addEventListener('click', () => {
+        if (saldoAtual < 1.00) return alert("Sua carteira global não tem R$ 1,00.");
+        if (slotsLocalBalance + 1.00 > LIMIT_SLOTS) return alert("O cofre atingiu o teto da máquina (R$ 10,00).");
+        saldoAtual -= 1.00; slotsLocalBalance += 1.00;
+        localStorage.setItem('brat_cashback', saldoAtual); localStorage.setItem('brat_slots_local_balance', slotsLocalBalance);
+        atualizarCarteira(); updateSlotsUI(); alert("R$ 1,00 inserido!");
+      });
+
+      btnSpin.addEventListener('click', () => {
+        if (slotsLocalBalance <= 0) return alert("Cofre vazio! Insira fundos da sua Carteira.");
+        if (slotsLocalBalance >= LIMIT_SLOTS) return alert("Estourou a máquina! Saque para a sua carteira.");
+        if (isSpinning) return;
+        isSpinning = true; consecutiveSpins++; localStorage.setItem('brat_slots_spins', consecutiveSpins);
+
+        slotEls.forEach(el => el.classList.add('spinning-blur'));
+        const visualSpin = setInterval(() => { slotEls.forEach(el => { if(el.classList.contains('spinning-blur')) el.innerText = icons[Math.floor(Math.random() * icons.length)]; }); }, 50);
+
+        let rand = Math.random();
+        let winAmount = 0; let r1, r2, r3;
+
+        if (consecutiveSpins <= 12) {
+          // Fase 1: Oscilação Lenta (Drenagem)
+          if (rand < 0.60) { winAmount = -0.15; r1 = icons[0]; r2 = icons[1]; r3 = icons[2]; } // 60% Perda
+          else if (rand < 0.85) { winAmount = 0.20; r1 = '🥓'; r2 = '🥓'; r3 = '🥓'; } // 25% Micro
+          else { winAmount = 0.50; r1 = '🥩'; r2 = '🥩'; r3 = '🥩'; } // 15% Recuperação
+        } else {
+          // Fase 2 e 3 (Após esquentar)
+          if (slotsLocalBalance > 8.50) {
+            // Fase 3: Barreira (Muito difícil fechar os 10,00)
+            if (rand < 0.70) { winAmount = -0.15; r1 = icons[2]; r2 = icons[3]; r3 = icons[4]; }
+            else if (rand < 0.90) { winAmount = 0.20; r1 = '🥓'; r2 = '🥓'; r3 = '🥓'; }
+            else { winAmount = 0.50; r1 = '🥩'; r2 = '🥩'; r3 = '🥩'; }
+          } else {
+            // Fase 2: Aberta (Chances de prêmios maiores)
+            if (rand < 0.50) { winAmount = -0.15; r1 = icons[1]; r2 = icons[4]; r3 = icons[0]; }
+            else if (rand < 0.70) { winAmount = 0.20; r1 = '🥓'; r2 = '🥓'; r3 = '🥓'; }
+            else if (rand < 0.85) { winAmount = 0.50; r1 = '🥩'; r2 = '🥩'; r3 = '🥩'; }
+            else if (rand < 0.95) { winAmount = 1.00; r1 = '🍟'; r2 = '🍟'; r3 = '🍟'; }
+            else if (rand < 0.98) { winAmount = 1.50; r1 = '🏆'; r2 = '🏆'; r3 = '🏆'; }
+            else { winAmount = 3.00; r1 = '🍔'; r2 = '🍔'; r3 = '🍔'; }
+          }
+        }
+
+        let newBalance = slotsLocalBalance + winAmount;
+        if (newBalance < 0) newBalance = 0; if (newBalance > LIMIT_SLOTS) newBalance = LIMIT_SLOTS;
+
+        setTimeout(() => { slotEls[0].innerText = r1; slotEls[0].classList.remove('spinning-blur'); }, 800);
+        setTimeout(() => { slotEls[1].innerText = r2; slotEls[1].classList.remove('spinning-blur'); }, 1200);
+        setTimeout(() => { 
+          slotEls[2].innerText = r3; slotEls[2].classList.remove('spinning-blur'); clearInterval(visualSpin);
+          slotsLocalBalance = newBalance; localStorage.setItem('brat_slots_local_balance', slotsLocalBalance);
+          if(slotsLocalBalance <= 0) consecutiveSpins = 0; localStorage.setItem('brat_slots_spins', consecutiveSpins); updateSlotsUI(); isSpinning = false;
+        }, 1600);
+      });
+
+      btnCashout.addEventListener('click', () => {
+        if(isSpinning || slotsLocalBalance <= 0) return;
+        let espacoLivre = LIMITE_CARTEIRA - saldoAtual;
+        let valorTransferido = Math.min(slotsLocalBalance, espacoLivre);
+        
+        saldoAtual += valorTransferido; slotsLocalBalance -= valorTransferido; 
+        localStorage.setItem('brat_cashback', saldoAtual); localStorage.setItem('brat_slots_local_balance', slotsLocalBalance);
+        
+        consecutiveSpins = 0; localStorage.setItem('brat_slots_spins', 0); // Zera o aquecimento ao sacar
+        
+        if (valorTransferido < slotsLocalBalance + valorTransferido) {
+           alert(`Saque de R$ ${valorTransferido.toFixed(2)} efetuado! A carteira atingiu o teto máximo de R$ 20,00. O restante ficou na máquina.`);
+        } else { alert("Saque efetuado para a Carteira VIP!"); }
+        
+        updateSlotsUI(); atualizarCarteira();
+      });
+
+      // SNAKE E MATCH (Mantidos para acumular via vidas diárias)
+      function descontarFichaEGanhar(ganho, mensagem, customAction) { vidas--; localStorage.setItem('brat_vidas', vidas); let ganhoReal = ganho; if (saldoAtual + ganho > LIMITE_CARTEIRA) { ganhoReal = LIMITE_CARTEIRA - saldoAtual; } saldoAtual += ganhoReal; localStorage.setItem('brat_cashback', saldoAtual); if (ganhoReal < ganho) alert(`${mensagem} Ganhou R$ ${ganhoReal.toFixed(2)}. (Sua carteira atingiu o teto de R$ 20,00!)`); else alert(`${mensagem} Faturou R$ ${ganhoReal.toFixed(2)} de Cashback.`); if (vidas <= 0) { localStorage.setItem('brat_last_played', Date.now()); alert("Acabaram as fichas diárias!"); } atualizarCarteira(); if(customAction) customAction(); }
+      const snakeModal = document.getElementById('snake-modal'); const btnStartSnake = document.getElementById('btn-start-snake'); const canvas = document.getElementById('snake-game'); const ctx = canvas.getContext('2d'); const box = 20; let snake = [], food = {}, d = "", score = 0, gameInterval;
+      document.getElementById('btn-open-snake').addEventListener('click', () => { snakeModal.style.opacity = '1'; snakeModal.style.visibility = 'visible'; btnStartSnake.style.display = 'block'; });
+      btnStartSnake.addEventListener('click', () => { if (vidas <= 0) return; btnStartSnake.style.display = 'none'; snake = [{ x: 7 * box, y: 7 * box }]; score = 0; d = "RIGHT"; document.getElementById('snake-score').innerText = "0"; document.getElementById('snake-ganho').innerText = "0,00"; food = { x: Math.floor(Math.random() * 13 + 1) * box, y: Math.floor(Math.random() * 13 + 1) * box }; clearInterval(gameInterval); gameInterval = setInterval(drawSnake, 220); });
+      window.changeDirection = function(dir) { if(dir=="LEFT" && d!="RIGHT") d="LEFT"; else if(dir=="UP" && d!="DOWN") d="UP"; else if(dir=="RIGHT" && d!="LEFT") d="RIGHT"; else if(dir=="DOWN" && d!="UP") d="DOWN"; }
+      let touchStartX = 0, touchStartY = 0; canvas.addEventListener('touchstart', e => { touchStartX = e.changedTouches[0].screenX; touchStartY = e.changedTouches[0].screenY; }, {passive: true}); canvas.addEventListener('touchend', e => { let diffX = e.changedTouches[0].screenX - touchStartX, diffY = e.changedTouches[0].screenY - touchStartY; if (Math.abs(diffX) > Math.abs(diffY)) { if (Math.abs(diffX)>30) { if(diffX>0 && d!="LEFT") d="RIGHT"; else if(diffX<0 && d!="RIGHT") d="LEFT"; } } else { if (Math.abs(diffY)>30) { if(diffY>0 && d!="UP") d="DOWN"; else if(diffY<0 && d!="DOWN") d="UP"; } } }, {passive: true});
+      function drawSnake() { ctx.fillStyle = "#000"; ctx.fillRect(0, 0, canvas.width, canvas.height); for(let i=0; i<snake.length; i++) { ctx.fillStyle = (i==0) ? "#D4AF37" : "#a18222"; ctx.fillRect(snake[i].x, snake[i].y, box, box); ctx.strokeStyle = "#000"; ctx.strokeRect(snake[i].x, snake[i].y, box, box); } ctx.fillStyle = "#d97706"; ctx.beginPath(); ctx.arc(food.x+box/2, food.y+box/2, box/2.2, 0, 2*Math.PI); ctx.fill(); let snakeX = snake[0].x, snakeY = snake[0].y; if(d=="LEFT") snakeX-=box; if(d=="UP") snakeY-=box; if(d=="RIGHT") snakeX+=box; if(d=="DOWN") snakeY+=box; if(snakeX<0 || snakeX>=canvas.width || snakeY<0 || snakeY>=canvas.height || snake.some((s,i)=> i!==0 && s.x===snakeX && s.y===snakeY)) { clearInterval(gameInterval); descontarFichaEGanhar(score * 0.20, `Fim de Jogo! Devorou ${score} burgers.`, () => { if(vidas <= 0) { snakeModal.style.opacity = '0'; snakeModal.style.visibility = 'hidden'; } else { btnStartSnake.style.display = 'block'; } }); return; } if(snakeX==food.x && snakeY==food.y) { score++; document.getElementById('snake-score').innerText = score; document.getElementById('snake-ganho').innerText = (score*0.20).toFixed(2).replace('.',','); food = { x: Math.floor(Math.random()*13+1)*box, y: Math.floor(Math.random()*13+1)*box }; } else snake.pop(); snake.unshift({ x: snakeX, y: snakeY }); }
+
+      const matchModal = document.getElementById('match-modal'); const btnStartMatch = document.getElementById('btn-start-match'); const board = document.getElementById('memory-board'); const timerDisplay = document.getElementById('match-timer'); const scoreDisplay = document.getElementById('match-score'); const emojis = ['🍔', '🥓', '🧀', '🍳', '🍟', '🥩']; let cardsArr = [], hasFlippedCard = false, lockBoard = false, firstCard, secondCard, matchScore = 0, matchTimer = 60, matchInterval;
+      document.getElementById('btn-open-match').addEventListener('click', () => { matchModal.style.opacity = '1'; matchModal.style.visibility = 'visible'; btnStartMatch.style.display = 'block'; board.innerHTML = ''; timerDisplay.innerText = "60"; scoreDisplay.innerText = "0"; });
+      btnStartMatch.addEventListener('click', () => { if (vidas <= 0) return; btnStartMatch.style.display = 'none'; matchScore = 0; matchTimer = 60; scoreDisplay.innerText = "0"; timerDisplay.innerText = matchTimer; cardsArr = [...emojis, ...emojis].sort(() => 0.5 - Math.random()); board.innerHTML = ''; cardsArr.forEach(emoji => { const card = document.createElement('div'); card.classList.add('memory-card'); card.dataset.emoji = emoji; card.innerHTML = `<div class="memory-front">${emoji}</div><div class="memory-back"></div>`; card.addEventListener('click', flipCard); board.appendChild(card); }); clearInterval(matchInterval); matchInterval = setInterval(() => { matchTimer--; timerDisplay.innerText = matchTimer; if (matchTimer <= 0) { clearInterval(matchInterval); lockBoard = true; descontarFichaEGanhar(0, `O tempo acabou! Fez ${matchScore} pares.`, () => { if(vidas <= 0) { matchModal.style.opacity = '0'; matchModal.style.visibility = 'hidden'; } else { btnStartMatch.style.display = 'block'; } }); } }, 1000); });
+      function flipCard() { if (lockBoard || this === firstCard) return; this.classList.add('flip'); if (!hasFlippedCard) { hasFlippedCard = true; firstCard = this; return; } secondCard = this; checkForMatch(); }
+      function checkForMatch() { let isMatch = firstCard.dataset.emoji === secondCard.dataset.emoji; isMatch ? disableCards() : unflipCards(); }
+      function disableCards() { firstCard.removeEventListener('click', flipCard); secondCard.removeEventListener('click', flipCard); matchScore++; scoreDisplay.innerText = matchScore; resetBoard(); if (matchScore === 6) { clearInterval(matchInterval); setTimeout(() => { descontarFichaEGanhar(2.00, `Vitória! Tempo restante: ${matchTimer}s.`, () => { if(vidas <= 0) { matchModal.style.opacity = '0'; matchModal.style.visibility = 'hidden'; } else { btnStartMatch.style.display = 'block'; } }); }, 500); } }
+      function unflipCards() { lockBoard = true; setTimeout(() => { firstCard.classList.remove('flip'); secondCard.classList.remove('flip'); resetBoard(); }, 1000); }
+      function resetBoard() { [hasFlippedCard, lockBoard] = [false, false]; [firstCard, secondCard] = [null, null]; }
+    });
+  </script>
+</body>
+</html>
