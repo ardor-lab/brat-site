@@ -185,7 +185,7 @@
       </div>
       
       <div class="bg-black border border-zinc-800 rounded-xl p-3 mb-5">
-        <p class="text-zinc-500 text-[9px] uppercase tracking-widest font-bold mb-1">Cache da Máquina</p>
+        <p class="text-zinc-500 text-[9px] uppercase tracking-widest font-bold mb-1">Cache Acumulado</p>
         <p class="text-3xl font-black text-white">R$ <span id="slots-local-balance">0,00</span></p>
       </div>
 
@@ -196,12 +196,12 @@
       </div>
 
       <div class="flex flex-col gap-3">
-        <button id="btn-spin-slots-action" class="w-full bg-amber-400 hover:bg-amber-300 text-black font-extrabold px-4 py-4 rounded-full transition text-xs tracking-widest uppercase">Girar (Risco: -R$ 0,15)</button>
+        <button id="btn-spin-slots-action" class="w-full bg-amber-400 hover:bg-amber-300 text-black font-extrabold px-4 py-4 rounded-full transition text-xs tracking-widest uppercase">Iniciar (Risco: -R$ 0,15)</button>
         <button id="btn-insert-credit" class="w-full border border-amber-500/50 bg-amber-500/10 hover:bg-amber-500/20 text-amber-400 font-bold px-4 py-3 rounded-full transition text-[10px] tracking-widest uppercase">Injetar R$ 1,00 do Cofre VIP</button>
-        <button id="btn-cashout-slots" class="w-full border border-emerald-500/50 bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-400 font-bold px-4 py-3 rounded-full transition text-[10px] tracking-widest uppercase mt-2">Extrair para o Cofre VIP</button>
+        <button id="btn-cashout-slots" class="w-full border border-emerald-500/50 bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-400 font-bold px-4 py-3 rounded-full transition text-[10px] tracking-widest uppercase mt-2">Extrair Ganhos para o Cofre VIP</button>
       </div>
       
-      <p class="text-zinc-500 text-[8px] uppercase tracking-widest mt-4 leading-relaxed">Limite de extração: R$ 10,00.<br>Sequências raras multiplicam o saldo, mas fique atento à volatilidade.</p>
+      <p class="text-zinc-500 text-[8px] uppercase tracking-widest mt-4 leading-relaxed">Limite de extração: R$ 10,00.<br>Sistemas com EV- exigem timing preciso para o resgate.</p>
     </div>
   </div>
 
@@ -277,7 +277,7 @@
 
       // ===== ABERTURA DE MODAIS COM VALIDAÇÃO DE TOKENS =====
       document.getElementById('btn-open-snake').addEventListener('click', (e) => {
-        e.stopPropagation(); // Previne duplo disparo
+        e.stopPropagation();
         if (vidas <= 0) return alert("Os seus Tokens Diários acabaram! A recarga acontece em 24h. Enquanto isso, jogue no Brat Slots que é livre de Tokens.");
         document.getElementById('snake-modal').style.opacity = '1';
         document.getElementById('snake-modal').style.visibility = 'visible';
@@ -351,15 +351,10 @@
       document.getElementById('btn-confirm-delivery').addEventListener('click', () => efetuarResgateFinal('delivery'));
       document.getElementById('btn-confirm-salao').addEventListener('click', () => efetuarResgateFinal('salao'));
 
-      // ===== BRAT SLOTS =====
+      // ===== MATEMÁTICA DE CASINO (BRAT SLOTS) =====
       const LIMIT_SLOTS = 10.00;
-      let currentMonth = new Date().getMonth() + "-" + new Date().getFullYear();
-      if(localStorage.getItem('brat_slots_month') !== currentMonth) {
-        localStorage.setItem('brat_slots_month', currentMonth); localStorage.setItem('brat_slots_local_balance', 2.00); localStorage.setItem('brat_slots_spins', 0);
-      }
       let slotsLocalBalance = parseFloat(localStorage.getItem('brat_slots_local_balance')) || 0;
-      let consecutiveSpins = parseInt(localStorage.getItem('brat_slots_spins')) || 0;
-
+      
       const slotEls = [document.getElementById('slot1'), document.getElementById('slot2'), document.getElementById('slot3')]; 
       const icons = ['🍔', '🥩', '🍟', '🥓', '🏆']; 
       let isSpinning = false;
@@ -367,18 +362,18 @@
       function updateSlotsUI() { document.getElementById('slots-local-balance').innerText = slotsLocalBalance.toFixed(2).replace('.', ','); }
 
       document.getElementById('btn-insert-credit').addEventListener('click', () => {
-        if (saldoAtual < 1.00) return alert("Seu Cofre VIP não possui R$ 1,00 disponível.");
-        if (slotsLocalBalance + 1.00 > LIMIT_SLOTS) return alert("O cache atingiu o teto da máquina (R$ 10,00).");
+        if (saldoAtual < 1.00) return alert("Seu Cofre VIP não possui R$ 1,00 disponível. Jogue nos outros modos ou adicione no próximo pedido.");
+        if (slotsLocalBalance + 1.00 > LIMIT_SLOTS) return alert("A máquina atingiu a capacidade de R$ 10,00.");
         saldoAtual -= 1.00; slotsLocalBalance += 1.00;
         localStorage.setItem('brat_cashback', saldoAtual); localStorage.setItem('brat_slots_local_balance', slotsLocalBalance);
         atualizarCarteira(); updateSlotsUI(); alert("R$ 1,00 injetado com sucesso!");
       });
 
       document.getElementById('btn-spin-slots-action').addEventListener('click', () => {
-        if (slotsLocalBalance <= 0) return alert("Cache vazio! Injete fundos do seu Cofre VIP.");
-        if (slotsLocalBalance >= LIMIT_SLOTS) return alert("Teto alcançado! Extraia os ganhos para o seu Cofre VIP.");
+        if (slotsLocalBalance <= 0) return alert("Cache da máquina vazio! Injete fundos do seu Cofre VIP.");
+        if (slotsLocalBalance >= LIMIT_SLOTS) return alert("Teto alcançado! Extraia os ganhos para o seu Cofre VIP antes de continuar.");
         if (isSpinning) return;
-        isSpinning = true; consecutiveSpins++; localStorage.setItem('brat_slots_spins', consecutiveSpins);
+        isSpinning = true;
 
         slotEls.forEach(el => el.classList.add('spinning-blur'));
         const visualSpin = setInterval(() => { slotEls.forEach(el => { if(el.classList.contains('spinning-blur')) el.innerText = icons[Math.floor(Math.random() * icons.length)]; }); }, 50);
@@ -386,23 +381,27 @@
         let rand = Math.random();
         let winAmount = 0; let r1, r2, r3;
 
-        if (consecutiveSpins <= 12) {
-          if (rand < 0.60) { winAmount = -0.15; r1 = icons[0]; r2 = icons[1]; r3 = icons[2]; } 
-          else if (rand < 0.85) { winAmount = 0.20; r1 = '🥓'; r2 = '🥓'; r3 = '🥓'; } 
-          else { winAmount = 0.50; r1 = '🥩'; r2 = '🥩'; r3 = '🥩'; } 
+        // A BARREIRA INVISÍVEL (Lógica Baseada no Saldo)
+        if (slotsLocalBalance >= 8.00) {
+          // Fase 3 (O Muro - 85% Perda)
+          if (rand < 0.85) { winAmount = -0.15; r1 = icons[0]; r2 = icons[1]; r3 = icons[2]; }
+          else if (rand < 0.97) { winAmount = 0.20; r1 = '🥓'; r2 = '🥓'; r3 = '🥓'; }
+          else { winAmount = 0.50; r1 = '🥩'; r2 = '🥩'; r3 = '🥩'; }
+        } else if (slotsLocalBalance >= 5.00) {
+          // Fase 2 (A Ilusão - 75% Perda, mas com Jackpot ligado)
+          if (rand < 0.75) { winAmount = -0.15; r1 = icons[2]; r2 = icons[3]; r3 = icons[4]; }
+          else if (rand < 0.88) { winAmount = 0.20; r1 = '🥓'; r2 = '🥓'; r3 = '🥓'; }
+          else if (rand < 0.95) { winAmount = 0.50; r1 = '🥩'; r2 = '🥩'; r3 = '🥩'; }
+          else if (rand < 0.98) { winAmount = 1.00; r1 = '🍟'; r2 = '🍟'; r3 = '🍟'; }
+          else { winAmount = 3.00; r1 = '🍔'; r2 = '🍔'; r3 = '🍔'; } // Jackpot Ativo
         } else {
-          if (slotsLocalBalance > 8.50) {
-            if (rand < 0.70) { winAmount = -0.15; r1 = icons[2]; r2 = icons[3]; r3 = icons[4]; }
-            else if (rand < 0.90) { winAmount = 0.20; r1 = '🥓'; r2 = '🥓'; r3 = '🥓'; }
-            else { winAmount = 0.50; r1 = '🥩'; r2 = '🥩'; r3 = '🥩'; }
-          } else {
-            if (rand < 0.50) { winAmount = -0.15; r1 = icons[1]; r2 = icons[4]; r3 = icons[0]; }
-            else if (rand < 0.70) { winAmount = 0.20; r1 = '🥓'; r2 = '🥓'; r3 = '🥓'; }
-            else if (rand < 0.85) { winAmount = 0.50; r1 = '🥩'; r2 = '🥩'; r3 = '🥩'; }
-            else if (rand < 0.95) { winAmount = 1.00; r1 = '🍟'; r2 = '🍟'; r3 = '🍟'; }
-            else if (rand < 0.98) { winAmount = 1.50; r1 = '🏆'; r2 = '🏆'; r3 = '🏆'; }
-            else { winAmount = 3.00; r1 = '🍔'; r2 = '🍔'; r3 = '🍔'; }
-          }
+          // Fase 1 (O Grind - Drenagem lenta, 75% Perda com picos pequenos)
+          if (rand < 0.75) { winAmount = -0.15; r1 = icons[1]; r2 = icons[4]; r3 = icons[0]; }
+          else if (rand < 0.90) { winAmount = 0.20; r1 = '🥓'; r2 = '🥓'; r3 = '🥓'; }
+          else if (rand < 0.97) { winAmount = 0.50; r1 = '🥩'; r2 = '🥩'; r3 = '🥩'; }
+          else if (rand < 0.99) { winAmount = 1.00; r1 = '🍟'; r2 = '🍟'; r3 = '🍟'; }
+          else if (rand < 0.998) { winAmount = 1.50; r1 = '🏆'; r2 = '🏆'; r3 = '🏆'; }
+          else { winAmount = 3.00; r1 = '🍔'; r2 = '🍔'; r3 = '🍔'; }
         }
 
         let newBalance = slotsLocalBalance + winAmount;
@@ -413,7 +412,7 @@
         setTimeout(() => { 
           slotEls[2].innerText = r3; slotEls[2].classList.remove('spinning-blur'); clearInterval(visualSpin);
           slotsLocalBalance = newBalance; localStorage.setItem('brat_slots_local_balance', slotsLocalBalance);
-          if(slotsLocalBalance <= 0) consecutiveSpins = 0; localStorage.setItem('brat_slots_spins', consecutiveSpins); updateSlotsUI(); isSpinning = false;
+          updateSlotsUI(); isSpinning = false;
         }, 1600);
       });
 
@@ -424,10 +423,9 @@
         
         saldoAtual += valorTransferido; slotsLocalBalance -= valorTransferido; 
         localStorage.setItem('brat_cashback', saldoAtual); localStorage.setItem('brat_slots_local_balance', slotsLocalBalance);
-        consecutiveSpins = 0; localStorage.setItem('brat_slots_spins', 0); 
         
         if (valorTransferido < slotsLocalBalance + valorTransferido) {
-           alert(`Extração de R$ ${valorTransferido.toFixed(2)} concluída! Seu Cofre VIP atingiu o limite de R$ 20,00. O excedente permanece no cache da máquina.`);
+           alert(`Extração de R$ ${valorTransferido.toFixed(2)} concluída! Seu Cofre VIP atingiu o limite de R$ 20,00. O excedente permanece na máquina.`);
         } else { alert("Ganhos extraídos para o Cofre VIP com sucesso!"); }
         
         updateSlotsUI(); atualizarCarteira();
