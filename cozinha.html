@@ -37,17 +37,16 @@
       display: flex; flex-direction: column; justify-content: flex-end; 
     }
 
-    /* AJUSTE DE ENQUADRAMENTO: Zoom leve e foco deslocado para cima para o prato fugir das letras */
+    /* Posição padrão original, mantendo o vídeo perfeitamente encaixado na tela */
     .cinematic-bg {
       position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-      object-fit: cover; object-position: center 30%; z-index: 1; 
-      transform: scale(1.12); transition: transform 10s ease-out;
+      object-fit: cover; z-index: 1; transition: transform 10s ease-out;
     }
-    .snap-section:hover .cinematic-bg { transform: scale(1.18); }
+    .snap-section:hover .cinematic-bg { transform: scale(1.03); }
 
     .dark-gradient {
       position: absolute; inset: 0; z-index: 2;
-      background: linear-gradient(to top, rgba(8,8,10,1) 0%, rgba(8,8,10,0.8) 35%, rgba(8,8,10,0.2) 70%, rgba(8,8,10,0.4) 100%);
+      background: linear-gradient(to top, rgba(8,8,10,1) 0%, rgba(8,8,10,0.8) 20%, rgba(8,8,10,0.2) 60%, rgba(8,8,10,0.5) 100%);
     }
   </style>
 </head>
@@ -74,14 +73,18 @@
     <svg class="w-6 h-6 text-white drop-shadow-md" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
   </div>
 
-  <main class="snap-container">
+  <!-- CONTENTOR INTELIGENTE: Os pratos com mais views sobem automaticamente para primeiro -->
+  <main class="snap-container" id="kitchen-container">
     
     <!-- PRATO 1: REI DO CHURRASCO -->
-    <section class="snap-section">
+    <section class="snap-section" data-id="rei">
       <video autoplay loop muted playsinline class="cinematic-bg">
         <source src="rei.mp4" type="video/mp4">
       </video>
       <div class="dark-gradient"></div>
+      <div class="absolute bottom-6 right-6 z-30 bg-black/50 backdrop-blur-md border border-white/10 px-3 py-1 rounded-full text-[10px] text-zinc-400 tracking-wider">
+        👁️ <span class="view-count" data-target="rei">0</span> views
+      </div>
       
       <div class="relative z-10 w-full max-w-5xl mx-auto px-6 pb-24 sm:pb-32 flex flex-col gap-4">
         <div>
@@ -105,11 +108,14 @@
     </section>
 
     <!-- PRATO 2: MATILDA CAKE -->
-    <section class="snap-section">
+    <section class="snap-section" data-id="matilda">
       <video autoplay loop muted playsinline class="cinematic-bg">
         <source src="matilda.mp4" type="video/mp4">
       </video>
       <div class="dark-gradient"></div>
+      <div class="absolute bottom-6 right-6 z-30 bg-black/50 backdrop-blur-md border border-white/10 px-3 py-1 rounded-full text-[10px] text-zinc-400 tracking-wider">
+        👁️ <span class="view-count" data-target="matilda">0</span> views
+      </div>
       
       <div class="relative z-10 w-full max-w-5xl mx-auto px-6 pb-24 sm:pb-32 flex flex-col gap-4">
         <div>
@@ -125,7 +131,7 @@
         </p>
         <div class="flex items-center gap-5 mt-4">
           <span class="text-sm font-light text-zinc-400 drop-shadow-md tracking-wider">R$ 70</span>
-          <a href="https://wa.me/5511977889397?text=Olá!%20A%20vitrine%20abriu%20o%20meu%20apetite.%20Quero%20pedir%20o%20Matilda%20Cake." class="bg-amber-400 hover:bg-amber-300 text-black text-xs font-bold px-8 py-4 rounded-full uppercase tracking-widest transition transform hover:scale-105 shadow-[0_0_30px_rgba(255,255,255,0.4)]">
+          <a href="https://wa.me/5511977889397?text=Olá!%20A%20vitrine%20abriu%20o%20meu%20apetite.%20Quero%20pedir%20o%20Matilda%20Cake." class="bg-amber-400 hover:bg-amber-300 text-black text-xs font-bold px-8 py-4 rounded-full uppercase tracking-widest transition transform hover:scale-105 shadow-[0_0_30px_rgba(212,175,55,0.4)]">
             Pedir Agora
           </a>
         </div>
@@ -133,11 +139,14 @@
     </section>
 
     <!-- PRATO 3: BRAT EXPLOSÃO -->
-    <section class="snap-section">
+    <section class="snap-section" data-id="explosao">
       <video autoplay loop muted playsinline class="cinematic-bg">
         <source src="explosao.mp4" type="video/mp4">
       </video>
       <div class="dark-gradient"></div>
+      <div class="absolute bottom-6 right-6 z-30 bg-black/50 backdrop-blur-md border border-white/10 px-3 py-1 rounded-full text-[10px] text-zinc-400 tracking-wider">
+        👁️ <span class="view-count" data-target="explosao">0</span> views
+      </div>
       
       <div class="relative z-10 w-full max-w-5xl mx-auto px-6 pb-24 sm:pb-32 flex flex-col gap-4">
         <div>
@@ -161,11 +170,14 @@
     </section>
 
     <!-- PRATO 4: CHEDDAR & BACON -->
-    <section class="snap-section">
+    <section class="snap-section" data-id="cheddar">
       <video autoplay loop muted playsinline class="cinematic-bg">
         <source src="batata-cheddar.mp4" type="video/mp4">
       </video>
       <div class="dark-gradient"></div>
+      <div class="absolute bottom-6 right-6 z-30 bg-black/50 backdrop-blur-md border border-white/10 px-3 py-1 rounded-full text-[10px] text-zinc-400 tracking-wider">
+        👁️ <span class="view-count" data-target="cheddar">0</span> views
+      </div>
       
       <div class="relative z-10 w-full max-w-5xl mx-auto px-6 pb-24 sm:pb-32 flex flex-col gap-4">
         <div>
@@ -189,11 +201,14 @@
     </section>
 
     <!-- PRATO 5: BIG BRAT -->
-    <section class="snap-section">
+    <section class="snap-section" data-id="bigbrat">
       <video autoplay loop muted playsinline class="cinematic-bg">
         <source src="big-brat.mp4" type="video/mp4">
       </video>
       <div class="dark-gradient"></div>
+      <div class="absolute bottom-6 right-6 z-30 bg-black/50 backdrop-blur-md border border-white/10 px-3 py-1 rounded-full text-[10px] text-zinc-400 tracking-wider">
+        👁️ <span class="view-count" data-target="bigbrat">0</span> views
+      </div>
       
       <div class="relative z-10 w-full max-w-5xl mx-auto px-6 pb-24 sm:pb-32 flex flex-col gap-4">
         <div>
@@ -217,11 +232,14 @@
     </section>
 
     <!-- PRATO 6: BRAT PARRILLERO -->
-    <section class="snap-section">
+    <section class="snap-section" data-id="parrillero">
       <video autoplay loop muted playsinline class="cinematic-bg">
         <source src="parrillero.mp4" type="video/mp4">
       </video>
       <div class="dark-gradient"></div>
+      <div class="absolute bottom-6 right-6 z-30 bg-black/50 backdrop-blur-md border border-white/10 px-3 py-1 rounded-full text-[10px] text-zinc-400 tracking-wider">
+        👁️ <span class="view-count" data-target="parrillero">0</span> views
+      </div>
       
       <div class="relative z-10 w-full max-w-5xl mx-auto px-6 pb-24 sm:pb-32 flex flex-col gap-4">
         <div>
@@ -245,5 +263,49 @@
     </section>
 
   </main>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const container = document.getElementById("kitchen-container");
+      const sections = Array.from(container.querySelectorAll(".snap-section"));
+
+      // 1. Carregar contadores do localStorage
+      let views = JSON.parse(localStorage.getItem("brat_kitchen_views")) || {
+        rei: 120, matilda: 95, explosao: 110, cheddar: 85, bigbrat: 105, parrillero: 130
+      };
+
+      // 2. Atualizar os números no ecrã
+      document.querySelectorAll(".view-count").forEach(span => {
+        const id = span.getAttribute("data-target");
+        span.textContent = views[id] || 0;
+      });
+
+      // 3. Ordenar automaticamente: o que tiver mais views vai para primeiro
+      sections.sort((a, b) => {
+        const idA = a.getAttribute("data-id");
+        const idB = b.getAttribute("data-id");
+        return (views[idB] || 0) - (views[idA] || 0);
+      });
+
+      // Reaplicar na ordem inteligente
+      sections.forEach(sec => container.appendChild(sec));
+
+      // 4. Detetar quando o cliente passa por um prato para somar view
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const id = entry.target.getAttribute("data-id");
+            views[id] = (views[id] || 0) + 1;
+            localStorage.setItem("brat_kitchen_views", JSON.stringify(views));
+            
+            const counter = entry.target.querySelector(".view-count");
+            if (counter) counter.textContent = views[id];
+          }
+        });
+      }, { threshold: 0.6 });
+
+      sections.forEach(sec => observer.observe(sec));
+    });
+  </script>
 </body>
 </html>
