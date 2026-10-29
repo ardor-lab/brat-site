@@ -37,7 +37,6 @@
       display: flex; flex-direction: column; justify-content: flex-end; 
     }
 
-    /* Posição padrão original, mantendo o vídeo perfeitamente encaixado na tela */
     .cinematic-bg {
       position: absolute; top: 0; left: 0; width: 100%; height: 100%;
       object-fit: cover; z-index: 1; transition: transform 10s ease-out;
@@ -46,7 +45,7 @@
 
     .dark-gradient {
       position: absolute; inset: 0; z-index: 2;
-      background: linear-gradient(to top, rgba(8,8,10,1) 0%, rgba(8,8,10,0.8) 20%, rgba(8,8,10,0.2) 60%, rgba(8,8,10,0.5) 100%);
+      background: linear-gradient(to top, rgba(8,8,10,1) 0%, rgba(8,8,10,0.8) 25%, rgba(8,8,10,0.2) 65%, rgba(8,8,10,0.5) 100%);
     }
   </style>
 </head>
@@ -73,7 +72,6 @@
     <svg class="w-6 h-6 text-white drop-shadow-md" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
   </div>
 
-  <!-- CONTENTOR INTELIGENTE: Os pratos com mais views sobem automaticamente para primeiro -->
   <main class="snap-container" id="kitchen-container">
     
     <!-- PRATO 1: REI DO CHURRASCO -->
@@ -82,7 +80,8 @@
         <source src="rei.mp4" type="video/mp4">
       </video>
       <div class="dark-gradient"></div>
-      <div class="absolute bottom-6 right-6 z-30 bg-black/50 backdrop-blur-md border border-white/10 px-3 py-1 rounded-full text-[10px] text-zinc-400 tracking-wider">
+      <!-- CONTADOR POSICIONADO ACIMA DOS TEXTOS, BEM VISÍVEL -->
+      <div class="absolute top-24 right-6 z-30 bg-black/60 backdrop-blur-md border border-white/15 px-3.5 py-1.5 rounded-full text-[11px] text-zinc-300 tracking-wider shadow-xl">
         👁️ <span class="view-count" data-target="rei">0</span> views
       </div>
       
@@ -113,7 +112,7 @@
         <source src="matilda.mp4" type="video/mp4">
       </video>
       <div class="dark-gradient"></div>
-      <div class="absolute bottom-6 right-6 z-30 bg-black/50 backdrop-blur-md border border-white/10 px-3 py-1 rounded-full text-[10px] text-zinc-400 tracking-wider">
+      <div class="absolute top-24 right-6 z-30 bg-black/60 backdrop-blur-md border border-white/15 px-3.5 py-1.5 rounded-full text-[11px] text-zinc-300 tracking-wider shadow-xl">
         👁️ <span class="view-count" data-target="matilda">0</span> views
       </div>
       
@@ -144,7 +143,7 @@
         <source src="explosao.mp4" type="video/mp4">
       </video>
       <div class="dark-gradient"></div>
-      <div class="absolute bottom-6 right-6 z-30 bg-black/50 backdrop-blur-md border border-white/10 px-3 py-1 rounded-full text-[10px] text-zinc-400 tracking-wider">
+      <div class="absolute top-24 right-6 z-30 bg-black/60 backdrop-blur-md border border-white/15 px-3.5 py-1.5 rounded-full text-[11px] text-zinc-300 tracking-wider shadow-xl">
         👁️ <span class="view-count" data-target="explosao">0</span> views
       </div>
       
@@ -175,7 +174,7 @@
         <source src="batata-cheddar.mp4" type="video/mp4">
       </video>
       <div class="dark-gradient"></div>
-      <div class="absolute bottom-6 right-6 z-30 bg-black/50 backdrop-blur-md border border-white/10 px-3 py-1 rounded-full text-[10px] text-zinc-400 tracking-wider">
+      <div class="absolute top-24 right-6 z-30 bg-black/60 backdrop-blur-md border border-white/15 px-3.5 py-1.5 rounded-full text-[11px] text-zinc-300 tracking-wider shadow-xl">
         👁️ <span class="view-count" data-target="cheddar">0</span> views
       </div>
       
@@ -206,7 +205,7 @@
         <source src="big-brat.mp4" type="video/mp4">
       </video>
       <div class="dark-gradient"></div>
-      <div class="absolute bottom-6 right-6 z-30 bg-black/50 backdrop-blur-md border border-white/10 px-3 py-1 rounded-full text-[10px] text-zinc-400 tracking-wider">
+      <div class="absolute top-24 right-6 z-30 bg-black/60 backdrop-blur-md border border-white/15 px-3.5 py-1.5 rounded-full text-[11px] text-zinc-300 tracking-wider shadow-xl">
         👁️ <span class="view-count" data-target="bigbrat">0</span> views
       </div>
       
@@ -237,7 +236,7 @@
         <source src="parrillero.mp4" type="video/mp4">
       </video>
       <div class="dark-gradient"></div>
-      <div class="absolute bottom-6 right-6 z-30 bg-black/50 backdrop-blur-md border border-white/10 px-3 py-1 rounded-full text-[10px] text-zinc-400 tracking-wider">
+      <div class="absolute top-24 right-6 z-30 bg-black/60 backdrop-blur-md border border-white/15 px-3.5 py-1.5 rounded-full text-[11px] text-zinc-300 tracking-wider shadow-xl">
         👁️ <span class="view-count" data-target="parrillero">0</span> views
       </div>
       
