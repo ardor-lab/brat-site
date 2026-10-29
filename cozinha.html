@@ -227,7 +227,7 @@
         </p>
         <div class="flex items-center gap-5 mt-4">
           <span class="text-sm font-light text-zinc-400 drop-shadow-md tracking-wider">R$ 49</span>
-          <a href="https://wa.me/5511977889397?text=Olá!%20A%20vitrine%20abriu%20o%20meu%20apetite.%20Quero%20pedir%20o%20Big%20Brat." class="bg-amber-400 hover:bg-amber-300 text-black text-xs font-bold px-8 py-4 rounded-full uppercase tracking-widest transition transform hover:scale-105 shadow-[0_0_30px_rgba(212,175,55,0.4)]">
+          <a href="https://wa.me/5511977889397?text=Olá!%20A%20vitrine%20abriu%20o%20meu%20apetite.%20Quero%20pedir%20o%20Big%20Brat." class="bg-amber-400 hover:bg-amber-300 text-black text-xs font-bold px-8 py-4 rounded-full uppercase tracking-widest transition transform hover:scale-105 shadow-[0_0_30px_rgba(255,255,255,0.3)]">
             Pedir Agora
           </a>
         </div>
@@ -330,6 +330,38 @@
       </div>
     </section>
 
+    <!-- PRATO 9: MILKSHAKES -->
+    <section class="snap-section" data-id="milkshakes">
+      <video autoplay loop muted playsinline class="cinematic-bg">
+        <source src="milkshakes.mp4" type="video/mp4">
+      </video>
+      <div class="dark-gradient"></div>
+      
+      <div class="absolute bottom-5 right-6 z-30 text-[9px] text-white/30 font-light tracking-widest uppercase">
+        <span class="view-count" data-target="milkshakes">0</span> views
+      </div>
+      
+      <div class="relative z-10 w-full max-w-5xl mx-auto px-6 pb-28 sm:pb-32 flex flex-col gap-4">
+        <div>
+          <span class="inline-block border border-amber-500/50 bg-amber-500/20 text-amber-400 text-[9px] uppercase tracking-[0.3em] font-bold px-3 py-1 rounded-full mb-4 backdrop-blur-sm shadow-[0_0_15px_rgba(212,175,55,0.2)]">
+            A Indulgência
+          </span>
+          <h1 class="text-5xl sm:text-7xl font-black text-white leading-[0.9] tracking-tighter drop-shadow-2xl">
+            MILKSHAKES<br>BRAT
+          </h1>
+        </div>
+        <p class="text-zinc-300 text-sm sm:text-base font-light max-w-md leading-relaxed drop-shadow-md">
+          Oreo, Morango de Verdade e Doce de Leite em destaque. Descubra também as nossas opções de Pistacchio, Chocolate e Ovomaltine. Refrescância e cremosidade em cada gole.
+        </p>
+        <div class="flex items-center gap-5 mt-4">
+          <span class="text-sm font-light text-zinc-400 drop-shadow-md tracking-wider">A partir de R$ 35</span>
+          <a href="https://wa.me/5511977889397?text=Olá!%20A%20vitrine%20abriu%20o%20meu%20apetite.%20Quero%20pedir%20um%20Milkshake." class="bg-amber-400 hover:bg-amber-300 text-black text-xs font-bold px-8 py-4 rounded-full uppercase tracking-widest transition transform hover:scale-105 shadow-[0_0_30px_rgba(212,175,55,0.4)]">
+            Pedir Agora
+          </a>
+        </div>
+      </div>
+    </section>
+
   </main>
 
   <script>
@@ -338,7 +370,7 @@
       const sections = Array.from(container.querySelectorAll(".snap-section"));
 
       let views = JSON.parse(localStorage.getItem("brat_kitchen_views")) || {
-        rei: 50, matilda: 45, explosao: 40, cheddar: 35, bigbrat: 30, parrillero: 25, bratcheddar: 20, bratchicken: 15
+        rei: 50, matilda: 45, explosao: 40, cheddar: 35, bigbrat: 30, parrillero: 25, bratcheddar: 20, bratchicken: 15, milkshakes: 10
       };
 
       document.querySelectorAll(".view-count").forEach(span => {
