@@ -12,7 +12,7 @@
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
 
   <script>
-    // SISTEMA ANTI-FRAUDE E ANTI-COMPARTILHAMENTO
+    // SISTEMA ANTI-FRAUDE
     const isTestMode = window.location.search.includes('admin');
     const urlParams = new URLSearchParams(window.location.search);
     const linkValido = urlParams.has('t'); 
@@ -33,20 +33,25 @@
   <style>
     body { font-family: 'Montserrat', sans-serif; background-color: #08080A; color: #f4f4f5; }
     
-    /* ANIMAÇÕES DO SPLASH DE ENTRADA VIP */
+    /* ANIMAÇÕES DO SPLASH DE ENTRADA VIP E DO PONTO (MASCOTE) */
     @keyframes fadeUpIn {
       0% { opacity: 0; transform: translateY(20px); }
       100% { opacity: 1; transform: translateY(0); }
     }
-    @keyframes fadeIn {
-      0% { opacity: 0; }
-      100% { opacity: 1; }
-    }
     .animate-fade-up { animation: fadeUpIn 1s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
-    .animate-fade-in { animation: fadeIn 1s ease forwards; }
     .delay-300 { animation-delay: 300ms; }
     .delay-600 { animation-delay: 600ms; }
-    .delay-900 { animation-delay: 900ms; }
+
+    /* ANIMAÇÃO DO BOTÃO PULSANTE (DOURADO E BRANCO) */
+    @keyframes pulseGold {
+      0% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.7); background-color: #ffffff; color: #000; border-color: #fff; }
+      50% { box-shadow: 0 0 20px 8px rgba(212, 175, 55, 0.5), 0 0 30px rgba(255, 255, 255, 0.3); background-color: #fef08a; color: #000; border-color: #D4AF37; }
+      100% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0); background-color: #ffffff; color: #000; border-color: #fff; }
+    }
+    .animate-pulse-gold {
+      animation: pulseGold 2s infinite ease-in-out;
+      border: 2px solid transparent;
+    }
 
     /* ROLETA ESTILOS */
     .wheel-container {
@@ -129,13 +134,13 @@
 </head>
 <body class="min-h-screen flex flex-col items-center justify-center py-10 px-5 relative overflow-y-auto overflow-x-hidden">
   
-  <!-- SPLASH DE ENTRADA VIP (CORTINA) -->
-  <div id="splash-delivery" class="fixed inset-0 z-[300] bg-[#08080A] flex flex-col justify-center items-center px-6 transition-all duration-1000 ease-in-out">
-    <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-amber-900/10 via-transparent to-transparent -z-10"></div>
+  <!-- SPLASH VIP & TRANSIÇÃO DO MASCOTE -->
+  <div id="splash-delivery" class="fixed inset-0 z-[300] flex flex-col justify-center items-center px-6 pointer-events-none">
+    <!-- Fundo preto inicial -->
+    <div id="splash-bg" class="absolute inset-0 bg-[#08080A] transition-opacity duration-500"></div>
     
-    <img src="logo-topo.png" alt="Brat" class="h-12 sm:h-16 mb-8 drop-shadow-[0_0_15px_rgba(0,0,0,0.8)] opacity-0 animate-fade-up">
-    
-    <div class="text-center">
+    <!-- Texto de Boas-Vindas -->
+    <div id="splash-content" class="text-center z-10 transition-opacity duration-700">
       <span class="block text-amber-400 text-[10px] uppercase tracking-[0.3em] font-bold mb-3 opacity-0 animate-fade-up delay-300">
         A sua experiência continua
       </span>
@@ -144,12 +149,13 @@
       </p>
     </div>
 
-    <div class="w-32 h-[2px] bg-zinc-800 rounded-full overflow-hidden mt-10 opacity-0 animate-fade-in delay-900">
-      <div id="splash-progress" class="h-full bg-amber-400 w-0 transition-all duration-[2500ms] ease-out"></div>
+    <!-- O Ponto Amarelo (Mascote) -->
+    <div id="mascot-dot" class="absolute top-1/2 left-1/2 w-4 h-4 bg-amber-400 rounded-full z-20 shadow-[0_0_30px_rgba(212,175,55,1)]" 
+         style="opacity: 0; transform: translate(-50%, -50%) scale(0); transition: transform 0.9s cubic-bezier(0.85, 0, 0.15, 1), opacity 0.3s ease;">
     </div>
   </div>
 
-  <!-- CONTEÚDO DA PÁGINA (FICA POR TRÁS DO SPLASH) -->
+  <!-- CONTEÚDO DA PÁGINA (FICA POR TRÁS DO SPLASH E É REVELADO) -->
   <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-amber-950/10 via-transparent to-transparent -z-10 fixed"></div>
 
   <a href="index.html" class="mb-4 hover:scale-105 transition-transform relative z-10 shrink-0">
@@ -183,7 +189,8 @@
   </div>
 
   <div class="flex flex-col gap-3 w-full max-w-xs relative z-10 shrink-0">
-    <a href="https://maps.google.com/?q=Brat+Burger,+Rua+Amazonas,+1652+-+São+Caetano+do+Sul" target="_blank" id="btn-avaliar" class="w-full bg-white hover:bg-zinc-200 text-black font-bold px-6 py-4 rounded-full transition text-xs tracking-widest uppercase shadow-lg flex items-center justify-center gap-2">
+    <!-- BOTÃO DE AVALIAR COM A ANIMAÇÃO PULSANTE DOURADA -->
+    <a href="https://maps.google.com/?q=Brat+Burger,+Rua+Amazonas,+1652+-+São+Caetano+do+Sul" target="_blank" id="btn-avaliar" class="w-full animate-pulse-gold font-bold px-6 py-4 rounded-full transition-all text-xs tracking-widest uppercase shadow-lg flex items-center justify-center gap-2">
       <span class="text-amber-500 text-lg leading-none">★</span> Avaliar Pedido
     </a>
     
@@ -216,21 +223,45 @@
 
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      // 1. Lógica do Splash VIP (Cortina)
-      const splash = document.getElementById('splash-delivery');
-      const progressBar = document.getElementById('splash-progress');
       
-      // Anima a barra e remove o splash após 3.5 segundos
-      setTimeout(() => { if(progressBar) progressBar.style.width = '100%'; }, 500);
+      // === 1. LÓGICA DO SPLASH (TRANSIÇÃO DO MASCOTE) ===
+      const splash = document.getElementById('splash-delivery');
+      const splashContent = document.getElementById('splash-content');
+      const splashBg = document.getElementById('splash-bg');
+      const dot = document.getElementById('mascot-dot');
+      
+      // Aos 3.5s, o texto desaparece
       setTimeout(() => {
-        if(splash) {
-          splash.style.opacity = '0';
-          splash.style.transform = 'translateY(-20px)';
-          setTimeout(() => splash.remove(), 1000);
-        }
+        if(splashContent) splashContent.style.opacity = '0';
       }, 3500);
 
-      // 2. Lógica da Roleta e Avaliação
+      // Aos 4.2s, o Ponto Amarelo surge e expande para engolir a tela
+      setTimeout(() => {
+        if(dot) {
+          dot.style.opacity = '1';
+          dot.style.transform = 'translate(-50%, -50%) scale(150)';
+        }
+      }, 4200);
+
+      // Aos 5.1s, o fundo preto some (revelando a roleta) e o Ponto encolhe em direção ao Logotipo no topo
+      setTimeout(() => {
+        if(splashBg) splashBg.style.opacity = '0';
+        if(dot) {
+          // Muda a transição para recolher rápido
+          dot.style.transition = 'transform 0.8s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.8s ease';
+          // Move o ponto para a posição (aproximada) da ponta da logo no topo da tela e desaparece
+          dot.style.transform = 'translate(-50%, -40vh) scale(0)';
+          dot.style.opacity = '0';
+        }
+      }, 5100);
+
+      // Aos 6.0s, o container do splash é removido do HTML para libertar os botões
+      setTimeout(() => {
+        if(splash) splash.remove();
+      }, 6000);
+
+
+      // === 2. LÓGICA DA ROLETA E AVALIAÇÃO ===
       const btnAvaliar = document.getElementById('btn-avaliar');
       const btnGirar = document.getElementById('btn-girar');
       const containerRoleta = document.getElementById('container-roleta');
@@ -260,11 +291,14 @@
         if(roletaAtiva) return;
         
         setTimeout(() => {
+          // Desliga o efeito pulsante dourado e confirma a ação
+          btnAvaliar.classList.remove('animate-pulse-gold');
           btnAvaliar.innerHTML = 'Avaliação Confirmada ✓';
           btnAvaliar.classList.replace('bg-white', 'bg-zinc-800');
           btnAvaliar.classList.replace('text-black', 'text-amber-400');
-          btnAvaliar.classList.add('pointer-events-none');
+          btnAvaliar.classList.add('pointer-events-none', 'border', 'border-zinc-700');
 
+          // Acende e destrava a roleta
           containerRoleta.classList.add('ativa');
           lockCenter.classList.replace('bg-zinc-900', 'bg-amber-400');
           lockCenter.classList.replace('border-zinc-700', 'border-amber-500');
