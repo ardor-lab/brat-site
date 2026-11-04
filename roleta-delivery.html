@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>A Roleta da Fome | Brat Burger Delivery</title>
+  <title>Roleta de Experiências | Brat Burger</title>
   <link rel="icon" type="image/png" href="b-icon.png">
   
   <script src="https://cdn.tailwindcss.com"></script>
@@ -145,10 +145,10 @@
     <!-- Texto de Boas-Vindas que desaparecerá -->
     <div id="splash-content" class="text-center z-10 transition-opacity duration-700">
       <span class="block text-amber-400 text-[10px] uppercase tracking-[0.3em] font-bold mb-3 opacity-0 animate-fade-up delay-300">
-        A sua experiência continua
+        A hospitalidade continua
       </span>
       <p class="text-zinc-300 text-lg sm:text-2xl font-light max-w-sm mx-auto leading-relaxed opacity-0 animate-fade-up delay-600">
-        Obrigado por trazer a <strong class="text-white font-bold">Brat</strong> para a sua mesa. Você é a nossa maior estrela.
+        Obrigado por trazer a <strong class="text-white font-bold">Brat</strong> para a sua mesa. O nosso padrão não termina na entrega.
       </p>
     </div>
   </div>
@@ -161,8 +161,8 @@
   </a>
 
   <div class="text-center max-w-sm mb-6 space-y-2 relative z-10 shrink-0">
-    <h1 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">A Roleta da Fome</h1>
-    <p class="text-zinc-400 text-xs sm:text-sm font-light leading-relaxed">Avalie o seu pedido e destrave um prémio para a sua próxima compra connosco.</p>
+    <h1 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">Roleta de Experiências</h1>
+    <p class="text-zinc-400 text-xs sm:text-sm font-light leading-relaxed">O seu paladar é o nosso maior termômetro. Avalie o pedido e destrave uma cortesia para a sua próxima experiência.</p>
   </div>
 
   <div class="relative mb-6 z-10 shrink-0 mt-2">
@@ -188,7 +188,6 @@
 
   <div class="flex flex-col gap-3 w-full max-w-xs relative z-10 shrink-0">
     <!-- BOTÃO DE AVALIAR COM A ANIMAÇÃO PULSANTE DOURADA -->
-    <!-- Adicione aqui o seu link do iFood ou Google -->
     <a href="https://maps.google.com/?q=Brat+Burger,+Rua+Amazonas,+1652+-+São+Caetano+do+Sul" target="_blank" id="btn-avaliar" class="w-full animate-pulse-gold font-bold px-6 py-4 rounded-full transition-all text-xs tracking-widest uppercase flex items-center justify-center gap-2">
       <span class="text-amber-500 text-lg leading-none">★</span> Avaliar Pedido
     </a>
@@ -198,24 +197,24 @@
     </button>
   </div>
   
-  <p class="text-zinc-600 text-[9px] uppercase tracking-widest text-center mt-2 relative z-10 shrink-0">Válido 1 resgate por cliente na próxima compra.</p>
+  <p class="text-zinc-600 text-[9px] uppercase tracking-widest text-center mt-2 relative z-10 shrink-0">Válido 1 resgate por cliente no próximo pedido ou reserva.</p>
 
   <div id="resultado-modal" class="fixed inset-0 z-[200] bg-black/95 flex flex-col items-center justify-center p-6 backdrop-blur-sm">
     <div class="bg-[#121216] border border-amber-500/50 rounded-3xl p-8 max-w-sm w-full text-center shadow-[0_0_80px_rgba(212,175,55,0.2)]">
       <span class="text-4xl mb-4 block">🎉</span>
-      <h3 class="text-amber-400 text-xs font-bold tracking-[0.2em] uppercase mb-2">A Roleta da Fome</h3>
-      <h2 id="premio-texto" class="text-2xl font-extrabold text-white mb-6">Prémio</h2>
+      <h3 class="text-amber-400 text-xs font-bold tracking-[0.2em] uppercase mb-2">Roleta de Experiências</h3>
+      <h2 id="premio-texto" class="text-2xl font-extrabold text-white mb-6">Prêmio</h2>
       
       <div class="bg-black border border-zinc-800 rounded-xl p-4 mb-6">
         <p class="text-zinc-500 text-[10px] uppercase tracking-widest mb-1">Código de Resgate</p>
         <p id="data-hora-texto" class="text-zinc-300 text-sm font-mono tracking-widest"></p>
       </div>
 
-      <p class="text-zinc-400 text-xs font-light mb-6">Tire um Print desta tela! Envie-nos pelo WhatsApp no seu próximo pedido para resgatar, e divirta-se no nosso Parque agora.</p>
+      <p class="text-zinc-400 text-xs font-light mb-6">Faça um Print desta tela! Envie-nos pelo WhatsApp na sua próxima visita ao salão ou pedido via delivery para validar a sua cortesia.</p>
       
       <button id="btn-resgatar" class="w-full bg-amber-400 hover:bg-amber-300 text-black font-bold px-6 py-4 rounded-full transition text-xs tracking-widest uppercase shadow-lg shadow-amber-500/10 flex items-center justify-center gap-2">
         <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 16 16"><path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232"/></svg>
-        Avisar e Ir ao Parque
+        Validar Recompensa no WhatsApp
       </button>
     </div>
   </div>
@@ -386,15 +385,15 @@
           localStorage.setItem('brat_roleta_delivery_girada', 'true');
         }
         
-        const msg = encodeURIComponent(`Olá! Avaliei o meu pedido e joguei A Roleta da Fome.\n\n*Meu Prêmio:* ${premioGanho}\n*Código de Resgate:* ${dataHoraTexto.innerText}\n\nGostaria de resgatar na minha próxima compra!`);
+        const msg = encodeURIComponent(`Olá! Avaliei o meu pedido e joguei a Roleta de Experiências.\n\n*Meu Prêmio:* ${premioGanho}\n*Código de Resgate:* ${dataHoraTexto.innerText}\n\nGostaria de validar a minha recompensa!`);
         window.open(`https://wa.me/5511977889397?text=${msg}`, '_blank');
         
         if (isTestMode) {
           window.location.reload();
         } else {
-          setTimeout(() => {
-            window.location.replace('parque.html');
-          }, 800); 
+          // Ocultado o redirecionamento automático para não gerar fricção após resgate
+          btnResgatar.innerHTML = 'Validado com Sucesso ✓';
+          btnResgatar.classList.add('pointer-events-none', 'opacity-80');
         }
       });
     });
