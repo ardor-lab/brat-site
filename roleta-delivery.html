@@ -15,18 +15,15 @@
     // SISTEMA ANTI-FRAUDE E ANTI-COMPARTILHAMENTO
     const isTestMode = window.location.search.includes('admin');
     const urlParams = new URLSearchParams(window.location.search);
-    const linkValido = urlParams.has('t'); // Exige que o link original tenha ?t=1
+    const linkValido = urlParams.has('t'); 
 
     if (!isTestMode) {
-      // 1. Bloqueia se já rodou neste telemóvel
       if (localStorage.getItem('brat_roleta_delivery_girada') === 'true') {
         window.location.replace('index.html');
       }
-      // 2. Bloqueia se tentarem entrar sem o link especial (evita que partilhem o link limpo)
       else if (!linkValido) {
         window.location.replace('index.html');
       } 
-      // 3. Link certo! Limpa a URL na mesma hora para que, se o cliente copiar, copie o link errado.
       else {
         window.history.replaceState({}, document.title, window.location.pathname);
       }
@@ -36,6 +33,22 @@
   <style>
     body { font-family: 'Montserrat', sans-serif; background-color: #08080A; color: #f4f4f5; }
     
+    /* ANIMAÇÕES DO SPLASH DE ENTRADA VIP */
+    @keyframes fadeUpIn {
+      0% { opacity: 0; transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn {
+      0% { opacity: 0; }
+      100% { opacity: 1; }
+    }
+    .animate-fade-up { animation: fadeUpIn 1s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+    .animate-fade-in { animation: fadeIn 1s ease forwards; }
+    .delay-300 { animation-delay: 300ms; }
+    .delay-600 { animation-delay: 600ms; }
+    .delay-900 { animation-delay: 900ms; }
+
+    /* ROLETA ESTILOS */
     .wheel-container {
       width: 300px; height: 300px;
       position: relative;
@@ -116,6 +129,27 @@
 </head>
 <body class="min-h-screen flex flex-col items-center justify-center py-10 px-5 relative overflow-y-auto overflow-x-hidden">
   
+  <!-- SPLASH DE ENTRADA VIP (CORTINA) -->
+  <div id="splash-delivery" class="fixed inset-0 z-[300] bg-[#08080A] flex flex-col justify-center items-center px-6 transition-all duration-1000 ease-in-out">
+    <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-amber-900/10 via-transparent to-transparent -z-10"></div>
+    
+    <img src="logo-topo.png" alt="Brat" class="h-12 sm:h-16 mb-8 drop-shadow-[0_0_15px_rgba(0,0,0,0.8)] opacity-0 animate-fade-up">
+    
+    <div class="text-center">
+      <span class="block text-amber-400 text-[10px] uppercase tracking-[0.3em] font-bold mb-3 opacity-0 animate-fade-up delay-300">
+        A sua experiência continua
+      </span>
+      <p class="text-zinc-300 text-lg sm:text-2xl font-light max-w-sm mx-auto leading-relaxed opacity-0 animate-fade-up delay-600">
+        Obrigado por trazer a <strong class="text-white font-bold">Brat</strong> para a sua mesa. Você é a nossa maior estrela.
+      </p>
+    </div>
+
+    <div class="w-32 h-[2px] bg-zinc-800 rounded-full overflow-hidden mt-10 opacity-0 animate-fade-in delay-900">
+      <div id="splash-progress" class="h-full bg-amber-400 w-0 transition-all duration-[2500ms] ease-out"></div>
+    </div>
+  </div>
+
+  <!-- CONTEÚDO DA PÁGINA (FICA POR TRÁS DO SPLASH) -->
   <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-amber-950/10 via-transparent to-transparent -z-10 fixed"></div>
 
   <a href="index.html" class="mb-4 hover:scale-105 transition-transform relative z-10 shrink-0">
@@ -149,7 +183,6 @@
   </div>
 
   <div class="flex flex-col gap-3 w-full max-w-xs relative z-10 shrink-0">
-    <!-- Adicione aqui o seu link do iFood ou Google -->
     <a href="https://maps.google.com/?q=Brat+Burger,+Rua+Amazonas,+1652+-+São+Caetano+do+Sul" target="_blank" id="btn-avaliar" class="w-full bg-white hover:bg-zinc-200 text-black font-bold px-6 py-4 rounded-full transition text-xs tracking-widest uppercase shadow-lg flex items-center justify-center gap-2">
       <span class="text-amber-500 text-lg leading-none">★</span> Avaliar Pedido
     </a>
@@ -183,6 +216,21 @@
 
   <script>
     document.addEventListener('DOMContentLoaded', () => {
+      // 1. Lógica do Splash VIP (Cortina)
+      const splash = document.getElementById('splash-delivery');
+      const progressBar = document.getElementById('splash-progress');
+      
+      // Anima a barra e remove o splash após 3.5 segundos
+      setTimeout(() => { if(progressBar) progressBar.style.width = '100%'; }, 500);
+      setTimeout(() => {
+        if(splash) {
+          splash.style.opacity = '0';
+          splash.style.transform = 'translateY(-20px)';
+          setTimeout(() => splash.remove(), 1000);
+        }
+      }, 3500);
+
+      // 2. Lógica da Roleta e Avaliação
       const btnAvaliar = document.getElementById('btn-avaliar');
       const btnGirar = document.getElementById('btn-girar');
       const containerRoleta = document.getElementById('container-roleta');
