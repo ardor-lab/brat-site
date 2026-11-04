@@ -101,12 +101,13 @@
       line-height: 1.2;
     }
 
-    .slice-1 { transform: rotate(22.5deg); }
+    /* Ajuste fino dos textos nas fatias para os novos prémios */
+    .slice-1 { transform: rotate(22.5deg); font-size: 9px; }
     .slice-2 { transform: rotate(67.5deg); }
-    .slice-3 { transform: rotate(112.5deg); }
+    .slice-3 { transform: rotate(112.5deg); font-size: 9px; }
     .slice-4 { transform: rotate(157.5deg); }
     .slice-5 { transform: rotate(202.5deg); }
-    .slice-6 { transform: rotate(247.5deg); color: #08080A; text-shadow: none; } 
+    .slice-6 { transform: rotate(247.5deg); color: #08080A; text-shadow: none; font-size: 9px; } 
     .slice-7 { transform: rotate(292.5deg); color: #D4AF37; } 
     .slice-8 { transform: rotate(337.5deg); color: #08080A; text-shadow: none; font-size: 9px; }
 
@@ -170,7 +171,7 @@
       </div>
 
       <div id="wheel">
-        <!-- NOVOS PRÉMIOS HÍBRIDOS (SALÃO E DELIVERY) -->
+        <!-- TEXTOS DAS FATIAS ATUALIZADOS PARA BATER COM O SEU SCRIPT -->
         <div class="slice-text slice-1">Welcome<br>Drink</div>
         <div class="slice-text slice-2">Cupom<br>R$ 15,00</div>
         <div class="slice-text slice-3">Brownie<br>no Salão</div>
@@ -178,7 +179,7 @@
         <div class="slice-text slice-5">Fritas c/<br>Cheddar</div>
         <div class="slice-text slice-6">Alcatra<br>Burger</div>
         <div class="slice-text slice-7">Mesa<br>Premium</div>
-        <div class="slice-text slice-8">Cupom<br>R$ 100</div>
+        <div class="slice-text slice-8">Cupom<br>R$ 100,00</div>
       </div>
     </div>
   </div>
@@ -279,7 +280,6 @@
       let roletaAtiva = false;
       let premioGanho = "";
 
-      // NOVA MATEMÁTICA: 70% DAS VITÓRIAS SÃO ISCAS PARA O SALÃO FÍSICO
       const configProbabilidades = [
         { premio: "Welcome Drink Exclusivo no Salão", index: 0, chance: 45 },      
         { premio: "Cupom R$ 15,00", index: 1, chance: 20 }, 
@@ -287,7 +287,7 @@
         { premio: "1 Taça de Vinho no Salão", index: 3, chance: 10 },           
         { premio: "Fritas com Cheddar & Bacon", index: 4, chance: 7 },
         { premio: "Alcatra Burger", index: 5, chance: 3 },  
-        { premio: "Mesa Premium Brat", index: 6, chance: 0 }, // Visuais Iscas (0%)
+        { premio: "Mesa Premium Brat", index: 6, chance: 0 }, 
         { premio: "Cupom R$ 100,00", index: 7, chance: 0 }
       ];
 
