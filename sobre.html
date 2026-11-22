@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>A Diretoria | Brat Burger — História, Transparência & Governança</title>
-  <meta name="description" content="Conheça a história, o manifesto, as iniciativas ecológicas e a governança por trás da Brat Burger em São Caetano do Sul.">
+  <title>Nossa História | Brat Burger — Propósito, Transparência &amp; Origem</title>
+  <meta name="description" content="Conheça a história, o propósito, as iniciativas ecológicas e quem conduz a cozinha da Brat Burger em São Caetano do Sul.">
   <link rel="icon" type="image/png" href="b-icon.png">
 
   <script src="https://cdn.tailwindcss.com"></script>
@@ -45,11 +45,11 @@
       overflow-x: hidden;
     }
 
-    /* Cortina de entrada executiva (rápida e elegante) */
-    #executive-curtain {
+    /* Cortina de entrada suave */
+    #intro-curtain {
       transition: transform 0.9s cubic-bezier(0.77, 0, 0.175, 1), opacity 0.6s ease;
     }
-    #executive-curtain.open {
+    #intro-curtain.open {
       transform: translateY(-100%);
       pointer-events: none;
     }
@@ -89,13 +89,13 @@
       transform: translateY(0);
     }
 
-    /* Elevador do Resort (Overlay) */
-    #resort-elevator {
+    /* Painel de Navegação (Espaços da Casa) */
+    #house-nav {
       opacity: 0;
       visibility: hidden;
-      transition: opacity 0.4s ease, visibility 0.4s ease;
+      transition: opacity 0.35s ease, visibility 0.35s ease;
     }
-    #resort-elevator.open {
+    #house-nav.open {
       opacity: 1;
       visibility: visible;
     }
@@ -114,14 +114,14 @@
 </head>
 <body class="antialiased selection:bg-amber-400 selection:text-black">
 
-  <!-- CORTINA DE CHEGADA AO ANDAR EXECUTIVO -->
-  <div id="executive-curtain" class="fixed inset-0 z-[300] bg-[#0B0B0E] flex flex-col items-center justify-center px-6">
+  <!-- ABERTURA SUAVE -->
+  <div id="intro-curtain" class="fixed inset-0 z-[300] bg-[#0B0B0E] flex flex-col items-center justify-center px-6">
     <div class="flex items-center gap-3 mb-4">
       <span class="w-2.5 h-2.5 rounded-[2px] bg-amber-400 animate-pulse shadow-[0_0_20px_rgba(212,175,55,0.9)]"></span>
-      <span class="text-amber-400 text-[10px] uppercase tracking-[0.4em] font-bold">Andar 04 • Diretoria</span>
+      <span class="text-amber-400 text-[10px] uppercase tracking-[0.4em] font-bold">Nossa História</span>
     </div>
     <p class="font-serif italic text-2xl sm:text-4xl text-zinc-200 tracking-wide text-center">
-      Transparência, Origem &amp; Propósito.
+      Origem, transparência e propósito.
     </p>
   </div>
 
@@ -131,94 +131,79 @@
       <a href="index.html" class="flex items-center gap-3 group">
         <img src="logo-topo.png" alt="Brat Burger" class="h-8 sm:h-10 object-contain">
         <span class="hidden sm:inline text-[10px] uppercase tracking-[0.25em] text-amber-400/90 border-l border-zinc-800 pl-3 font-semibold">
-          A Diretoria
+          Nossa História
         </span>
       </a>
 
       <!-- Navegação interna rápida (Desktop) -->
       <nav class="hidden md:flex items-center gap-6 text-[10px] uppercase tracking-[0.2em] text-zinc-400 font-semibold">
         <a href="#manifesto" class="hover:text-amber-400 transition">Manifesto</a>
-        <a href="#jornada" class="hover:text-amber-400 transition">História</a>
-        <a href="#sustentabilidade" class="hover:text-emerald-400 transition">ESG</a>
-        <a href="#governanca" class="hover:text-amber-400 transition">Governança</a>
+        <a href="#jornada" class="hover:text-amber-400 transition">Linha do Tempo</a>
+        <a href="#sustentabilidade" class="hover:text-emerald-400 transition">Sustentabilidade</a>
+        <a href="#quem-faz" class="hover:text-amber-400 transition">Quem Faz</a>
       </nav>
 
-      <!-- BOTÃO DO ELEVADOR DO RESORT -->
-      <button id="btn-open-elevator" class="flex items-center gap-2.5 bg-white/5 hover:bg-amber-400 text-white hover:text-black border border-white/15 hover:border-amber-400 px-4 py-2 rounded-full transition-all duration-300 text-[10px] font-bold uppercase tracking-[0.2em]">
-        <span class="w-1.5 h-1.5 rounded-full bg-amber-400 group-hover:bg-black"></span>
-        <span>Andares</span>
+      <!-- BOTÃO DE NAVEGAÇÃO ENTRE OS AMBIENTES -->
+      <button id="btn-open-nav" class="flex items-center gap-2.5 bg-white/5 hover:bg-amber-400 text-white hover:text-black border border-white/15 hover:border-amber-400 px-4 py-2 rounded-full transition-all duration-300 text-[10px] font-bold uppercase tracking-[0.2em]">
+        <span class="w-1.5 h-1.5 rounded-full bg-amber-400"></span>
+        <span>Espaços</span>
         <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 8h16M4 16h16"/></svg>
       </button>
     </div>
   </header>
 
-  <!-- OVERLAY: O ELEVADOR DO RESORT -->
-  <div id="resort-elevator" class="fixed inset-0 z-[200] bg-[#08080A]/96 backdrop-blur-2xl flex flex-col justify-between p-6 sm:p-12 overflow-y-auto">
+  <!-- OVERLAY: NAVEGAÇÃO DA CASA -->
+  <div id="house-nav" class="fixed inset-0 z-[200] bg-[#08080A]/96 backdrop-blur-2xl flex flex-col justify-between p-6 sm:p-12 overflow-y-auto">
     <div class="max-w-4xl w-full mx-auto flex items-center justify-between border-b border-zinc-800 pb-6">
       <div class="flex items-center gap-3">
         <img src="logo-topo.png" alt="Brat" class="h-8 object-contain">
-        <span class="text-[10px] uppercase tracking-[0.3em] text-zinc-500 border-l border-zinc-800 pl-3">Diretório da Casa</span>
+        <span class="text-[10px] uppercase tracking-[0.3em] text-zinc-500 border-l border-zinc-800 pl-3">Navegar pela Brat</span>
       </div>
-      <button id="btn-close-elevator" class="text-zinc-400 hover:text-amber-400 text-xs uppercase tracking-widest font-bold flex items-center gap-2 transition">
+      <button id="btn-close-nav" class="text-zinc-400 hover:text-amber-400 text-xs uppercase tracking-widest font-bold flex items-center gap-2 transition">
         Fechar <span class="text-2xl leading-none">&times;</span>
       </button>
     </div>
 
     <div class="max-w-4xl w-full mx-auto my-8 divide-y divide-zinc-800/80">
       <a href="index.html" class="group py-5 flex items-center justify-between hover:pl-3 transition-all">
-        <div class="flex items-baseline gap-5">
-          <span class="font-mono text-xs text-zinc-600 group-hover:text-amber-400">T</span>
-          <div>
-            <h3 class="text-xl sm:text-3xl font-extrabold text-zinc-200 group-hover:text-white tracking-tight">Recepção</h3>
-            <p class="text-xs text-zinc-500 font-light mt-0.5">O refúgio em São Caetano, reservas e Welcome Drink.</p>
-          </div>
+        <div>
+          <h3 class="text-xl sm:text-3xl font-extrabold text-zinc-200 group-hover:text-white tracking-tight">Início</h3>
+          <p class="text-xs text-zinc-500 font-light mt-0.5">Nosso salão em São Caetano, reservas e Welcome Drink.</p>
         </div>
         <span class="text-zinc-600 group-hover:text-amber-400 text-xl transition">→</span>
       </a>
 
       <a href="cozinha.html" class="group py-5 flex items-center justify-between hover:pl-3 transition-all">
-        <div class="flex items-baseline gap-5">
-          <span class="font-mono text-xs text-zinc-600 group-hover:text-amber-400">01</span>
-          <div>
-            <h3 class="text-xl sm:text-3xl font-extrabold text-zinc-200 group-hover:text-white tracking-tight">A Cozinha</h3>
-            <p class="text-xs text-zinc-500 font-light mt-0.5">Vitrine cinematográfica dos nossos cortes, burgers e sobremesas.</p>
-          </div>
+        <div>
+          <h3 class="text-xl sm:text-3xl font-extrabold text-zinc-200 group-hover:text-white tracking-tight">A Cozinha</h3>
+          <p class="text-xs text-zinc-500 font-light mt-0.5">Vitrine em vídeo dos nossos cortes, burgers, sobremesas e shakes.</p>
         </div>
         <span class="text-zinc-600 group-hover:text-amber-400 text-xl transition">→</span>
       </a>
 
       <a href="parque.html" class="group py-5 flex items-center justify-between hover:pl-3 transition-all">
-        <div class="flex items-baseline gap-5">
-          <span class="font-mono text-xs text-zinc-600 group-hover:text-amber-400">02</span>
-          <div>
-            <h3 class="text-xl sm:text-3xl font-extrabold text-zinc-200 group-hover:text-white tracking-tight">Brat Play • VIP Club</h3>
-            <p class="text-xs text-zinc-500 font-light mt-0.5">Experiências interativas e cofre de recompensas.</p>
-          </div>
+        <div>
+          <h3 class="text-xl sm:text-3xl font-extrabold text-zinc-200 group-hover:text-white tracking-tight">Brat Play • Clube VIP</h3>
+          <p class="text-xs text-zinc-500 font-light mt-0.5">Jogos interativos e cofre de recompensas da casa.</p>
         </div>
         <span class="text-zinc-600 group-hover:text-amber-400 text-xl transition">→</span>
       </a>
 
       <a href="corporate.html" class="group py-5 flex items-center justify-between hover:pl-3 transition-all">
-        <div class="flex items-baseline gap-5">
-          <span class="font-mono text-xs text-zinc-600 group-hover:text-amber-400">03</span>
-          <div>
-            <h3 class="text-xl sm:text-3xl font-extrabold text-zinc-200 group-hover:text-white tracking-tight">Brat Corporate</h3>
-            <p class="text-xs text-zinc-500 font-light mt-0.5">Confraternizações de diretoria e eventos empresariais.</p>
-          </div>
+        <div>
+          <h3 class="text-xl sm:text-3xl font-extrabold text-zinc-200 group-hover:text-white tracking-tight">Brat Corporate</h3>
+          <p class="text-xs text-zinc-500 font-light mt-0.5">Eventos empresariais, reuniões e confraternizações.</p>
         </div>
         <span class="text-zinc-600 group-hover:text-amber-400 text-xl transition">→</span>
       </a>
 
       <div class="py-5 flex items-center justify-between bg-amber-400/5 px-4 -mx-4 rounded-xl border-none">
-        <div class="flex items-baseline gap-5">
-          <span class="font-mono text-xs text-amber-400 font-bold">04</span>
-          <div>
-            <div class="flex items-center gap-3">
-              <h3 class="text-xl sm:text-3xl font-extrabold text-amber-400 tracking-tight">A Diretoria</h3>
-              <span class="text-[9px] uppercase tracking-widest bg-amber-400 text-black font-extrabold px-2 py-0.5 rounded-full">Você está aqui</span>
-            </div>
-            <p class="text-xs text-zinc-400 font-light mt-0.5">Manifesto, história, iniciativas ecológicas e governança.</p>
+        <div>
+          <div class="flex items-center gap-3">
+            <h3 class="text-xl sm:text-3xl font-extrabold text-amber-400 tracking-tight">Nossa História</h3>
+            <span class="text-[9px] uppercase tracking-widest bg-amber-400 text-black font-extrabold px-2 py-0.5 rounded-full">Você está aqui</span>
           </div>
+          <p class="text-xs text-zinc-400 font-light mt-0.5">Manifesto, origem, iniciativas ecológicas e transparência.</p>
         </div>
       </div>
     </div>
@@ -234,7 +219,7 @@
     <div class="relative w-full max-w-[340px] bg-[#101014] border border-amber-500/40 rounded-3xl overflow-hidden shadow-[0_0_80px_rgba(212,175,55,0.25)]">
       <div class="flex items-center justify-between px-5 py-4 border-b border-zinc-800">
         <div>
-          <span id="lightbox-tag" class="block text-[9px] uppercase tracking-[0.25em] text-amber-400 font-bold">Prova de Cozinha</span>
+          <span id="lightbox-tag" class="block text-[9px] uppercase tracking-[0.25em] text-amber-400 font-bold">Bastidores da Cozinha</span>
           <h4 id="lightbox-title" class="text-sm font-extrabold text-white">Prato</h4>
         </div>
         <button id="btn-close-video" class="w-8 h-8 rounded-full bg-zinc-900 hover:bg-zinc-800 text-zinc-300 flex items-center justify-center text-xl leading-none">&times;</button>
@@ -250,7 +235,7 @@
   </div>
 
   <!-- ========================================================= -->
-  <!-- SEÇÃO 1: HERO EDITORIAL (OBSIDIANA -> TRANSIÇÃO P/ PAPEL) -->
+  <!-- SEÇÃO 1: ABERTURA EDITORIAL (OBSIDIANA)                   -->
   <!-- ========================================================= -->
   <section class="relative bg-[#0B0B0E] text-white pt-32 pb-24 sm:pt-40 sm:pb-32 px-5 overflow-hidden">
     <div class="absolute inset-0 opacity-[0.06]" style="background-image: linear-gradient(to right, #D4AF37 1px, transparent 1px), linear-gradient(to bottom, #D4AF37 1px, transparent 1px); background-size: 64px 64px;"></div>
@@ -258,24 +243,24 @@
 
     <div class="max-w-4xl mx-auto relative z-10 text-center space-y-6">
       <div class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full border border-amber-500/30 bg-amber-500/10 text-amber-400 text-[10px] uppercase tracking-[0.3em] font-bold">
-        <span>Dossiê Institucional • Andar 04</span>
+        <span>Transparência &amp; Propósito</span>
       </div>
 
       <h1 class="font-serif text-4xl sm:text-6xl md:text-7xl font-semibold tracking-tight leading-[1.05] text-white">
         Profundidade, método<br>
-        <span class="italic text-amber-400 font-normal">e propósito à mesa.</span>
+        <span class="italic text-amber-400 font-normal">e verdade à mesa.</span>
       </h1>
 
       <p class="text-zinc-400 text-sm sm:text-base font-light max-w-2xl mx-auto leading-relaxed">
-        Por trás de cada corte selado na frigideira de ferro e de cada taça de cristal, existe uma história de reconstrução, compromisso ambiental real e governança executiva aplicada à gastronomia.
+        Por trás de cada corte selado na frigideira de ferro e de cada taça de cristal, existe uma história de reconstrução, cuidado real com o meio ambiente e disciplina de gestão aplicada à gastronomia.
       </p>
 
       <div class="pt-4 flex flex-wrap justify-center gap-6 text-[10px] uppercase tracking-[0.25em] text-zinc-500 font-semibold">
-        <span>Fundada em 2020</span>
+        <span>Desde Julho de 2020</span>
         <span class="text-amber-500">•</span>
         <span>São Caetano do Sul</span>
         <span class="text-amber-500">•</span>
-        <span>Operação Transparente</span>
+        <span>Portas Abertas</span>
       </div>
     </div>
   </section>
@@ -293,7 +278,7 @@
           Nascemos da recusa em aceitar uma vida morna — e uma mesa comum.
         </h2>
         <p class="text-zinc-700 text-sm sm:text-base leading-relaxed font-normal">
-          A Brat nunca foi pensada para ser apenas mais uma hamburgueria. Nosso objetivo é elevar a experiência do hambúrguer e da grelha ao patamar da alta hospitalidade, unindo técnica culinária autoral, ingredientes íntegros e uma operação guiada por rigor.
+          A Brat nunca foi pensada para ser apenas mais uma hamburgueria. Nosso objetivo é elevar a experiência do hambúrguer e da grelha ao patamar da alta hospitalidade, unindo técnica culinária autoral, ingredientes íntegros e respeito real por quem senta à nossa mesa.
         </p>
 
         <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-4">
@@ -310,7 +295,7 @@
           <div class="bg-[#ECE7DC] border border-[#DDD5C4] rounded-2xl p-5 space-y-2">
             <span class="text-brat-bronze font-mono text-xs font-bold">III.</span>
             <h3 class="text-xs font-extrabold uppercase tracking-wider text-brat-ink">Obsessão Técnica</h3>
-            <p class="text-xs text-zinc-600 leading-relaxed">Testar, ajustar e calibrar até o ponto exato. Da escolha do corte à temperatura final na mesa.</p>
+            <p class="text-xs text-zinc-600 leading-relaxed">Testar, errar, ajustar e calibrar até o ponto exato — do corte da carne à temperatura final na mesa.</p>
           </div>
         </div>
       </div>
@@ -354,15 +339,13 @@
           Seis anos de inquietação, reinvenção e método.
         </h2>
         <p class="text-xs sm:text-sm text-zinc-600 leading-relaxed">
-          Toque nos marcadores dourados com <span class="font-bold text-brat-bronze">▶</span> ao longo da história para assistir aos bastidores reais de cada criação sem sair desta página.
+          Toque nos marcadores com <span class="font-bold text-brat-bronze">▶</span> ao longo da história para ver os vídeos reais de cada criação sem sair desta página.
         </p>
       </div>
 
       <!-- Container da Timeline com Barra de Progresso -->
       <div id="timeline-wrapper" class="relative pl-8 sm:pl-14 space-y-12">
-        <!-- Trilho de fundo -->
         <div class="absolute left-3 sm:left-5 top-2 bottom-2 w-[2px] bg-[#D6CEBC]"></div>
-        <!-- Trilho dourado que preenche no scroll -->
         <div id="timeline-progress" class="absolute left-3 sm:left-5 top-2 w-[2px] bg-gradient-to-b from-amber-500 via-amber-400 to-brat-bronze transition-all duration-150" style="height: 0%;"></div>
 
         <!-- MARCO 1: 2020 -->
@@ -382,10 +365,10 @@
           <h3 class="text-xl sm:text-2xl font-extrabold text-brat-ink mt-1 mb-2">A Primeira Loja, Reconstrução e a Cultura de Testes</h3>
           <p class="text-sm text-zinc-700 leading-relaxed max-w-2xl">
             Após um ano de viradas pessoais profundas, a Brat ganha sua primeira loja física no Parque São Lucas. Do primeiro grande teste em Caçapava ao aperfeiçoamento incansável do nosso
-            <button type="button" class="dish-trigger" data-video="brisket.mp4" data-title="Brisket Artesanal" data-tag="A Origem da Grelha" data-desc="Nosso primeiro hambúrguer artesanal: corte nobre moído na casa, sem blends baratos.">
+            <button type="button" class="dish-trigger" data-video="brisket.mp4" data-title="Brisket Artesanal" data-tag="A Origem da Grelha" data-desc="Nosso primeiro hambúrguer artesanal: corte nobre selecionado, sem blends baratos.">
               <span>▶</span> Brisket Artesanal
             </button>
-            e das receitas autorais (como o Cheddar Bacon e o Alcatra Cheese), estabelecemos o DNA da casa: testar até a perfeição.
+            e das receitas autorais (como o Cheddar Bacon e o Alcatra Cheese), estabelecemos o DNA da casa: testar até acertar o ponto exato.
           </p>
         </article>
 
@@ -405,7 +388,7 @@
           <span class="text-[11px] font-extrabold uppercase tracking-[0.25em] text-brat-bronze">Julho 2024 — Janeiro 2025</span>
           <h3 class="text-xl sm:text-2xl font-extrabold text-brat-ink mt-1 mb-2">A Chegada à Rua Amazonas</h3>
           <p class="text-sm text-zinc-700 leading-relaxed max-w-2xl">
-            Seis meses de obra executados em paralelo à operação anterior até inaugurarmos nossa casa na Rua Amazonas, 1652, celebrada com 60 cartões VIP entregues na abertura. Um espaço desenhado com jardins, acústica confortável e luz acolhedora para desacelerar.
+            Seis meses de obra conduzidos em paralelo à operação anterior até inaugurarmos nossa casa na Rua Amazonas, 1652, celebrada com 60 cartões VIP entregues na abertura. Um espaço desenhado com jardins, som confortável e luz acolhedora para desacelerar.
           </p>
         </article>
 
@@ -423,7 +406,7 @@
               <span>▶</span> Milkshakes Naturais
             </button>
             sem corantes ou saborizantes artificiais, e padronizamos todas as bebidas — incluindo o autoral
-            <button type="button" class="dish-trigger" data-video="kiss.mp4" data-title="Brat Kiss & Taças de Cristal" data-tag="Coquetelaria & Hospitalidade" data-desc="Da água ao drink autoral, servido sempre em taça de cristal.">
+            <button type="button" class="dish-trigger" data-video="kiss.mp4" data-title="Brat Kiss &amp; Taças de Cristal" data-tag="Coquetelaria &amp; Hospitalidade" data-desc="Da água ao drink autoral, servido sempre em taça de cristal.">
               <span>▶</span> Brat Kiss
             </button>
             — em taças de cristal.
@@ -434,9 +417,9 @@
         <article class="relative reveal">
           <span class="absolute -left-[27px] sm:-left-[43px] top-1.5 w-4 h-4 rounded-full bg-amber-400 border-[3px] border-brat-ink shadow-[0_0_15px_rgba(212,175,55,0.8)]"></span>
           <span class="text-[11px] font-extrabold uppercase tracking-[0.25em] text-brat-bronze">2026 &amp; Adiante</span>
-          <h3 class="text-xl sm:text-2xl font-extrabold text-brat-ink mt-1 mb-2">Tecnologia Proprietária, Cozinha Fresca e Expansão</h3>
+          <h3 class="text-xl sm:text-2xl font-extrabold text-brat-ink mt-1 mb-2">Tecnologia Própria, Cozinha Fresca e Expansão</h3>
           <p class="text-sm text-zinc-700 leading-relaxed max-w-2xl">
-            Processos digitais próprios, cozinha ainda mais fresca, governança transparente e uma estrutura madura para consolidar a Brat como referência gastronômica e preparar os próximos passos de expansão.
+            Processos digitais próprios, cozinha ainda mais fresca, gestão transparente e uma estrutura madura para consolidar a Brat como referência gastronômica e preparar os próximos passos de crescimento.
           </p>
         </article>
       </div>
@@ -453,17 +436,16 @@
     <div class="max-w-6xl mx-auto relative z-10">
       <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-16 reveal">
         <div class="max-w-2xl space-y-3">
-          <span class="text-[10px] uppercase tracking-[0.3em] text-emerald-400 font-bold">03 • Transparência &amp; Compromisso Vivo</span>
+          <span class="text-[10px] uppercase tracking-[0.3em] text-emerald-400 font-bold">03 • Compromisso Vivo</span>
           <h2 class="font-serif text-3xl sm:text-5xl font-semibold text-white leading-tight">
-            Responsabilidade ambiental que se vê no bairro e se sente na cozinha.
+            Cuidado ambiental que se vê no bairro e se sente na cozinha.
           </h2>
         </div>
         <p class="text-xs sm:text-sm text-emerald-100/70 max-w-sm font-light leading-relaxed">
-          Não tratamos sustentabilidade como discurso de rodapé. Ela está na energia que cozinha o seu prato, no transporte que adotamos e no verde que devolvemos à cidade.
+          Não tratamos sustentabilidade como discurso de rodapé. Ela está na energia que prepara o seu prato, na forma como entregamos e no verde que devolvemos à cidade.
         </p>
       </div>
 
-      <!-- 3 PILARES ESG -->
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
         
         <!-- Card 1: Instituto Refloresta -->
@@ -479,7 +461,7 @@
             </div>
             <h3 class="text-base font-bold text-white mb-2">Parceria Instituto Refloresta</h3>
             <p class="text-xs text-emerald-100/75 font-light leading-relaxed">
-              Em parceria com o Instituto Refloresta, já contribuímos concretamente para o plantio de 100 árvores, transformando parte do movimento da nossa casa em recuperação real de área verde.
+              Em parceria com o Instituto Refloresta, já contribuímos para o plantio de 100 árvores, transformando parte do movimento da nossa casa em recuperação real de área verde.
             </p>
           </div>
           <div class="mt-6 pt-4 border-t border-white/10 text-[10px] uppercase tracking-widest text-emerald-300/70">
@@ -499,7 +481,7 @@
             </div>
             <h3 class="text-base font-bold text-white mb-2">Conforto Térmico &amp; Beleza Urbana</h3>
             <p class="text-xs text-emerald-100/75 font-light leading-relaxed">
-              Nossos <strong>jardins externos</strong>, o <strong>jardim vertical interno</strong> e a curadoria de plantas e flores foram projetados para refrescar naturalmente o salão, acolher os sentidos e entregar uma fachada mais viva e bonita para São Caetano.
+              Nossos <strong>jardins externos</strong>, o <strong>jardim vertical interno</strong> e a curadoria de plantas e flores foram projetados para refrescar naturalmente o salão, acolher os sentidos e deixar a rua e o bairro ainda mais bonitos.
             </p>
           </div>
           <div class="mt-6 pt-4 border-t border-white/10 text-[10px] uppercase tracking-widest text-emerald-300/70">
@@ -533,12 +515,12 @@
   </section>
 
   <!-- ========================================================= -->
-  <!-- SEÇÃO 5: GOVERNANÇA, CEO & ECOSSISTEMA ARDOR (PAPEL)      -->
+  <!-- SEÇÃO 5: QUEM FAZ A BRAT & ECOSSISTEMA ARDOR (PAPEL)      -->
   <!-- ========================================================= -->
-  <section id="governanca" class="py-24 sm:py-32 px-5 max-w-6xl mx-auto">
+  <section id="quem-faz" class="py-24 sm:py-32 px-5 max-w-6xl mx-auto">
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
       
-      <!-- Cartão de Identidade do CEO -->
+      <!-- Cartão de Identidade do Fundador -->
       <div class="lg:col-span-5 reveal">
         <div class="bg-[#ECE7DC] border border-[#DDD5C4] rounded-3xl p-7 sm:p-8 space-y-6">
           <div class="flex items-center gap-5">
@@ -548,17 +530,17 @@
               <span style="display:none;" class="font-serif text-2xl font-bold text-amber-400">AC</span>
             </div>
             <div>
-              <span class="text-[10px] uppercase tracking-[0.25em] text-brat-bronze font-extrabold">Fundador &amp; Direção</span>
+              <span class="text-[10px] uppercase tracking-[0.25em] text-brat-bronze font-extrabold">Fundador</span>
               <h3 class="text-xl font-extrabold text-brat-ink leading-tight mt-0.5">Arthur Henrique Cavalcante</h3>
               <p class="text-xs text-zinc-600 mt-1">Brat Burger Steakhouse &amp; Ardor Gestão</p>
             </div>
           </div>
 
           <p class="text-xs sm:text-sm text-zinc-700 leading-relaxed">
-            Mais de 15 anos liderando operações críticas, atendimento de alto padrão e mitigação de riscos em grandes empresas — <strong>Banco Carrefour, ClearSale, Teleperformance e Whirlpool</strong> (Brastemp, Consul e KitchenAid) — agora aplicados diretamente à engenharia da nossa cozinha e hospitalidade.
+            Mais de 15 anos liderando operações críticas, atendimento de alto padrão e controle de processos em empresas como <strong>Banco Carrefour, ClearSale, Teleperformance e Whirlpool</strong> (Brastemp, Consul e KitchenAid) — hoje dedicados à cozinha e à hospitalidade da Brat.
           </p>
 
-          <!-- Indicadores Executivos -->
+          <!-- Indicadores -->
           <div class="grid grid-cols-2 gap-3 pt-2">
             <div class="bg-[#F4F1EA] border border-[#DDD5C4] rounded-2xl p-4">
               <span class="text-2xl font-black text-brat-ink">+15</span>
@@ -580,7 +562,7 @@
             </a>
 
             <a href="https://www.linkedin.com/in/thur-henrique-cavalcante" target="_blank" class="w-full flex items-center justify-between bg-[#F4F1EA] hover:bg-white border border-[#D8D0BF] text-brat-ink px-4 py-3 rounded-xl transition text-xs font-bold">
-              <span>LinkedIn Executivo</span>
+              <span>LinkedIn</span>
               <span class="text-brat-bronze text-[10px] uppercase tracking-widest">Perfil ↗</span>
             </a>
 
@@ -599,12 +581,12 @@
       <!-- Formação & Laboratório Prático -->
       <div class="lg:col-span-7 space-y-8 reveal">
         <div class="space-y-3">
-          <span class="text-[10px] uppercase tracking-[0.3em] text-brat-bronze font-extrabold">04 • Governança &amp; Formação</span>
+          <span class="text-[10px] uppercase tracking-[0.3em] text-brat-bronze font-extrabold">04 • Quem Faz a Brat</span>
           <h2 class="font-serif text-3xl sm:text-5xl font-semibold text-brat-ink leading-tight">
-            Rigor corporativo a serviço do seu prato.
+            Disciplina de operação a serviço do seu prato.
           </h2>
           <p class="text-sm text-zinc-700 leading-relaxed">
-            Um restaurante consistente não nasce de improviso. Nossa operação combina gestão de processos, segurança de dados, comportamento humano e formação técnica em cozinha — atuando também como o laboratório vivo da <strong>Ardor Gestão</strong>, onde cada processo é validado no chão de loja real.
+            Um restaurante consistente não nasce do acaso. Nossa casa combina gestão de processos, tecnologia e formação técnica em cozinha — atuando também como o laboratório prático da <strong>Ardor Gestão</strong>, onde cada melhoria é testada e validada no dia a dia real.
           </p>
         </div>
 
@@ -614,7 +596,7 @@
             <span class="font-mono text-xs font-bold text-brat-bronze bg-[#F4F1EA] border border-[#DDD5C4] px-2.5 py-1 rounded-lg">01</span>
             <div>
               <h4 class="text-sm font-extrabold text-brat-ink">Estratégia &amp; Posicionamento de Marca</h4>
-              <p class="text-xs text-zinc-600 mt-1 leading-relaxed">Bacharelado em Propaganda e Marketing (UNINOVE) — inteligência comercial focada em valor percebido e experiência memorável.</p>
+              <p class="text-xs text-zinc-600 mt-1 leading-relaxed">Bacharelado em Propaganda e Marketing (UNINOVE) — visão comercial orientada a valor percebido e experiência memorável.</p>
             </div>
           </div>
 
@@ -622,7 +604,7 @@
             <span class="font-mono text-xs font-bold text-brat-bronze bg-[#F4F1EA] border border-[#DDD5C4] px-2.5 py-1 rounded-lg">02</span>
             <div>
               <h4 class="text-sm font-extrabold text-brat-ink">Tecnologia, Dados &amp; Controle</h4>
-              <p class="text-xs text-zinc-600 mt-1 leading-relaxed">Tecnologia em Segurança da Informação (FATEC) — arquitetura de sistemas proprietários, automações de atendimento e leitura analítica de demanda.</p>
+              <p class="text-xs text-zinc-600 mt-1 leading-relaxed">Tecnologia em Segurança da Informação (FATEC) — sistemas próprios, automações de atendimento e decisões baseadas em dados reais.</p>
             </div>
           </div>
 
@@ -630,13 +612,13 @@
             <span class="font-mono text-xs font-bold text-brat-bronze bg-[#F4F1EA] border border-[#DDD5C4] px-2.5 py-1 rounded-lg">03</span>
             <div>
               <h4 class="text-sm font-extrabold text-brat-ink">Técnica Culinária &amp; Cozinha Autoral</h4>
-              <p class="text-xs text-zinc-600 mt-1 leading-relaxed">Formação em Gastronomia (em conclusão) — o domínio técnico dos cortes, temperaturas e receitas lado a lado com a disciplina de gestão.</p>
+              <p class="text-xs text-zinc-600 mt-1 leading-relaxed">Formação em Gastronomia (em conclusão) — o domínio técnico dos cortes, temperaturas e receitas lado a lado com o cuidado na gestão.</p>
             </div>
           </div>
         </div>
 
         <blockquote class="border-l-2 border-brat-bronze pl-5 py-1 font-serif italic text-xl sm:text-2xl text-brat-ink">
-          "Não seguimos fórmulas de gabinete. Tudo o que entregamos à mesa foi testado, calibrado e vivido no calor real da nossa própria cozinha."
+          "Não seguimos fórmulas de gabinete. Tudo o que servimos à mesa foi testado, calibrado e vivido no calor real da nossa própria cozinha."
         </blockquote>
       </div>
 
@@ -650,7 +632,7 @@
     <div class="absolute top-0 left-1/2 -translate-x-1/2 w-2/3 h-px bg-gradient-to-r from-transparent via-amber-500/60 to-transparent"></div>
     
     <div class="max-w-4xl mx-auto text-center space-y-6 reveal">
-      <span class="text-[10px] uppercase tracking-[0.35em] text-amber-400 font-bold">05 • Nossa Principal Meta</span>
+      <span class="text-[10px] uppercase tracking-[0.35em] text-amber-400 font-bold">05 • Nosso Horizonte</span>
       <h2 class="font-serif text-3xl sm:text-5xl md:text-6xl font-semibold text-white leading-tight">
         Consolidar a Brat entre as grandes steakhouses de referência.
       </h2>
@@ -671,15 +653,15 @@
       </div>
     </div>
 
-    <!-- Rodapé de Navegação entre Andares -->
+    <!-- Rodapé de Navegação -->
     <footer class="max-w-6xl mx-auto mt-20 pt-10 border-t border-zinc-900 flex flex-col sm:flex-row items-center justify-between gap-6 text-[11px] text-zinc-500">
       <div class="flex items-center gap-3">
         <img src="logo-topo.png" alt="Brat Burger" class="h-7 opacity-80">
         <span>© Brat Burger. Isso é Brat.</span>
       </div>
       <div class="flex flex-wrap justify-center gap-5 uppercase tracking-widest text-[10px] font-semibold">
-        <a href="index.html" class="hover:text-amber-400 transition">Recepção</a>
-        <a href="cozinha.html" class="hover:text-amber-400 transition">Cozinha</a>
+        <a href="index.html" class="hover:text-amber-400 transition">Início</a>
+        <a href="cozinha.html" class="hover:text-amber-400 transition">A Cozinha</a>
         <a href="parque.html" class="hover:text-amber-400 transition">Brat Play</a>
         <a href="corporate.html" class="hover:text-amber-400 transition">Corporate</a>
       </div>
@@ -688,20 +670,20 @@
 
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      // 1. Cortina de entrada executiva
-      const curtain = document.getElementById('executive-curtain');
+      // 1. Cortina de entrada suave
+      const curtain = document.getElementById('intro-curtain');
       setTimeout(() => {
         if (curtain) curtain.classList.add('open');
       }, 1350);
 
-      // 2. Elevador do Resort
-      const elevator = document.getElementById('resort-elevator');
-      document.getElementById('btn-open-elevator').addEventListener('click', () => {
-        elevator.classList.add('open');
+      // 2. Painel de Navegação (Espaços)
+      const houseNav = document.getElementById('house-nav');
+      document.getElementById('btn-open-nav').addEventListener('click', () => {
+        houseNav.classList.add('open');
         document.body.style.overflow = 'hidden';
       });
-      document.getElementById('btn-close-elevator').addEventListener('click', () => {
-        elevator.classList.remove('open');
+      document.getElementById('btn-close-nav').addEventListener('click', () => {
+        houseNav.classList.remove('open');
         document.body.style.overflow = '';
       });
 
