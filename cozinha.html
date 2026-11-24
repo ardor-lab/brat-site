@@ -3,8 +3,35 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>A Cozinha | Brat Burger</title>
+  <title>A Cozinha | Brat Burger &amp; Steakhouse</title>
+  <meta name="description" content="Explore a cozinha da Brat Burger &amp; Steakhouse em vídeo: Rei do Churrasco, Brat Brisket 100% peito bovino, Brat Toscana, Brat Kimchi, Matilda Cake e milkshakes naturais em São Caetano do Sul.">
+  <link rel="canonical" href="https://bratburguer.com/cozinha.html">
   <link rel="icon" type="image/png" href="b-icon.png">
+
+  <!-- Open Graph (Compartilhamento WhatsApp / Redes) -->
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:site_name" content="Brat Burger &amp; Steakhouse">
+  <meta property="og:title" content="A Cozinha | Brat Burger &amp; Steakhouse">
+  <meta property="og:description" content="Vitrine em vídeo dos nossos cortes puros sem blends, burgers artesanais, sobremesas e milkshakes naturais.">
+  <meta property="og:url" content="https://bratburguer.com/cozinha.html">
+  <meta property="og:image" content="https://bratburguer.com/brat-seo.jpg">
+  <meta name="thumbnail" content="https://bratburguer.com/brat-seo.jpg" />
+
+  <!-- Meta Pixel Code -->
+  <script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '779546121693583');
+  fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=779546121693583&ev=PageView&noscript=1"/></noscript>
   
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,700;0,900;1,300&display=swap" rel="stylesheet">
@@ -51,25 +78,21 @@
 </head>
 <body class="antialiased selection:bg-amber-400 selection:text-black">
 
+  <h1 class="sr-only">A Cozinha — Vitrine em Vídeo da Brat Burger &amp; Steakhouse</h1>
+
   <header class="fixed top-0 inset-x-0 z-50 p-5 flex items-center justify-between pointer-events-none">
     <a href="index.html" class="pointer-events-auto bg-black/40 backdrop-blur-md border border-white/10 px-4 py-2 rounded-full text-white text-[10px] uppercase tracking-widest font-bold hover:border-amber-400 hover:text-amber-400 transition shadow-lg">
       ← Voltar à Entrada
     </a>
-    <img src="logo-topo.png" alt="Brat" class="h-8 object-contain drop-shadow-[0_0_15px_rgba(0,0,0,0.8)]">
-    <div class="w-[120px]"></div> 
+    <img src="logo-topo.png" alt="Brat Burger" class="h-8 object-contain drop-shadow-[0_0_15px_rgba(0,0,0,0.8)]">
+    <div class="w-[120px] hidden sm:block"></div> 
   </header>
 
-  <div class="fixed right-4 top-1/2 -translate-y-1/2 z-50 flex flex-col gap-3 pointer-events-none opacity-50">
-    <div class="w-1.5 h-1.5 rounded-full bg-amber-400 shadow-[0_0_10px_rgba(212,175,55,1)]"></div>
-    <div class="w-1 h-1 rounded-full bg-white/50 mx-auto"></div>
-    <div class="w-1 h-1 rounded-full bg-white/50 mx-auto"></div>
-    <div class="w-1 h-1 rounded-full bg-white/50 mx-auto"></div>
-    <div class="w-1 h-1 rounded-full bg-white/50 mx-auto"></div>
-    <div class="w-1 h-1 rounded-full bg-white/50 mx-auto"></div>
-  </div>
+  <!-- Indicadores laterais dinâmicos -->
+  <div id="scroll-dots" class="fixed right-4 top-1/2 -translate-y-1/2 z-50 flex flex-col gap-2.5 pointer-events-none opacity-75"></div>
 
   <div class="fixed bottom-6 inset-x-0 z-40 flex justify-center pointer-events-none animate-bounce opacity-70">
-    <svg class="w-6 h-6 text-white drop-shadow-md" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
+    <svg class="w-6 h-6 text-white drop-shadow-md" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
   </div>
 
   <main class="snap-container" id="kitchen-container">
@@ -90,16 +113,16 @@
           <span class="inline-block border border-amber-500/50 bg-amber-500/20 text-amber-400 text-[9px] uppercase tracking-[0.3em] font-bold px-3 py-1 rounded-full mb-4 backdrop-blur-sm shadow-[0_0_15px_rgba(212,175,55,0.2)]">
             A Assinatura
           </span>
-          <h1 class="text-5xl sm:text-7xl font-black text-white leading-[0.9] tracking-tighter drop-shadow-2xl">
+          <h2 class="text-5xl sm:text-7xl font-black text-white leading-[0.9] tracking-tighter drop-shadow-2xl">
             REI DO<br>CHURRASCO
-          </h1>
+          </h2>
         </div>
         <p class="text-zinc-300 text-sm sm:text-base font-light max-w-md leading-relaxed drop-shadow-md">
           Baby beef grelhado sob fogo forte, coroado pelo nosso Melt de provolone artesanal derretido. O equilíbrio perfeito entre a intensidade da defumação e a textura aveludada.
         </p>
         <div class="flex items-center gap-5 mt-4">
           <span class="text-sm font-light text-zinc-400 drop-shadow-md tracking-wider">R$ 72</span>
-          <a href="https://wa.me/5511977889397?text=Olá!%20A%20vitrine%20abriu%20o%20meu%20apetite.%20Quero%20pedir%20o%20Rei%20do%20Churrasco." class="bg-amber-400 hover:bg-amber-300 text-black text-xs font-bold px-8 py-4 rounded-full uppercase tracking-widest transition transform hover:scale-105 shadow-[0_0_30px_rgba(212,175,55,0.4)]">
+          <a href="https://wa.me/5511977889397?text=Olá!%20A%20vitrine%20abriu%20o%20meu%20apetite.%20Quero%20pedir%20o%20Rei%20do%20Churrasco." target="_blank" rel="noopener noreferrer" onclick="fbq('track', 'Lead');" class="bg-amber-400 hover:bg-amber-300 text-black text-xs font-bold px-8 py-4 rounded-full uppercase tracking-widest transition transform hover:scale-105 shadow-[0_0_30px_rgba(212,175,55,0.4)]">
             Pedir Agora
           </a>
         </div>
@@ -122,16 +145,16 @@
           <span class="inline-block border border-amber-500/50 bg-amber-500/20 text-amber-400 text-[9px] uppercase tracking-[0.3em] font-bold px-3 py-1 rounded-full mb-4 backdrop-blur-sm shadow-[0_0_15px_rgba(212,175,55,0.2)]">
             O Êxtase
           </span>
-          <h1 class="text-5xl sm:text-7xl font-black text-white leading-[0.9] tracking-tighter drop-shadow-2xl">
+          <h2 class="text-5xl sm:text-7xl font-black text-white leading-[0.9] tracking-tighter drop-shadow-2xl">
             MATILDA<br>CAKE
-          </h1>
+          </h2>
         </div>
         <p class="text-zinc-300 text-sm sm:text-base font-light max-w-md leading-relaxed drop-shadow-md">
           Massa de chocolate absurdamente aerada com uma cascata de ganache quente que abraça o bolo. A indulgência final servida com sorvete.
         </p>
         <div class="flex items-center gap-5 mt-4">
           <span class="text-sm font-light text-zinc-400 drop-shadow-md tracking-wider">R$ 70</span>
-          <a href="https://wa.me/5511977889397?text=Olá!%20A%20vitrine%20abriu%20o%20meu%20apetite.%20Quero%20pedir%20o%20Matilda%20Cake." class="bg-amber-400 hover:bg-amber-300 text-black text-xs font-bold px-8 py-4 rounded-full uppercase tracking-widest transition transform hover:scale-105 shadow-[0_0_30px_rgba(212,175,55,0.4)]">
+          <a href="https://wa.me/5511977889397?text=Olá!%20A%20vitrine%20abriu%20o%20meu%20apetite.%20Quero%20pedir%20o%20Matilda%20Cake." target="_blank" rel="noopener noreferrer" onclick="fbq('track', 'Lead');" class="bg-amber-400 hover:bg-amber-300 text-black text-xs font-bold px-8 py-4 rounded-full uppercase tracking-widest transition transform hover:scale-105 shadow-[0_0_30px_rgba(212,175,55,0.4)]">
             Pedir Agora
           </a>
         </div>
@@ -154,16 +177,16 @@
           <span class="inline-block border border-amber-500/50 bg-amber-500/20 text-amber-400 text-[9px] uppercase tracking-[0.3em] font-bold px-3 py-1 rounded-full mb-4 backdrop-blur-sm shadow-[0_0_15px_rgba(212,175,55,0.2)]">
             O Impacto
           </span>
-          <h1 class="text-5xl sm:text-7xl font-black text-white leading-[0.9] tracking-tighter drop-shadow-2xl">
+          <h2 class="text-5xl sm:text-7xl font-black text-white leading-[0.9] tracking-tighter drop-shadow-2xl">
             MODO<br>EXPLOSÃO
-          </h1>
+          </h2>
         </div>
         <p class="text-zinc-300 text-sm sm:text-base font-light max-w-md leading-relaxed drop-shadow-md">
           Hambúrguer 100% brisket coberto com cheddar e bacon defumado. A estrela é o nosso Catupiry empanado artesanal, incrivelmente crocante por fora e cremoso por dentro.
         </p>
         <div class="flex items-center gap-5 mt-4">
           <span class="text-sm font-light text-zinc-400 drop-shadow-md tracking-wider">R$ 58</span>
-          <a href="https://wa.me/5511977889397?text=Olá!%20A%20vitrine%20abriu%20o%20meu%20apetite.%20Quero%20pedir%20o%20Modo%20Explosão." class="bg-amber-400 hover:bg-amber-300 text-black text-xs font-bold px-8 py-4 rounded-full uppercase tracking-widest transition transform hover:scale-105 shadow-[0_0_30px_rgba(212,175,55,0.4)]">
+          <a href="https://wa.me/5511977889397?text=Olá!%20A%20vitrine%20abriu%20o%20meu%20apetite.%20Quero%20pedir%20o%20Modo%20Explosão." target="_blank" rel="noopener noreferrer" onclick="fbq('track', 'Lead');" class="bg-amber-400 hover:bg-amber-300 text-black text-xs font-bold px-8 py-4 rounded-full uppercase tracking-widest transition transform hover:scale-105 shadow-[0_0_30px_rgba(212,175,55,0.4)]">
             Pedir Agora
           </a>
         </div>
@@ -186,16 +209,16 @@
           <span class="inline-block border border-amber-500/50 bg-amber-500/20 text-amber-400 text-[9px] uppercase tracking-[0.3em] font-bold px-3 py-1 rounded-full mb-4 backdrop-blur-sm shadow-[0_0_15px_rgba(212,175,55,0.2)]">
             Para Partilhar
           </span>
-          <h1 class="text-5xl sm:text-7xl font-black text-white leading-[0.9] tracking-tighter drop-shadow-2xl">
-            CHEDDAR<br>& BACON
-          </h1>
+          <h2 class="text-5xl sm:text-7xl font-black text-white leading-[0.9] tracking-tighter drop-shadow-2xl">
+            CHEDDAR<br>&amp; BACON
+          </h2>
         </div>
         <p class="text-zinc-300 text-sm sm:text-base font-light max-w-md leading-relaxed drop-shadow-md">
-          Fritas crocantes mergulhadas em nosso cheddar cremoso e encorpado, finalizadas com bacon em cubos, crocante e defumado. 
+          Fritas crocantes mergulhadas em nosso cheddar cremoso e encorpado, finalizadas com bacon em cubos, crocante e defumado.
         </p>
         <div class="flex items-center gap-5 mt-4">
           <span class="text-sm font-light text-zinc-400 drop-shadow-md tracking-wider">R$ 53</span>
-          <a href="https://wa.me/5511977889397?text=Olá!%20A%20vitrine%20abriu%20o%20meu%20apetite.%20Quero%20pedir%20a%20porção%20Cheddar%20e%20Bacon." class="bg-amber-400 hover:bg-amber-300 text-black text-xs font-bold px-8 py-4 rounded-full uppercase tracking-widest transition transform hover:scale-105 shadow-[0_0_30px_rgba(212,175,55,0.4)]">
+          <a href="https://wa.me/5511977889397?text=Olá!%20A%20vitrine%20abriu%20o%20meu%20apetite.%20Quero%20pedir%20a%20porção%20Cheddar%20e%20Bacon." target="_blank" rel="noopener noreferrer" onclick="fbq('track', 'Lead');" class="bg-amber-400 hover:bg-amber-300 text-black text-xs font-bold px-8 py-4 rounded-full uppercase tracking-widest transition transform hover:scale-105 shadow-[0_0_30px_rgba(212,175,55,0.4)]">
             Pedir Agora
           </a>
         </div>
@@ -218,16 +241,16 @@
           <span class="inline-block border border-amber-500/50 bg-amber-500/20 text-amber-400 text-[9px] uppercase tracking-[0.3em] font-bold px-3 py-1 rounded-full mb-4 backdrop-blur-sm shadow-[0_0_15px_rgba(212,175,55,0.2)]">
             O Clássico
           </span>
-          <h1 class="text-5xl sm:text-7xl font-black text-white leading-[0.9] tracking-tighter drop-shadow-2xl">
+          <h2 class="text-5xl sm:text-7xl font-black text-white leading-[0.9] tracking-tighter drop-shadow-2xl">
             BIG<br>BRAT
-          </h1>
+          </h2>
         </div>
         <p class="text-zinc-300 text-sm sm:text-base font-light max-w-md leading-relaxed drop-shadow-md">
           A nossa releitura monumental de um ícone. Pão macio, carne suculenta, queijo derretido e molho especial. Uma combinação grande e direta, feita para quem tem fome de verdade.
         </p>
         <div class="flex items-center gap-5 mt-4">
           <span class="text-sm font-light text-zinc-400 drop-shadow-md tracking-wider">R$ 49</span>
-          <a href="https://wa.me/5511977889397?text=Olá!%20A%20vitrine%20abriu%20o%20meu%20apetite.%20Quero%20pedir%20o%20Big%20Brat." class="bg-amber-400 hover:bg-amber-300 text-black text-xs font-bold px-8 py-4 rounded-full uppercase tracking-widest transition transform hover:scale-105 shadow-[0_0_30px_rgba(255,255,255,0.3)]">
+          <a href="https://wa.me/5511977889397?text=Olá!%20A%20vitrine%20abriu%20o%20meu%20apetite.%20Quero%20pedir%20o%20Big%20Brat." target="_blank" rel="noopener noreferrer" onclick="fbq('track', 'Lead');" class="bg-amber-400 hover:bg-amber-300 text-black text-xs font-bold px-8 py-4 rounded-full uppercase tracking-widest transition transform hover:scale-105 shadow-[0_0_30px_rgba(255,255,255,0.3)]">
             Pedir Agora
           </a>
         </div>
@@ -250,16 +273,16 @@
           <span class="inline-block border border-amber-500/50 bg-amber-500/20 text-amber-400 text-[9px] uppercase tracking-[0.3em] font-bold px-3 py-1 rounded-full mb-4 backdrop-blur-sm shadow-[0_0_15px_rgba(212,175,55,0.2)]">
             A Tradição
           </span>
-          <h1 class="text-5xl sm:text-7xl font-black text-white leading-[0.9] tracking-tighter drop-shadow-2xl">
+          <h2 class="text-5xl sm:text-7xl font-black text-white leading-[0.9] tracking-tighter drop-shadow-2xl">
             BRAT<br>PARRILLERO
-          </h1>
+          </h2>
         </div>
         <p class="text-zinc-300 text-sm sm:text-base font-light max-w-md leading-relaxed drop-shadow-md">
           Hambúrguer 100% brisket grelhado no ponto exato. Vem com chimichurri argentino, cheddar, tomate grelhado, cebola roxa e ovo frito no brioche tostado. A verdadeira essência da parrilla sul-americana.
         </p>
         <div class="flex items-center gap-5 mt-4">
           <span class="text-sm font-light text-zinc-400 drop-shadow-md tracking-wider">R$ 69</span>
-          <a href="https://wa.me/5511977889397?text=Olá!%20A%20vitrine%20abriu%20o%20meu%20apetite.%20Quero%20pedir%20o%20Brat%20Parrillero." class="bg-amber-400 hover:bg-amber-300 text-black text-xs font-bold px-8 py-4 rounded-full uppercase tracking-widest transition transform hover:scale-105 shadow-[0_0_30px_rgba(212,175,55,0.4)]">
+          <a href="https://wa.me/5511977889397?text=Olá!%20A%20vitrine%20abriu%20o%20meu%20apetite.%20Quero%20pedir%20o%20Brat%20Parrillero." target="_blank" rel="noopener noreferrer" onclick="fbq('track', 'Lead');" class="bg-amber-400 hover:bg-amber-300 text-black text-xs font-bold px-8 py-4 rounded-full uppercase tracking-widest transition transform hover:scale-105 shadow-[0_0_30px_rgba(212,175,55,0.4)]">
             Pedir Agora
           </a>
         </div>
@@ -282,16 +305,16 @@
           <span class="inline-block border border-amber-500/50 bg-amber-500/20 text-amber-400 text-[9px] uppercase tracking-[0.3em] font-bold px-3 py-1 rounded-full mb-4 backdrop-blur-sm shadow-[0_0_15px_rgba(212,175,55,0.2)]">
             O Intenso
           </span>
-          <h1 class="text-5xl sm:text-7xl font-black text-white leading-[0.9] tracking-tighter drop-shadow-2xl">
-            BRAT CHEDDAR<br>& BACON
-          </h1>
+          <h2 class="text-5xl sm:text-7xl font-black text-white leading-[0.9] tracking-tighter drop-shadow-2xl">
+            BRAT CHEDDAR<br>&amp; BACON
+          </h2>
         </div>
         <p class="text-zinc-300 text-sm sm:text-base font-light max-w-md leading-relaxed drop-shadow-md">
           Hambúrguer 100% brisket coberto com cheddar derretido, chutney de cebola adocicado, bacon defumado em lâminas e uma camada de cheddar cremoso no pão tostado.
         </p>
         <div class="flex items-center gap-5 mt-4">
           <span class="text-sm font-light text-zinc-400 drop-shadow-md tracking-wider">R$ 44</span>
-          <a href="https://wa.me/5511977889397?text=Olá!%20A%20vitrine%20abriu%20o%20meu%20apetite.%20Quero%20pedir%20o%20Hambúrguer%20Brat%20Cheddar%20e%20Bacon." class="bg-amber-400 hover:bg-amber-300 text-black text-xs font-bold px-8 py-4 rounded-full uppercase tracking-widest transition transform hover:scale-105 shadow-[0_0_30px_rgba(212,175,55,0.4)]">
+          <a href="https://wa.me/5511977889397?text=Olá!%20A%20vitrine%20abriu%20o%20meu%20apetite.%20Quero%20pedir%20o%20Hambúrguer%20Brat%20Cheddar%20e%20Bacon." target="_blank" rel="noopener noreferrer" onclick="fbq('track', 'Lead');" class="bg-amber-400 hover:bg-amber-300 text-black text-xs font-bold px-8 py-4 rounded-full uppercase tracking-widest transition transform hover:scale-105 shadow-[0_0_30px_rgba(212,175,55,0.4)]">
             Pedir Agora
           </a>
         </div>
@@ -314,23 +337,119 @@
           <span class="inline-block border border-amber-500/50 bg-amber-500/20 text-amber-400 text-[9px] uppercase tracking-[0.3em] font-bold px-3 py-1 rounded-full mb-4 backdrop-blur-sm shadow-[0_0_15px_rgba(212,175,55,0.2)]">
             A Crocância
           </span>
-          <h1 class="text-5xl sm:text-7xl font-black text-white leading-[0.9] tracking-tighter drop-shadow-2xl">
+          <h2 class="text-5xl sm:text-7xl font-black text-white leading-[0.9] tracking-tighter drop-shadow-2xl">
             BRAT<br>CHICKEN
-          </h1>
+          </h2>
         </div>
         <p class="text-zinc-300 text-sm sm:text-base font-light max-w-md leading-relaxed drop-shadow-md">
-          Peito de frango suculento e super crocante, servido à sua escolha: com salada fresca e molho do cheff, ou com a mistura cremosa de Catupiry, milho doce e bacon crocante.
+          Peito de frango suculento e super crocante, servido à sua escolha: com salada fresca e molho do chef, ou com a mistura cremosa de Catupiry, milho doce e bacon crocante.
         </p>
         <div class="flex items-center gap-5 mt-4">
           <span class="text-sm font-light text-zinc-400 drop-shadow-md tracking-wider">R$ 44</span>
-          <a href="https://wa.me/5511977889397?text=Olá!%20A%20vitrine%20abriu%20o%20meu%20apetite.%20Quero%20pedir%20o%20Brat%20Chicken." class="bg-amber-400 hover:bg-amber-300 text-black text-xs font-bold px-8 py-4 rounded-full uppercase tracking-widest transition transform hover:scale-105 shadow-[0_0_30px_rgba(212,175,55,0.4)]">
+          <a href="https://wa.me/5511977889397?text=Olá!%20A%20vitrine%20abriu%20o%20meu%20apetite.%20Quero%20pedir%20o%20Brat%20Chicken." target="_blank" rel="noopener noreferrer" onclick="fbq('track', 'Lead');" class="bg-amber-400 hover:bg-amber-300 text-black text-xs font-bold px-8 py-4 rounded-full uppercase tracking-widest transition transform hover:scale-105 shadow-[0_0_30px_rgba(212,175,55,0.4)]">
             Pedir Agora
           </a>
         </div>
       </div>
     </section>
 
-    <!-- PRATO 9: MILKSHAKES -->
+    <!-- PRATO 9: BRAT BRISKET -->
+    <section class="snap-section" data-id="brisket">
+      <video autoplay loop muted playsinline class="cinematic-bg">
+        <source src="brisket.mp4" type="video/mp4">
+      </video>
+      <div class="dark-gradient"></div>
+      
+      <div class="absolute bottom-5 right-6 z-30 text-[9px] text-white/30 font-light tracking-widest uppercase">
+        <span class="view-count" data-target="brisket">0</span> views
+      </div>
+      
+      <div class="relative z-10 w-full max-w-5xl mx-auto px-6 pb-28 sm:pb-32 flex flex-col gap-4">
+        <div>
+          <span class="inline-block border border-amber-500/50 bg-amber-500/20 text-amber-400 text-[9px] uppercase tracking-[0.3em] font-bold px-3 py-1 rounded-full mb-4 backdrop-blur-sm shadow-[0_0_15px_rgba(212,175,55,0.2)]">
+            A Origem
+          </span>
+          <h2 class="text-5xl sm:text-7xl font-black text-white leading-[0.9] tracking-tighter drop-shadow-2xl">
+            BRAT<br>BRISKET
+          </h2>
+        </div>
+        <p class="text-zinc-300 text-sm sm:text-base font-light max-w-md leading-relaxed drop-shadow-md">
+          Nosso primeiro burger artesanal: 100% peito bovino selecionado sem blends, cheddar derretido, chutney de cebola adocicado, alface americana, tomate fresco e nosso molho exclusivo do chef no pão brioche tostado.
+        </p>
+        <div class="flex items-center gap-5 mt-4">
+          <span class="text-sm font-light text-zinc-400 drop-shadow-md tracking-wider">R$ 44</span>
+          <a href="https://wa.me/5511977889397?text=Olá!%20A%20vitrine%20abriu%20o%20meu%20apetite.%20Quero%20pedir%20o%20Brat%20Brisket." target="_blank" rel="noopener noreferrer" onclick="fbq('track', 'Lead');" class="bg-amber-400 hover:bg-amber-300 text-black text-xs font-bold px-8 py-4 rounded-full uppercase tracking-widest transition transform hover:scale-105 shadow-[0_0_30px_rgba(212,175,55,0.4)]">
+            Pedir Agora
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRATO 10: BRAT TOSCANA -->
+    <section class="snap-section" data-id="toscana">
+      <video autoplay loop muted playsinline class="cinematic-bg">
+        <source src="toscana.mp4" type="video/mp4">
+      </video>
+      <div class="dark-gradient"></div>
+      
+      <div class="absolute bottom-5 right-6 z-30 text-[9px] text-white/30 font-light tracking-widest uppercase">
+        <span class="view-count" data-target="toscana">0</span> views
+      </div>
+      
+      <div class="relative z-10 w-full max-w-5xl mx-auto px-6 pb-28 sm:pb-32 flex flex-col gap-4">
+        <div>
+          <span class="inline-block border border-amber-500/50 bg-amber-500/20 text-amber-400 text-[9px] uppercase tracking-[0.3em] font-bold px-3 py-1 rounded-full mb-4 backdrop-blur-sm shadow-[0_0_15px_rgba(212,175,55,0.2)]">
+            O Autoral
+          </span>
+          <h2 class="text-5xl sm:text-7xl font-black text-white leading-[0.9] tracking-tighter drop-shadow-2xl">
+            BRAT<br>TOSCANA
+          </h2>
+        </div>
+        <p class="text-zinc-300 text-sm sm:text-base font-light max-w-md leading-relaxed drop-shadow-md">
+          Burger artesanal de linguiça toscana, queijo coalho chapeado até dourar, vinagrete fresco, alface crocante e nosso molho verde da casa no pão brioche.
+        </p>
+        <div class="flex items-center gap-5 mt-4">
+          <span class="text-sm font-light text-zinc-400 drop-shadow-md tracking-wider">R$ 46</span>
+          <a href="https://wa.me/5511977889397?text=Olá!%20A%20vitrine%20abriu%20o%20meu%20apetite.%20Quero%20pedir%20o%20Brat%20Toscana." target="_blank" rel="noopener noreferrer" onclick="fbq('track', 'Lead');" class="bg-amber-400 hover:bg-amber-300 text-black text-xs font-bold px-8 py-4 rounded-full uppercase tracking-widest transition transform hover:scale-105 shadow-[0_0_30px_rgba(212,175,55,0.4)]">
+            Pedir Agora
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRATO 11: BRAT KIMCHI -->
+    <section class="snap-section" data-id="kimchi">
+      <video autoplay loop muted playsinline class="cinematic-bg">
+        <source src="kimchi.mp4" type="video/mp4">
+      </video>
+      <div class="dark-gradient"></div>
+      
+      <div class="absolute bottom-5 right-6 z-30 text-[9px] text-white/30 font-light tracking-widest uppercase">
+        <span class="view-count" data-target="kimchi">0</span> views
+      </div>
+      
+      <div class="relative z-10 w-full max-w-5xl mx-auto px-6 pb-28 sm:pb-32 flex flex-col gap-4">
+        <div>
+          <span class="inline-block border border-amber-500/50 bg-amber-500/20 text-amber-400 text-[9px] uppercase tracking-[0.3em] font-bold px-3 py-1 rounded-full mb-4 backdrop-blur-sm shadow-[0_0_15px_rgba(212,175,55,0.2)]">
+            A Fusão
+          </span>
+          <h2 class="text-5xl sm:text-7xl font-black text-white leading-[0.9] tracking-tighter drop-shadow-2xl">
+            BRAT<br>KIMCHI
+          </h2>
+        </div>
+        <p class="text-zinc-300 text-sm sm:text-base font-light max-w-md leading-relaxed drop-shadow-md">
+          Hambúrguer 100% brisket, muçarela derretida, kimchi coreano vibrante e levemente picante, alface americana picada e maionese defumada no pão brioche com gergelim negro.
+        </p>
+        <div class="flex items-center gap-5 mt-4">
+          <span class="text-sm font-light text-zinc-400 drop-shadow-md tracking-wider">R$ 55</span>
+          <a href="https://wa.me/5511977889397?text=Olá!%20A%20vitrine%20abriu%20o%20meu%20apetite.%20Quero%20pedir%20o%20Brat%20Kimchi." target="_blank" rel="noopener noreferrer" onclick="fbq('track', 'Lead');" class="bg-amber-400 hover:bg-amber-300 text-black text-xs font-bold px-8 py-4 rounded-full uppercase tracking-widest transition transform hover:scale-105 shadow-[0_0_30px_rgba(212,175,55,0.4)]">
+            Pedir Agora
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRATO 12: MILKSHAKES -->
     <section class="snap-section" data-id="milkshakes">
       <video autoplay loop muted playsinline class="cinematic-bg">
         <source src="milkshakes.mp4" type="video/mp4">
@@ -346,16 +465,16 @@
           <span class="inline-block border border-amber-500/50 bg-amber-500/20 text-amber-400 text-[9px] uppercase tracking-[0.3em] font-bold px-3 py-1 rounded-full mb-4 backdrop-blur-sm shadow-[0_0_15px_rgba(212,175,55,0.2)]">
             A Indulgência
           </span>
-          <h1 class="text-5xl sm:text-7xl font-black text-white leading-[0.9] tracking-tighter drop-shadow-2xl">
+          <h2 class="text-5xl sm:text-7xl font-black text-white leading-[0.9] tracking-tighter drop-shadow-2xl">
             MILKSHAKES<br>BRAT
-          </h1>
+          </h2>
         </div>
         <p class="text-zinc-300 text-sm sm:text-base font-light max-w-md leading-relaxed drop-shadow-md">
           Oreo, Morango de Verdade e Doce de Leite em destaque. Descubra também as nossas opções de Pistacchio, Chocolate e Ovomaltine. Refrescância e cremosidade em cada gole.
         </p>
         <div class="flex items-center gap-5 mt-4">
           <span class="text-sm font-light text-zinc-400 drop-shadow-md tracking-wider">A partir de R$ 35</span>
-          <a href="https://wa.me/5511977889397?text=Olá!%20A%20vitrine%20abriu%20o%20meu%20apetite.%20Quero%20pedir%20um%20Milkshake." class="bg-amber-400 hover:bg-amber-300 text-black text-xs font-bold px-8 py-4 rounded-full uppercase tracking-widest transition transform hover:scale-105 shadow-[0_0_30px_rgba(212,175,55,0.4)]">
+          <a href="https://wa.me/5511977889397?text=Olá!%20A%20vitrine%20abriu%20o%20meu%20apetite.%20Quero%20pedir%20um%20Milkshake." target="_blank" rel="noopener noreferrer" onclick="fbq('track', 'Lead');" class="bg-amber-400 hover:bg-amber-300 text-black text-xs font-bold px-8 py-4 rounded-full uppercase tracking-widest transition transform hover:scale-105 shadow-[0_0_30px_rgba(212,175,55,0.4)]">
             Pedir Agora
           </a>
         </div>
@@ -367,16 +486,16 @@
   <script>
     document.addEventListener("DOMContentLoaded", () => {
       const container = document.getElementById("kitchen-container");
+      const dotsContainer = document.getElementById("scroll-dots");
       const sections = Array.from(container.querySelectorAll(".snap-section"));
 
-      let views = JSON.parse(localStorage.getItem("brat_kitchen_views")) || {
-        rei: 50, matilda: 45, explosao: 40, cheddar: 35, bigbrat: 30, parrillero: 25, bratcheddar: 20, bratchicken: 15, milkshakes: 10
+      const defaultViews = {
+        rei: 50, matilda: 45, explosao: 40, cheddar: 35, bigbrat: 30,
+        parrillero: 25, bratcheddar: 20, bratchicken: 18, brisket: 16, toscana: 14, kimchi: 12, milkshakes: 10
       };
 
-      document.querySelectorAll(".view-count").forEach(span => {
-        const id = span.getAttribute("data-target");
-        span.textContent = views[id] || 0;
-      });
+      let savedViews = JSON.parse(localStorage.getItem("brat_kitchen_views")) || {};
+      let views = { ...defaultViews, ...savedViews };
 
       sections.sort((a, b) => {
         const idA = a.getAttribute("data-id");
@@ -384,17 +503,39 @@
         return (views[idB] || 0) - (views[idA] || 0);
       });
 
-      sections.forEach(sec => container.appendChild(sec));
+      sections.forEach((sec, idx) => {
+        container.appendChild(sec);
+        const dot = document.createElement("div");
+        dot.className = idx === 0
+          ? "w-1.5 h-1.5 rounded-full bg-amber-400 shadow-[0_0_10px_rgba(212,175,55,1)] transition-all duration-300"
+          : "w-1 h-1 rounded-full bg-white/40 mx-auto transition-all duration-300";
+        dotsContainer.appendChild(dot);
+      });
+
+      const dots = Array.from(dotsContainer.children);
+
+      document.querySelectorAll(".view-count").forEach(span => {
+        const id = span.getAttribute("data-target");
+        span.textContent = views[id] || 0;
+      });
 
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
             const id = entry.target.getAttribute("data-id");
+            const activeIndex = sections.indexOf(entry.target);
+
             views[id] = (views[id] || 0) + 1;
             localStorage.setItem("brat_kitchen_views", JSON.stringify(views));
             
             const counter = entry.target.querySelector(".view-count");
             if (counter) counter.textContent = views[id];
+
+            dots.forEach((d, i) => {
+              d.className = i === activeIndex
+                ? "w-1.5 h-1.5 rounded-full bg-amber-400 shadow-[0_0_10px_rgba(212,175,55,1)] transition-all duration-300"
+                : "w-1 h-1 rounded-full bg-white/40 mx-auto transition-all duration-300";
+            });
           }
         });
       }, { threshold: 0.6 });
