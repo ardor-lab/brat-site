@@ -4,10 +4,38 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Brat Corporate | Eventos e Soluções para Empresas</title>
-  <meta name="description" content="Soluções corporativas, fechamento de salão e entregas em grande escala da Brat Burger & Steakhouse.">
-  
+  <meta name="description" content="Soluções corporativas, fechamento de salão e entregas em grande escala da Brat Burger &amp; Steakhouse em São Caetano do Sul.">
+  <link rel="canonical" href="https://bratburguer.com/corporate.html">
+
   <link rel="icon" type="image/png" href="b-icon.png">
+
+  <!-- Open Graph (Compartilhamento WhatsApp / Redes) -->
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:title" content="Brat Corporate | Eventos e Soluções para Empresas">
+  <meta property="og:description" content="Private Dining, fechamento de salão e entregas corporativas em grande escala com o rigor da Brat Burger &amp; Steakhouse.">
+  <meta property="og:url" content="https://bratburguer.com/corporate.html">
+  <meta property="og:image" content="https://bratburguer.com/brat-seo.jpg">
+  <meta name="thumbnail" content="https://bratburguer.com/brat-seo.jpg" />
+
+  <!-- Meta Pixel Code -->
+  <script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '779546121693583');
+  fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=779546121693583&ev=PageView&noscript=1"/></noscript>
+
   <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300&display=swap" rel="stylesheet">
 
   <script>
@@ -17,19 +45,90 @@
   </script>
 
   <style>
-    body { font-family: 'Montserrat', sans-serif; background-color: #08080A; color: #f4f4f5; }
+    body { font-family: 'Montserrat', sans-serif; background-color: #08080A; color: #f4f4f5; overflow-x: hidden; }
+
+    /* Painel de Navegação (Espaços da Casa) */
+    #house-nav { opacity: 0; visibility: hidden; transition: opacity 0.3s ease, visibility 0.3s ease; }
+    #house-nav.open { opacity: 1; visibility: visible; }
   </style>
 </head>
 <body class="antialiased selection:bg-amber-400 selection:text-black">
 
+  <!-- CABEÇALHO -->
   <header class="fixed top-0 inset-x-0 z-50 backdrop-blur-xl bg-[#08080A]/85 border-b border-zinc-800/60">
-    <div class="max-w-5xl mx-auto px-5 h-20 flex items-center justify-between">
-      <a href="index.html" class="flex items-center gap-3 hover:scale-105 transition">
-        <img src="logo-topo.png" alt="Brat" class="h-10 sm:h-14 object-contain">
+    <div class="max-w-5xl mx-auto px-4 sm:px-5 h-20 flex items-center justify-between gap-2">
+      <a href="index.html" class="flex items-center gap-3 group" aria-label="Voltar ao início da Brat Burger">
+        <img src="logo-topo.png" alt="Brat" class="h-9 sm:h-12 object-contain drop-shadow-md">
+        <span class="hidden sm:inline text-[10px] uppercase tracking-[0.25em] text-amber-400/90 border-l border-zinc-800 pl-3 font-semibold">
+          Corporate
+        </span>
       </a>
-      <a href="index.html" class="border border-zinc-700 bg-zinc-900/60 hover:bg-zinc-800 text-white text-[10px] font-bold px-5 py-2.5 rounded-full transition tracking-widest uppercase">Voltar ao Site Principal</a>
+
+      <div class="flex items-center gap-2">
+        <button id="btn-open-nav" type="button" aria-label="Abrir menu de espaços da Brat" class="flex items-center gap-2 bg-white/5 hover:bg-amber-400 text-zinc-200 hover:text-black border border-white/15 hover:border-amber-400 px-3.5 py-2 rounded-full transition-all duration-300 text-[10px] font-bold uppercase tracking-[0.2em]">
+          <span class="w-1.5 h-1.5 rounded-full bg-amber-400"></span>
+          <span>Espaços</span>
+          <svg class="w-3.5 h-3.5 hidden sm:inline" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M4 8h16M4 16h16"/></svg>
+        </button>
+
+        <a href="https://wa.me/5511977889397?text=Olá!%20Gostaria%20de%20falar%20com%20o%20Concierge%20Corporativo%20da%20Brat%20sobre%20eventos%20e%20entregas%20para%20minha%20empresa." target="_blank" rel="noopener noreferrer" onclick="fbq('track', 'Lead');" class="bg-white hover:bg-zinc-200 text-black text-[10px] sm:text-xs font-bold px-3.5 sm:px-4 py-2 rounded-full transition tracking-wider uppercase whitespace-nowrap">Concierge</a>
+      </div>
     </div>
   </header>
+
+  <!-- OVERLAY: NAVEGAÇÃO DA CASA (VIDRO FUMÊ TRANSLÚCIDO) -->
+  <div id="house-nav" role="dialog" aria-modal="true" aria-label="Navegar pela Brat" class="fixed inset-0 z-[200] bg-[#08080A]/35 backdrop-blur-2xl flex flex-col justify-between p-6 sm:p-12 overflow-y-auto">
+    <div class="max-w-4xl w-full mx-auto flex items-center justify-between border-b border-white/20 pb-6">
+      <div class="flex items-center gap-3">
+        <img src="logo-topo.png" alt="Brat Burger" class="h-8 object-contain drop-shadow-md">
+        <span class="text-[10px] uppercase tracking-[0.3em] text-zinc-100 border-l border-white/30 pl-3 drop-shadow-[0_1px_4px_rgba(0,0,0,0.85)]">Navegar pela Brat</span>
+      </div>
+      <button id="btn-close-nav" type="button" class="text-white hover:text-amber-400 text-xs uppercase tracking-widest font-bold flex items-center gap-2 transition drop-shadow-[0_1px_4px_rgba(0,0,0,0.85)]">
+        Fechar <span class="text-2xl leading-none">&times;</span>
+      </button>
+    </div>
+
+    <div class="max-w-4xl w-full mx-auto my-8 divide-y divide-white/15">
+      <a href="index.html" class="group py-5 flex items-center justify-between hover:pl-3 transition-all">
+        <div>
+          <h3 class="text-xl sm:text-3xl font-extrabold text-white group-hover:text-amber-400 tracking-tight transition drop-shadow-[0_2px_6px_rgba(0,0,0,0.85)]">Início</h3>
+          <p class="text-xs text-zinc-100 font-medium mt-1 drop-shadow-[0_1px_5px_rgba(0,0,0,0.95)]">Nosso salão em São Caetano, reservas e Welcome Drink.</p>
+        </div>
+        <span class="text-white/80 group-hover:text-amber-400 text-xl transition drop-shadow-[0_1px_4px_rgba(0,0,0,0.85)]">→</span>
+      </a>
+
+      <a href="cozinha.html" class="group py-5 flex items-center justify-between hover:pl-3 transition-all">
+        <div>
+          <h3 class="text-xl sm:text-3xl font-extrabold text-white group-hover:text-amber-400 tracking-tight transition drop-shadow-[0_2px_6px_rgba(0,0,0,0.85)]">A Cozinha</h3>
+          <p class="text-xs text-zinc-100 font-medium mt-1 drop-shadow-[0_1px_5px_rgba(0,0,0,0.95)]">Vitrine em vídeo dos nossos cortes, burgers, sobremesas e shakes.</p>
+        </div>
+        <span class="text-white/80 group-hover:text-amber-400 text-xl transition drop-shadow-[0_1px_4px_rgba(0,0,0,0.85)]">→</span>
+      </a>
+
+      <div class="py-5 flex items-center justify-between bg-black/25 border border-amber-400/35 px-4 -mx-4 rounded-xl backdrop-blur-md">
+        <div>
+          <div class="flex items-center gap-3">
+            <h3 class="text-xl sm:text-3xl font-extrabold text-amber-400 tracking-tight drop-shadow-[0_2px_6px_rgba(0,0,0,0.85)]">Brat Corporate</h3>
+            <span class="text-[9px] uppercase tracking-widest bg-amber-400 text-black font-extrabold px-2 py-0.5 rounded-full">Você está aqui</span>
+          </div>
+          <p class="text-xs text-white/95 font-medium mt-1 drop-shadow-[0_1px_4px_rgba(0,0,0,0.9)]">Eventos empresariais, reuniões e confraternizações.</p>
+        </div>
+      </div>
+
+      <a href="historia.html" class="group py-5 flex items-center justify-between hover:pl-3 transition-all">
+        <div>
+          <h3 class="text-xl sm:text-3xl font-extrabold text-white group-hover:text-amber-400 tracking-tight transition drop-shadow-[0_2px_6px_rgba(0,0,0,0.85)]">Nossa História</h3>
+          <p class="text-xs text-zinc-100 font-medium mt-1 drop-shadow-[0_1px_5px_rgba(0,0,0,0.95)]">Origem, método na chapa e compromisso ambiental.</p>
+        </div>
+        <span class="text-white/80 group-hover:text-amber-400 text-xl transition drop-shadow-[0_1px_4px_rgba(0,0,0,0.85)]">→</span>
+      </a>
+    </div>
+
+    <div class="max-w-4xl w-full mx-auto pt-6 border-t border-white/20 flex flex-wrap items-center justify-between gap-4 text-[10px] uppercase tracking-widest text-zinc-100 drop-shadow-[0_1px_4px_rgba(0,0,0,0.9)]">
+      <span>Rua Amazonas, 1652 • São Caetano do Sul</span>
+      <a href="https://wa.me/5511977889397?text=Olá!%20Gostaria%20de%20falar%20com%20o%20Concierge%20Corporativo%20da%20Brat%20sobre%20eventos%20e%20entregas%20para%20minha%20empresa." target="_blank" rel="noopener noreferrer" onclick="fbq('track', 'Lead');" class="text-amber-400 hover:underline font-bold">Falar com Concierge →</a>
+    </div>
+  </div>
 
   <section class="pt-40 pb-20 px-5 text-center relative overflow-hidden">
     <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-amber-900/20 via-[#08080A] to-[#08080A] -z-10"></div>
@@ -49,7 +148,7 @@
           <div class="w-14 h-14 bg-amber-500/10 rounded-full flex items-center justify-center border border-amber-500/30 mb-6">
             <svg class="w-6 h-6 text-amber-400" fill="currentColor" viewBox="0 0 24 24"><path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10z"/></svg>
           </div>
-          <h3 class="text-2xl font-bold text-white mb-3">Private Dining & Eventos</h3>
+          <h3 class="text-2xl font-bold text-white mb-3">Private Dining &amp; Eventos</h3>
           <p class="text-zinc-400 text-sm font-light leading-relaxed mb-6">Disponibilizamos nosso refúgio com teto retrátil, ambiente climatizado e taças de cristal para a sua equipe. Ideal para fechamento de salão, jantares de diretoria e confraternizações exclusivas de final de ano.</p>
         </div>
         <ul class="space-y-2 text-xs text-zinc-300 font-medium">
@@ -82,13 +181,37 @@
     <div class="bg-gradient-to-b from-zinc-900 to-[#121216] border border-zinc-800 rounded-3xl p-10 shadow-2xl">
       <h2 class="text-2xl font-bold text-white mb-4">Pronto para impressionar sua equipe?</h2>
       <p class="text-zinc-400 text-sm font-light mb-8 max-w-lg mx-auto">Fale diretamente com nosso Concierge Corporativo. Alinhamos orçamentos, datas e criamos a solução exata para a demanda da sua empresa.</p>
-      <a href="https://wa.me/5511977889397?text=Olá!%20Gostaria%20de%20falar%20com%20o%20Concierge%20Corporativo%20da%20Brat%20sobre%20eventos%20e%20entregas%20para%20minha%20empresa." target="_blank" class="inline-block bg-white hover:bg-zinc-200 text-black text-xs font-extrabold px-8 py-4 rounded-full transition uppercase tracking-widest shadow-lg shadow-white/10">Falar com Concierge Corporativo</a>
+      <a href="https://wa.me/5511977889397?text=Olá!%20Gostaria%20de%20falar%20com%20o%20Concierge%20Corporativo%20da%20Brat%20sobre%20eventos%20e%20entregas%20para%20minha%20empresa." target="_blank" rel="noopener noreferrer" onclick="fbq('track', 'Lead');" class="inline-block bg-white hover:bg-zinc-200 text-black text-xs font-extrabold px-8 py-4 rounded-full transition uppercase tracking-widest shadow-lg shadow-white/10">Falar com Concierge Corporativo</a>
     </div>
   </section>
 
-  <footer class="py-10 border-t border-zinc-900 bg-black/40 text-center text-xs text-zinc-600">
-    <p>© Brat Burger & Steakhouse. Soluções Corporativas.</p>
+  <footer class="py-12 border-t border-zinc-900 bg-black/40 text-center text-xs text-zinc-600 space-y-5">
+    <div class="flex flex-wrap items-center justify-center gap-6 text-[10px] uppercase tracking-[0.2em] text-zinc-500 font-semibold">
+      <a href="index.html" class="hover:text-amber-400 transition">Início</a>
+      <a href="cozinha.html" class="hover:text-amber-400 transition">A Cozinha</a>
+      <a href="historia.html" class="hover:text-amber-400 transition">Nossa História</a>
+    </div>
+    <p>© Brat Burger &amp; Steakhouse. Soluções Corporativas.</p>
   </footer>
 
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const houseNav = document.getElementById('house-nav');
+      const openNav = () => {
+        houseNav.classList.add('open');
+        document.body.style.overflow = 'hidden';
+      };
+      const closeNav = () => {
+        houseNav.classList.remove('open');
+        document.body.style.overflow = '';
+      };
+
+      document.getElementById('btn-open-nav')?.addEventListener('click', openNav);
+      document.getElementById('btn-close-nav')?.addEventListener('click', closeNav);
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && houseNav.classList.contains('open')) closeNav();
+      });
+    });
+  </script>
 </body>
 </html>
