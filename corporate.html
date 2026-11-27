@@ -3,40 +3,114 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Brat Corporate | Eventos e Soluções para Empresas</title>
-  <meta name="description" content="Soluções corporativas, fechamento de salão e entregas em grande escala da Brat Burger &amp; Steakhouse em São Caetano do Sul.">
+  <title>Brat Corporate | Eventos Empresariais &amp; Corporate Delivery em São Caetano</title>
+  <meta name="description" content="Private Dining, fechamento de salão e entregas corporativas em grande escala com cortes nobres sem blends. Soluções empresariais da Brat Burger &amp; Steakhouse em São Caetano do Sul.">
   <link rel="canonical" href="https://bratburguer.com/corporate.html">
 
   <link rel="icon" type="image/png" href="b-icon.png">
 
-  <!-- Open Graph (Compartilhamento WhatsApp / Redes) -->
+  <!-- OPEN GRAPH / WHATSAPP / REDES SOCIAIS -->
   <meta property="og:type" content="website">
   <meta property="og:locale" content="pt_BR">
+  <meta property="og:site_name" content="Brat Burger &amp; Steakhouse">
+  <meta property="og:url" content="https://bratburguer.com/corporate.html">
   <meta property="og:title" content="Brat Corporate | Eventos e Soluções para Empresas">
   <meta property="og:description" content="Private Dining, fechamento de salão e entregas corporativas em grande escala com o rigor da Brat Burger &amp; Steakhouse.">
-  <meta property="og:url" content="https://bratburguer.com/corporate.html">
   <meta property="og:image" content="https://bratburguer.com/brat-seo.jpg">
-  <meta name="thumbnail" content="https://bratburguer.com/brat-seo.jpg" />
+  <meta property="og:image:type" content="image/jpeg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Brat Corporate | Eventos e Soluções para Empresas">
+  <meta name="twitter:description" content="Eventos corporativos, jantares de diretoria e Corporate Delivery da Brat Burger &amp; Steakhouse.">
+  <meta name="twitter:image" content="https://bratburguer.com/brat-seo.jpg">
+  <meta name="thumbnail" content="https://bratburguer.com/brat-seo.jpg">
 
-  <!-- Meta Pixel Code -->
+  <!-- DADOS ESTRUTURADOS (JSON-LD SERVICE) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "@id": "https://bratburguer.com/corporate.html#service",
+    "name": "Brat Corporate — Eventos Empresariais e Corporate Delivery",
+    "serviceType": "Eventos Corporativos, Private Dining e Catering Empresarial",
+    "description": "Soluções corporativas da Brat Burger & Steakhouse em São Caetano do Sul: fechamento de salão climatizado com taças de cristal e entregas corporativas em grande escala com hambúrgueres de cortes nobres sem blends.",
+    "url": "https://bratburguer.com/corporate.html",
+    "provider": {
+      "@type": "Restaurant",
+      "@id": "https://bratburguer.com/#restaurant",
+      "name": "Brat Burger & Steakhouse",
+      "url": "https://bratburguer.com/",
+      "telephone": "+55-11-97788-9397",
+      "image": "https://bratburguer.com/brat-seo.jpg",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Rua Amazonas, 1652 - Cerâmica",
+        "addressLocality": "São Caetano do Sul",
+        "addressRegion": "SP",
+        "postalCode": "09540-202",
+        "addressCountry": "BR"
+      }
+    },
+    "areaServed": [
+      {
+        "@type": "City",
+        "name": "São Caetano do Sul"
+      },
+      {
+        "@type": "AdministrativeArea",
+        "name": "Grande ABC Paulista"
+      }
+    ],
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Soluções Brat Corporate",
+      "itemListElement": [
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Private Dining & Eventos",
+            "description": "Fechamento de salão com teto retrátil, ambiente climatizado, taças de cristal, cardápio alinhado previamente e atendimento dedicado."
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Corporate Delivery",
+            "description": "Catering e logística estruturada para grandes volumes simultâneos de pedidos em reuniões, plantões e ações de RH, com entregas pontuais programadas."
+          }
+        }
+      ]
+    }
+  }
+  </script>
+
+  <!-- Meta Pixel (Fila síncrona + download não bloqueante pós-load) -->
   <script>
-  !function(f,b,e,v,n,t,s)
-  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-  n.queue=[];t=b.createElement(e);t.async=!0;
-  t.src=v;s=b.getElementsByTagName(e)[0];
-  s.parentNode.insertBefore(t,s)}(window, document,'script',
-  'https://connect.facebook.net/en_US/fbevents.js');
+  !function(f,b,e,v,n,t,s){
+    if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];
+    function loadPixel(){
+      t=b.createElement(e);t.async=!0;t.src=v;
+      s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s);
+    }
+    if(b.readyState==='complete'){setTimeout(loadPixel,100);}
+    else{f.addEventListener('load',function(){setTimeout(loadPixel,100);},{once:true});}
+  }(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
   fbq('init', '779546121693583');
   fbq('track', 'PageView');
   </script>
-  <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=779546121693583&ev=PageView&noscript=1"/></noscript>
+  <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=779546121693583&ev=PageView&noscript=1" alt=""/></noscript>
 
-  <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.tailwindcss.com"></script>
 
   <script>
     tailwind.config = {
@@ -58,7 +132,10 @@
   <header class="fixed top-0 inset-x-0 z-50 backdrop-blur-xl bg-[#08080A]/85 border-b border-zinc-800/60">
     <div class="max-w-5xl mx-auto px-4 sm:px-5 h-20 flex items-center justify-between gap-2">
       <a href="index.html" class="flex items-center gap-3 group" aria-label="Voltar ao início da Brat Burger">
-        <img src="logo-topo.png" alt="Brat" class="h-9 sm:h-12 object-contain drop-shadow-md">
+        <picture>
+          <source srcset="logo-topo.webp" type="image/webp">
+          <img src="logo-topo.png" alt="Brat" width="160" height="48" loading="eager" decoding="async" class="h-9 sm:h-12 w-auto object-contain drop-shadow-md">
+        </picture>
         <span class="hidden sm:inline text-[10px] uppercase tracking-[0.25em] text-amber-400/90 border-l border-zinc-800 pl-3 font-semibold">
           Corporate
         </span>
@@ -80,7 +157,10 @@
   <div id="house-nav" role="dialog" aria-modal="true" aria-label="Navegar pela Brat" class="fixed inset-0 z-[200] bg-[#08080A]/35 backdrop-blur-2xl flex flex-col justify-between p-6 sm:p-12 overflow-y-auto">
     <div class="max-w-4xl w-full mx-auto flex items-center justify-between border-b border-white/20 pb-6">
       <div class="flex items-center gap-3">
-        <img src="logo-topo.png" alt="Brat Burger" class="h-8 object-contain drop-shadow-md">
+        <picture>
+          <source srcset="logo-topo.webp" type="image/webp">
+          <img src="logo-topo.png" alt="Brat Burger" width="107" height="32" loading="lazy" decoding="async" class="h-8 w-auto object-contain drop-shadow-md">
+        </picture>
         <span class="text-[10px] uppercase tracking-[0.3em] text-zinc-100 border-l border-white/30 pl-3 drop-shadow-[0_1px_4px_rgba(0,0,0,0.85)]">Navegar pela Brat</span>
       </div>
       <button id="btn-close-nav" type="button" class="text-white hover:text-amber-400 text-xs uppercase tracking-widest font-bold flex items-center gap-2 transition drop-shadow-[0_1px_4px_rgba(0,0,0,0.85)]">
@@ -146,7 +226,7 @@
       <div class="bg-[#121216] border border-zinc-800 rounded-3xl p-8 sm:p-10 hover:border-amber-500/40 transition flex flex-col justify-between shadow-xl">
         <div>
           <div class="w-14 h-14 bg-amber-500/10 rounded-full flex items-center justify-center border border-amber-500/30 mb-6">
-            <svg class="w-6 h-6 text-amber-400" fill="currentColor" viewBox="0 0 24 24"><path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10z"/></svg>
+            <svg class="w-6 h-6 text-amber-400" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10z"/></svg>
           </div>
           <h3 class="text-2xl font-bold text-white mb-3">Private Dining &amp; Eventos</h3>
           <p class="text-zinc-400 text-sm font-light leading-relaxed mb-6">Disponibilizamos nosso refúgio com teto retrátil, ambiente climatizado e taças de cristal para a sua equipe. Ideal para fechamento de salão, jantares de diretoria e confraternizações exclusivas de final de ano.</p>
@@ -162,7 +242,7 @@
       <div class="bg-[#121216] border border-zinc-800 rounded-3xl p-8 sm:p-10 hover:border-amber-500/40 transition flex flex-col justify-between shadow-xl">
         <div>
           <div class="w-14 h-14 bg-amber-500/10 rounded-full flex items-center justify-center border border-amber-500/30 mb-6">
-            <svg class="w-6 h-6 text-amber-400" fill="currentColor" viewBox="0 0 24 24"><path d="M20 8h-3V4H3c-1.1 0-2 .9-2 2v11h2c0 1.66 1.34 3 3 3s3-1.34 3-3h6c0 1.66 1.34 3 3 3s3-1.34 3-3h2v-5l-3-4zM6 18.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm13.5-9l1.96 2.5H17V9.5h2.5zm-1.5 9c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/></svg>
+            <svg class="w-6 h-6 text-amber-400" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 8h-3V4H3c-1.1 0-2 .9-2 2v11h2c0 1.66 1.34 3 3 3s3-1.34 3-3h6c0 1.66 1.34 3 3 3s3-1.34 3-3h2v-5l-3-4zM6 18.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm13.5-9l1.96 2.5H17V9.5h2.5zm-1.5 9c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/></svg>
           </div>
           <h3 class="text-2xl font-bold text-white mb-3">Corporate Delivery</h3>
           <p class="text-zinc-400 text-sm font-light leading-relaxed mb-6">Levamos a Steakhouse até a sua empresa. Logística estruturada para grandes volumes de pedidos simultâneos, garantindo que o hambúrguer chegue com o mesmo padrão térmico e qualidade da nossa cozinha.</p>
