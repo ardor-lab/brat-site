@@ -4,62 +4,109 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Brat Burger | Cortes Nobres &amp; Alta Gastronomia</title>
-  <meta name="description" content="Esqueça o óbvio. Sua nova mesa está pronta. O seu refúgio de cortes nobres e ambiente premium em São Caetano do Sul.">
+  <title>Brat Burger &amp; Steakhouse | Cortes Nobres &amp; Alta Gastronomia em São Caetano</title>
+  <meta name="description" content="Esqueça o óbvio. Hambúrgueres de cortes nobres 100% puros sem blends, pratos na frigideira de ferro, sobremesas autorais e Welcome Drink na Rua Amazonas, 1652, São Caetano do Sul.">
   <link rel="canonical" href="https://bratburguer.com/">
   
   <link rel="icon" type="image/png" href="b-icon.png">
   
-  <!-- METAS PARA WHATSAPP, INSTAGRAM E FACEBOOK -->
-  <meta property="og:title" content="Brat Burger | Alta Gastronomia">
-  <meta property="og:description" content="O seu refúgio de cortes nobres em São Caetano. Reserve a sua experiência.">
-  <meta property="og:image" content="https://bratburguer.com/brat-seo.jpg">
+  <!-- OPEN GRAPH / WHATSAPP / REDES SOCIAIS -->
   <meta property="og:type" content="website">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:site_name" content="Brat Burger &amp; Steakhouse">
+  <meta property="og:url" content="https://bratburguer.com/">
+  <meta property="og:title" content="Brat Burger &amp; Steakhouse | Cortes Nobres &amp; Alta Gastronomia">
+  <meta property="og:description" content="O seu refúgio de cortes nobres 100% sem blends em São Caetano do Sul. Reserve sua mesa e comece com nosso Welcome Drink.">
+  <meta property="og:image" content="https://bratburguer.com/brat-seo.jpg">
+  <meta property="og:image:type" content="image/jpeg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Brat Burger &amp; Steakhouse | Alta Gastronomia">
+  <meta name="twitter:description" content="Cortes nobres 100% sem blends, frigideira de ferro e ambiente acolhedor na Rua Amazonas, 1652, São Caetano do Sul.">
+  <meta name="twitter:image" content="https://bratburguer.com/brat-seo.jpg">
+  <meta name="thumbnail" content="https://bratburguer.com/brat-seo.jpg">
 
-  <!-- META ESPECÍFICA PARA FORÇAR A MINIATURA NA BUSCA DO GOOGLE -->
-  <meta name="thumbnail" content="https://bratburguer.com/brat-seo.jpg" />
-
-  <!-- DADOS ESTRUTURADOS (SCHEMA) PARA EDUCAR O GOOGLE SOBRE O NEGÓCIO -->
+  <!-- DADOS ESTRUTURADOS (JSON-LD SEO & GEO) -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "Restaurant",
-    "name": "Brat Burger",
-    "image": "https://bratburguer.com/brat-seo.jpg",
+    "@id": "https://bratburguer.com/#restaurant",
+    "name": "Brat Burger & Steakhouse",
+    "alternateName": ["Brat Burger", "Brat Steakhouse"],
+    "description": "Hamburgueria artesanal e steakhouse em São Caetano do Sul especializada em hambúrgueres de cortes nobres puros 100% sem blends, sem aditivos sintéticos ou corantes artificiais, com cozinha preparada do zero, sobremesas autorais e atendimento em taças de cristal.",
+    "url": "https://bratburguer.com/",
     "logo": "https://bratburguer.com/b-icon.png",
-    "url": "https://bratburguer.com",
-    "telephone": "+5511977889397",
+    "image": "https://bratburguer.com/brat-seo.jpg",
+    "telephone": "+55-11-97788-9397",
+    "priceRange": "$$",
+    "servesCuisine": [
+      "Hamburgueria Artesanal",
+      "Steakhouse",
+      "Cortes Nobres"
+    ],
+    "acceptsReservations": true,
+    "hasMenu": "https://bratburguer.com/cozinha.html",
     "address": {
       "@type": "PostalAddress",
-      "streetAddress": "Rua Amazonas, 1652",
+      "streetAddress": "Rua Amazonas, 1652 - Cerâmica",
       "addressLocality": "São Caetano do Sul",
       "addressRegion": "SP",
       "postalCode": "09540-202",
       "addressCountry": "BR"
-    }
+    },
+    "openingHoursSpecification": [
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Wednesday", "Thursday"],
+        "opens": "16:00",
+        "closes": "22:00"
+      },
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Friday", "Saturday"],
+        "opens": "16:00",
+        "closes": "23:59"
+      },
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Sunday"],
+        "opens": "18:00",
+        "closes": "22:00"
+      }
+    ],
+    "sameAs": [
+      "https://instagram.com/bratburgersaocaetano",
+      "https://maps.google.com/?q=Brat+Burger,+Rua+Amazonas,+1652+-+S%C3%A3o+Caetano+do+Sul,+SP"
+    ]
   }
   </script>
 
-  <!-- Meta Pixel Code -->
+  <!-- Meta Pixel (Fila síncrona + download não bloqueante pós-load) -->
   <script>
-  !function(f,b,e,v,n,t,s)
-  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-  n.queue=[];t=b.createElement(e);t.async=!0;
-  t.src=v;s=b.getElementsByTagName(e)[0];
-  s.parentNode.insertBefore(t,s)}(window, document,'script',
-  'https://connect.facebook.net/en_US/fbevents.js');
+  !function(f,b,e,v,n,t,s){
+    if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];
+    function loadPixel(){
+      t=b.createElement(e);t.async=!0;t.src=v;
+      s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s);
+    }
+    if(b.readyState==='complete'){setTimeout(loadPixel,100);}
+    else{f.addEventListener('load',function(){setTimeout(loadPixel,100);},{once:true});}
+  }(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
   fbq('init', '779546121693583');
   fbq('track', 'PageView');
   </script>
-  <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=779546121693583&ev=PageView&noscript=1"/></noscript>
+  <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=779546121693583&ev=PageView&noscript=1" alt=""/></noscript>
   
-  <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300&display=swap" rel="stylesheet">
   
+  <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="style.css">
 
   <script>
@@ -100,29 +147,41 @@
     <div id="splash-cols" class="absolute inset-0 flex flex-row w-full h-full">
       <div id="splash-col-1" class="splash-col w-1/3 h-full border-r border-zinc-900/50 relative">
         <div class="absolute inset-0 bg-black/30 z-10"></div>
-        <video autoplay loop muted playsinline class="w-full h-full object-cover opacity-80"><source src="rei.mp4" type="video/mp4"></video>
+        <video autoplay loop muted playsinline preload="metadata" poster="rei-poster.webp" class="w-full h-full object-cover opacity-80">
+          <source src="rei.webm" type="video/webm">
+          <source src="rei.mp4" type="video/mp4">
+        </video>
       </div>
       <div id="splash-col-2" class="splash-col w-1/3 h-full border-r border-zinc-900/50 relative">
         <div class="absolute inset-0 bg-black/30 z-10"></div>
-        <video autoplay loop muted playsinline class="w-full h-full object-cover opacity-80"><source src="matilda.mp4" type="video/mp4"></video>
+        <video autoplay loop muted playsinline preload="metadata" poster="matilda-poster.webp" class="w-full h-full object-cover opacity-80">
+          <source src="matilda.webm" type="video/webm">
+          <source src="matilda.mp4" type="video/mp4">
+        </video>
       </div>
       <div id="splash-col-3" class="splash-col w-1/3 h-full relative">
         <div class="absolute inset-0 bg-black/30 z-10"></div>
-        <video autoplay loop muted playsinline class="w-full h-full object-cover opacity-80"><source src="kiss.mp4" type="video/mp4"></video>
+        <video autoplay loop muted playsinline preload="metadata" poster="kiss-poster.webp" class="w-full h-full object-cover opacity-80">
+          <source src="kiss.webm" type="video/webm">
+          <source src="kiss.mp4" type="video/mp4">
+        </video>
       </div>
     </div>
     <div id="splash-dot" class="absolute top-1/2 left-1/2 w-10 h-10 bg-amber-400 rounded-[12px] shadow-[0_0_40px_rgba(212,175,55,0.6)] z-20"></div>
   </div>
 
   <a href="https://wa.me/5511977889397?text=Olá!%20Gostaria%20de%20tirar%20uma%20dúvida%20sobre%20a%20Brat." target="_blank" rel="noopener noreferrer" onclick="fbq('track', 'Contact');" class="fixed bottom-6 right-6 z-[90] bg-[#25D366] text-white w-14 h-14 rounded-full shadow-[0_4px_14px_rgba(37,211,102,0.4)] hover:scale-110 transition-transform duration-300 flex items-center justify-center group" aria-label="Falar no WhatsApp">
-    <svg class="w-8 h-8 ml-0.5 mt-0.5" fill="currentColor" viewBox="0 0 16 16"><path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232"/></svg>
+    <svg class="w-8 h-8 ml-0.5 mt-0.5" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true"><path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232"/></svg>
   </a>
 
   <!-- CABEÇALHO -->
   <header class="fixed top-0 inset-x-0 z-50 backdrop-blur-xl bg-[#08080A]/85 border-b border-zinc-800/60">
     <div class="max-w-5xl mx-auto px-4 sm:px-5 h-20 flex items-center justify-between gap-2">
       <div class="flex items-center gap-3">
-        <img src="logo-topo.png" alt="Brat" class="h-9 sm:h-12 object-contain drop-shadow-md">
+        <picture>
+          <source srcset="logo-topo.webp" type="image/webp">
+          <img src="logo-topo.png" alt="Brat" width="160" height="48" loading="eager" decoding="async" class="h-9 sm:h-12 w-auto object-contain drop-shadow-md">
+        </picture>
         <span class="text-[10px] uppercase tracking-widest text-zinc-500 border-l border-zinc-800 pl-3 hidden md:inline">São Caetano do Sul</span>
       </div>
       
@@ -146,7 +205,10 @@
   <div id="house-nav" role="dialog" aria-modal="true" aria-label="Navegar pela Brat" class="fixed inset-0 z-[200] bg-[#08080A]/35 backdrop-blur-2xl flex flex-col justify-between p-6 sm:p-12 overflow-y-auto">
     <div class="max-w-4xl w-full mx-auto flex items-center justify-between border-b border-white/20 pb-6">
       <div class="flex items-center gap-3">
-        <img src="logo-topo.png" alt="Brat Burger" class="h-8 object-contain drop-shadow-md">
+        <picture>
+          <source srcset="logo-topo.webp" type="image/webp">
+          <img src="logo-topo.png" alt="Brat Burger" width="107" height="32" loading="lazy" decoding="async" class="h-8 w-auto object-contain drop-shadow-md">
+        </picture>
         <span class="text-[10px] uppercase tracking-[0.3em] text-zinc-100 border-l border-white/30 pl-3 drop-shadow-[0_1px_4px_rgba(0,0,0,0.85)]">Navegar pela Brat</span>
       </div>
       <button id="btn-close-nav" type="button" class="text-white hover:text-amber-400 text-xs uppercase tracking-widest font-bold flex items-center gap-2 transition drop-shadow-[0_1px_4px_rgba(0,0,0,0.85)]">
@@ -196,9 +258,13 @@
     </div>
   </div>
 
+  <!-- HERO (LCP PRIORITÁRIO) -->
   <section class="min-h-[88vh] flex flex-col justify-center items-center text-center px-5 pt-28 pb-16 relative overflow-hidden">
-    <div class="absolute inset-0 bg-cover bg-center opacity-70 scale-105" style="background-image: url('hero-bg.jpg'); filter: blur(4px);"></div>
-    <div class="absolute inset-0 bg-gradient-to-b from-[#08080A]/50 via-[#08080A]/30 to-[#08080A] -z-10"></div>
+    <picture class="absolute inset-0 w-full h-full pointer-events-none">
+      <source srcset="hero-bg.webp" type="image/webp">
+      <img src="hero-bg.jpg" alt="" aria-hidden="true" width="1600" height="1067" fetchpriority="high" loading="eager" decoding="sync" class="w-full h-full object-cover object-center opacity-70 scale-105" style="filter: blur(4px);">
+    </picture>
+    <div class="absolute inset-0 bg-gradient-to-b from-[#08080A]/50 via-[#08080A]/30 to-[#08080A] pointer-events-none"></div>
     
     <div class="max-w-2xl mx-auto space-y-6 relative z-10">
       <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-amber-500/30 bg-amber-500/10 text-amber-400 text-[11px] font-semibold tracking-[0.2em] uppercase backdrop-blur-sm"><span>O burger elevado a alta gastronomia</span></div>
@@ -208,7 +274,7 @@
       <div class="pt-6 flex flex-col sm:flex-row flex-wrap items-center justify-center gap-3 w-full">
         <a href="https://wa.me/5511977889397?text=Olá!%20Gostaria%20de%20reservar%20minha%20mesa%20e%20iniciar%20a%20experiência%20com%20o%20Welcome%20Drink." target="_blank" rel="noopener noreferrer" onclick="fbq('track', 'Lead');" class="w-full sm:w-auto bg-amber-400 hover:bg-amber-300 text-black font-bold px-8 py-3.5 rounded-full transition text-xs tracking-widest uppercase shadow-lg shadow-amber-500/10">Reservar Experiência</a>
         <a href="cozinha.html" class="w-full sm:w-auto border border-amber-500/40 bg-amber-500/10 hover:bg-amber-500/20 text-amber-400 font-bold px-6 py-3.5 rounded-full transition text-xs tracking-widest uppercase shadow-lg flex items-center justify-center gap-2">
-          <svg class="w-5 h-5 animate-pulse" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg> Explorar Menu
+          <svg class="w-5 h-5 animate-pulse" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg> Explorar Menu
         </a>
       </div>
       
@@ -221,6 +287,7 @@
     </div>
   </section>
 
+  <!-- IDENTIDADE GASTRONÔMICA (VÍDEOS LAZY LOAD) -->
   <section class="py-20 max-w-5xl mx-auto px-5 border-t border-zinc-900">
     <div class="text-center max-w-xl mx-auto mb-14 space-y-3">
       <span class="text-xs uppercase tracking-[0.25em] text-amber-400 font-bold">Identidade Gastronômica</span>
@@ -231,7 +298,10 @@
       <div class="bg-brat-card border border-brat-border rounded-3xl p-6 relative overflow-hidden group hover:border-amber-500/40 transition flex flex-col justify-between">
         <div>
           <div class="vertical-media-frame mb-5 border border-zinc-800">
-            <video autoplay loop muted playsinline><source src="rei.mp4" type="video/mp4"></video>
+            <video class="lazy-video" loop muted playsinline preload="none" poster="rei-poster.webp">
+              <source data-src="rei.webm" type="video/webm">
+              <source data-src="rei.mp4" type="video/mp4">
+            </video>
           </div>
           <div class="flex items-center justify-between mb-3">
             <h3 class="text-xl font-bold text-white">Brat Rei do Churrasco</h3><span class="bg-zinc-900 border border-amber-500/40 text-amber-400 text-[9px] font-bold px-2 py-1 rounded uppercase tracking-wider flex-shrink-0 ml-2">Assinatura</span>
@@ -242,7 +312,10 @@
       <div class="bg-brat-card border border-brat-border rounded-3xl p-6 relative overflow-hidden group hover:border-amber-500/40 transition flex flex-col justify-between">
         <div>
           <div class="vertical-media-frame mb-5 border border-zinc-800">
-            <video autoplay loop muted playsinline><source src="matilda.mp4" type="video/mp4"></video>
+            <video class="lazy-video" loop muted playsinline preload="none" poster="matilda-poster.webp">
+              <source data-src="matilda.webm" type="video/webm">
+              <source data-src="matilda.mp4" type="video/mp4">
+            </video>
           </div>
           <div class="flex items-center justify-between mb-3">
             <h3 class="text-xl font-bold text-white">Matilda Cake</h3><span class="bg-zinc-900 border border-amber-500/40 text-amber-400 text-[9px] font-bold px-2 py-1 rounded uppercase tracking-wider flex-shrink-0 ml-2">Autoral</span>
@@ -264,7 +337,12 @@
         </div>
       </div>
       <div class="lg:col-span-7">
-        <div class="optical-frame border border-zinc-800"><img src="salao.jpg" alt="Salão da Brat Burger" class="optical-lens-img"></div>
+        <div class="optical-frame border border-zinc-800">
+          <picture>
+            <source srcset="salao.webp" type="image/webp">
+            <img src="salao.jpg" alt="Salão da Brat Burger" width="1200" height="800" loading="lazy" decoding="async" class="optical-lens-img">
+          </picture>
+        </div>
       </div>
     </div>
   </section>
@@ -311,7 +389,7 @@
     
     <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
       <a href="cozinha.html" class="inline-flex items-center justify-center gap-2 border border-amber-500/40 bg-amber-500/10 hover:bg-amber-500/20 text-amber-400 font-bold px-8 py-3.5 rounded-full text-xs tracking-widest uppercase transition shadow-lg">
-        <svg class="w-5 h-5 animate-pulse" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+        <svg class="w-5 h-5 animate-pulse" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
         Explorar Menu
       </a>
     </div>
@@ -341,20 +419,23 @@
         </div>
         <div class="flex flex-col gap-4 pt-2">
           <a href="https://maps.google.com/?q=Brat+Burger,+Rua+Amazonas,+1652+-+São+Caetano+do+Sul,+SP" target="_blank" rel="noopener noreferrer" class="w-full bg-amber-400 hover:bg-amber-300 text-black font-bold px-8 py-4 rounded-full transition text-xs tracking-widest uppercase shadow-lg flex items-center justify-center gap-2">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
             Abrir no Google Maps
           </a>
           <a href="https://waze.com/ul?q=Rua+Amazonas+1652+Sao+Caetano+do+Sul" target="_blank" rel="noopener noreferrer" class="w-full border border-zinc-700 bg-zinc-950 hover:bg-zinc-800 text-zinc-200 font-bold px-8 py-4 rounded-full transition text-xs tracking-widest uppercase flex items-center justify-center gap-2">
-            <svg class="w-4 h-4 text-sky-400" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+            <svg class="w-4 h-4 text-sky-400" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
             Navegar com o Waze
           </a>
         </div>
       </div>
       <a href="https://maps.google.com/?q=Brat+Burger,+Rua+Amazonas,+1652+-+São+Caetano+do+Sul,+SP" target="_blank" rel="noopener noreferrer" class="lg:w-1/2 min-h-[350px] lg:min-h-full relative bg-[#0a0a0c] flex flex-col items-center justify-center border-t lg:border-t-0 lg:border-l border-zinc-800/80 group overflow-hidden cursor-pointer">
-        <img src="mapa.jpg" alt="Mapa de São Caetano do Sul" class="absolute inset-0 w-full h-full object-cover opacity-30 group-hover:scale-105 transition duration-700 ease-out">
+        <picture class="absolute inset-0 w-full h-full">
+          <source srcset="mapa.webp" type="image/webp">
+          <img src="mapa.jpg" alt="Mapa de São Caetano do Sul" width="1200" height="900" loading="lazy" decoding="async" class="w-full h-full object-cover opacity-30 group-hover:scale-105 transition duration-700 ease-out">
+        </picture>
         <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/80"></div>
         <div class="relative z-10 flex flex-col items-center transform group-hover:scale-110 transition duration-500">
-          <svg class="w-14 h-14 text-amber-400 drop-shadow-[0_0_15px_rgba(212,175,55,0.6)]" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 010-5 2.5 2.5 0 010 5z"/></svg>
+          <svg class="w-14 h-14 text-amber-400 drop-shadow-[0_0_15px_rgba(212,175,55,0.6)]" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 010-5 2.5 2.5 0 010 5z"/></svg>
           <div class="mt-3 bg-zinc-950 border border-amber-500/30 px-5 py-2 rounded-full text-amber-400 text-[10px] font-bold uppercase tracking-widest shadow-2xl group-hover:border-amber-400 transition">Brat Burger</div>
         </div>
       </a>
@@ -363,7 +444,12 @@
 
   <footer class="py-16 pb-28 sm:pb-20 border-t border-zinc-900 bg-black/40 text-center text-xs text-zinc-400 space-y-4">
     <div class="max-w-xl mx-auto px-5 space-y-2">
-      <div class="mb-6"><img src="logo-rodape.png" alt="Brat Burger Oficial" class="h-16 sm:h-24 mx-auto opacity-90 hover:opacity-100 transition duration-300 object-contain"></div>
+      <div class="mb-6">
+        <picture>
+          <source srcset="logo-rodape.webp" type="image/webp">
+          <img src="logo-rodape.png" alt="Brat Burger Oficial" width="240" height="96" loading="lazy" decoding="async" class="h-16 sm:h-24 w-auto mx-auto opacity-90 hover:opacity-100 transition duration-300 object-contain">
+        </picture>
+      </div>
       <div class="space-y-1.5 pt-2 text-sm font-light text-zinc-400">
         <p>Quarta e Quinta: 16h às 22h</p>
         <p>Sexta e Sábado: 16h à meia-noite</p>
@@ -382,7 +468,7 @@
     
     <div class="border-t border-zinc-900/85 pt-10 mt-8 flex flex-col items-center gap-4">
       <a href="https://instagram.com/bratburgersaocaetano" target="_blank" rel="noopener noreferrer" class="text-zinc-600 hover:text-amber-400 transition" aria-label="Instagram da Brat Burger">
-        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
       </a>
       
       <div class="space-y-1">
@@ -413,9 +499,34 @@
         if (e.key === 'Escape' && houseNav.classList.contains('open')) closeNav();
       });
 
-      // 2. Splash Screen
+      // 2. Lazy load de vídeos abaixo da dobra
+      const lazyVideos = document.querySelectorAll('video.lazy-video');
+      if ('IntersectionObserver' in window && lazyVideos.length) {
+        const videoObserver = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            const video = entry.target;
+            if (entry.isIntersecting) {
+              if (!video.dataset.loaded) {
+                video.querySelectorAll('source[data-src]').forEach((src) => {
+                  src.src = src.dataset.src;
+                  src.removeAttribute('data-src');
+                });
+                video.load();
+                video.dataset.loaded = 'true';
+              }
+              video.play().catch(() => {});
+            } else if (video.dataset.loaded) {
+              video.pause();
+            }
+          });
+        }, { rootMargin: '250px 0px', threshold: 0.1 });
+
+        lazyVideos.forEach((v) => videoObserver.observe(v));
+      }
+
+      // 3. Splash Screen
       const splashScreen = document.getElementById('splash-screen');
-      if(splashScreen) {
+      if (splashScreen) {
         const col1 = document.getElementById('splash-col-1');
         const col2 = document.getElementById('splash-col-2');
         const col3 = document.getElementById('splash-col-3');
@@ -428,33 +539,34 @@
         function fecharSplash() {
           clearTimeout(safetyTimeout);
           splashScreen.style.opacity = '0';
-          setTimeout(() => { 
-            splashScreen.style.display = 'none'; 
+          setTimeout(() => {
+            splashScreen.querySelectorAll('video').forEach((v) => v.pause());
+            splashScreen.style.display = 'none';
             if (!houseNav.classList.contains('open')) {
               document.body.style.overflow = '';
             }
           }, 800);
         }
 
-        if(col1) setTimeout(() => { col1.style.opacity = '1'; col1.style.transform = 'translateY(0)'; }, 300);
-        if(col2) setTimeout(() => { col2.style.opacity = '1'; col2.style.transform = 'translateY(0)'; }, 1500);
-        if(col3) setTimeout(() => { col3.style.opacity = '1'; col3.style.transform = 'translateY(0)'; }, 2700);
+        if (col1) setTimeout(() => { col1.style.opacity = '1'; col1.style.transform = 'translateY(0)'; }, 300);
+        if (col2) setTimeout(() => { col2.style.opacity = '1'; col2.style.transform = 'translateY(0)'; }, 1500);
+        if (col3) setTimeout(() => { col3.style.opacity = '1'; col3.style.transform = 'translateY(0)'; }, 2700);
 
         setTimeout(() => {
-          if(colsContainer) colsContainer.style.opacity = '0';
+          if (colsContainer) colsContainer.style.opacity = '0';
           setTimeout(() => {
-            if(dot) { dot.style.opacity = '1'; dot.style.transform = 'translate(-50%, -50%) scale(1)'; }
+            if (dot) { dot.style.opacity = '1'; dot.style.transform = 'translate(-50%, -50%) scale(1)'; }
           }, 400);
         }, 4500);
 
         setTimeout(() => {
-          if(dot) { dot.style.transform = 'translate(-50%, -50%) scale(150)'; dot.style.opacity = '0'; }
+          if (dot) { dot.style.transform = 'translate(-50%, -50%) scale(150)'; dot.style.opacity = '0'; }
         }, 5500);
 
         setTimeout(() => { fecharSplash(); }, 5800);
       }
 
-      // 3. Efeito Óptico do Salão
+      // 4. Efeito Óptico do Salão
       const images = document.querySelectorAll('.optical-lens-img');
       function renderOpticalFocus() {
         if (!images.length) return;
