@@ -8,7 +8,7 @@
   <link rel="canonical" href="https://bratburguer.com/historia.html">
   <link rel="icon" type="image/png" href="b-icon.png">
 
-  <!-- Open Graph (Compartilhamento WhatsApp / Redes) -->
+  <!-- Open Graph / WhatsApp / Redes Sociais -->
   <meta property="og:type" content="website">
   <meta property="og:locale" content="pt_BR">
   <meta property="og:site_name" content="Brat Burger &amp; Steakhouse">
@@ -16,58 +16,95 @@
   <meta property="og:description" content="Método, origem e verdade à mesa em São Caetano do Sul. Cortes puros sem blends, cozinha feita do zero e hospitalidade em taça de cristal.">
   <meta property="og:url" content="https://bratburguer.com/historia.html">
   <meta property="og:image" content="https://bratburguer.com/brat-seo.jpg">
-  <meta name="thumbnail" content="https://bratburguer.com/brat-seo.jpg" />
+  <meta property="og:image:type" content="image/jpeg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Nossa História | Brat Burger &amp; Steakhouse">
+  <meta name="twitter:description" content="Método, origem e verdade à mesa em São Caetano do Sul. Cortes puros sem blends, cozinha feita do zero e hospitalidade em taça de cristal.">
+  <meta name="twitter:image" content="https://bratburguer.com/brat-seo.jpg">
+  <meta name="thumbnail" content="https://bratburguer.com/brat-seo.jpg">
 
-  <!-- Dados Estruturados SEO Local (JSON-LD) -->
+  <!-- Dados Estruturados (JSON-LD AboutPage + Restaurant para SEO & GEO) -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "Restaurant",
-    "name": "Brat Burger & Steakhouse",
-    "url": "https://bratburguer.com",
-    "image": "https://bratburguer.com/brat-seo.jpg",
-    "logo": "https://bratburguer.com/b-icon.png",
-    "description": "Hamburgueria artesanal e steakhouse em São Caetano do Sul especializada em cortes puros 100% sem blends (peito bovino e alcatra), preparo do zero e alta hospitalidade.",
-    "foundingDate": "2020-07",
-    "telephone": "+55-11-97788-9397",
-    "servesCuisine": ["Hamburgueria Artesanal", "Steakhouse", "Burgers sem blends"],
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "Rua Amazonas, 1652",
-      "addressLocality": "São Caetano do Sul",
-      "addressRegion": "SP",
-      "postalCode": "09540-202",
-      "addressCountry": "BR"
-    },
-    "award": [
-      "Melhores do Ano 2024/2025 — Votação Popular Web",
-      "Melhores do Ano 2025/2026 — Votação Popular Web"
-    ],
-    "sameAs": [
-      "https://instagram.com/bratburgersaocaetano"
-    ]
+    "@type": "AboutPage",
+    "@id": "https://bratburguer.com/historia.html#aboutpage",
+    "name": "Nossa História | Brat Burger & Steakhouse",
+    "description": "Trajetória, manifesto gastronômico, compromisso ambiental e liderança da Brat Burger & Steakhouse em São Caetano do Sul desde julho de 2020.",
+    "url": "https://bratburguer.com/historia.html",
+    "inLanguage": "pt-BR",
+    "mainEntity": {
+      "@type": "Restaurant",
+      "@id": "https://bratburguer.com/#restaurant",
+      "name": "Brat Burger & Steakhouse",
+      "alternateName": ["Brat Burger", "Brat Steakhouse"],
+      "url": "https://bratburguer.com/",
+      "image": "https://bratburguer.com/brat-seo.jpg",
+      "logo": "https://bratburguer.com/b-icon.png",
+      "description": "Hamburgueria artesanal e steakhouse em São Caetano do Sul especializada em cortes puros 100% sem blends (peito bovino e alcatra), preparo do zero, energia renovável e alta hospitalidade em taças de cristal.",
+      "foundingDate": "2020-07",
+      "telephone": "+55-11-97788-9397",
+      "priceRange": "$$",
+      "servesCuisine": [
+        "Hamburgueria Artesanal",
+        "Steakhouse",
+        "Cortes Nobres"
+      ],
+      "founder": {
+        "@type": "Person",
+        "name": "Arthur Henrique Cavalcante",
+        "jobTitle": "Fundador",
+        "sameAs": [
+          "https://www.linkedin.com/in/thur-henrique-cavalcante",
+          "https://ardorgestao.com"
+        ]
+      },
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Rua Amazonas, 1652 - Cerâmica",
+        "addressLocality": "São Caetano do Sul",
+        "addressRegion": "SP",
+        "postalCode": "09540-202",
+        "addressCountry": "BR"
+      },
+      "award": [
+        "Melhores do Ano 2024/2025 — Votação Popular Web",
+        "Melhores do Ano 2025/2026 — Votação Popular Web"
+      ],
+      "sameAs": [
+        "https://instagram.com/bratburgersaocaetano",
+        "https://maps.google.com/?q=Brat+Burger,+Rua+Amazonas,+1652+-+S%C3%A3o+Caetano+do+Sul,+SP"
+      ]
+    }
   }
   </script>
 
-  <!-- Meta Pixel Code -->
+  <!-- Meta Pixel (Fila síncrona + download não bloqueante pós-load) -->
   <script>
-  !function(f,b,e,v,n,t,s)
-  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-  n.queue=[];t=b.createElement(e);t.async=!0;
-  t.src=v;s=b.getElementsByTagName(e)[0];
-  s.parentNode.insertBefore(t,s)}(window, document,'script',
-  'https://connect.facebook.net/en_US/fbevents.js');
+  !function(f,b,e,v,n,t,s){
+    if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];
+    function loadPixel(){
+      t=b.createElement(e);t.async=!0;t.src=v;
+      s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s);
+    }
+    if(b.readyState==='complete'){setTimeout(loadPixel,100);}
+    else{f.addEventListener('load',function(){setTimeout(loadPixel,100);},{once:true});}
+  }(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
   fbq('init', '779546121693583');
   fbq('track', 'PageView');
   </script>
-  <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=779546121693583&ev=PageView&noscript=1"/></noscript>
+  <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=779546121693583&ev=PageView&noscript=1" alt=""/></noscript>
 
-  <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400;1,600&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,400;1,600&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.tailwindcss.com"></script>
 
   <script>
     tailwind.config = {
@@ -166,7 +203,10 @@
   <header class="fixed top-0 inset-x-0 z-50 bg-[#0B0B0E]/92 backdrop-blur-xl border-b border-white/10">
     <div class="max-w-6xl mx-auto px-5 h-16 sm:h-20 flex items-center justify-between">
       <a href="index.html" class="flex items-center gap-3 group" aria-label="Voltar ao início da Brat Burger">
-        <img src="logo-topo.png" alt="Brat Burger & Steakhouse" class="h-8 sm:h-10 object-contain">
+        <picture>
+          <source srcset="logo-topo.webp" type="image/webp">
+          <img src="logo-topo.png" alt="Brat Burger & Steakhouse" width="133" height="40" fetchpriority="high" loading="eager" decoding="async" class="h-8 sm:h-10 w-auto object-contain">
+        </picture>
         <span class="hidden sm:inline text-[10px] uppercase tracking-[0.25em] text-amber-400/90 border-l border-zinc-800 pl-3 font-semibold">
           Nossa História
         </span>
@@ -193,7 +233,10 @@
   <div id="house-nav" role="dialog" aria-modal="true" aria-label="Navegar pela Brat" class="fixed inset-0 z-[200] bg-[#08080A]/55 backdrop-blur-2xl flex flex-col justify-between p-6 sm:p-12 overflow-y-auto">
     <div class="max-w-4xl w-full mx-auto flex items-center justify-between border-b border-white/20 pb-6">
       <div class="flex items-center gap-3">
-        <img src="logo-topo.png" alt="Brat Burger" class="h-8 object-contain drop-shadow-md">
+        <picture>
+          <source srcset="logo-topo.webp" type="image/webp">
+          <img src="logo-topo.png" alt="Brat Burger" width="107" height="32" loading="lazy" decoding="async" class="h-8 w-auto object-contain drop-shadow-md">
+        </picture>
         <span class="text-[10px] uppercase tracking-[0.3em] text-zinc-100 border-l border-white/30 pl-3 drop-shadow-[0_1px_4px_rgba(0,0,0,0.85)]">Navegar pela Brat</span>
       </div>
       <button id="btn-close-nav" type="button" class="text-white hover:text-amber-400 text-xs uppercase tracking-widest font-bold flex items-center gap-2 transition drop-shadow-[0_1px_4px_rgba(0,0,0,0.85)]">
@@ -254,7 +297,7 @@
         <button id="btn-close-video" type="button" aria-label="Fechar vídeo" class="w-8 h-8 rounded-full bg-zinc-900 hover:bg-zinc-800 text-zinc-300 flex items-center justify-center text-xl leading-none">&times;</button>
       </div>
       <div class="relative aspect-[9/14] bg-black">
-        <video id="lightbox-player" autoplay loop muted playsinline controls class="w-full h-full object-cover"></video>
+        <video id="lightbox-player" loop muted playsinline preload="none" controls class="w-full h-full object-cover"></video>
       </div>
       <div class="p-4 flex items-center justify-between gap-3 bg-[#0B0B0E]">
         <p id="lightbox-desc" class="text-[11px] text-zinc-400 font-light leading-snug"></p>
@@ -395,7 +438,7 @@
             <h3 class="text-lg sm:text-xl font-extrabold text-brat-ink mt-1 mb-1.5">Primeira loja e cultura de testes</h3>
             <p class="text-sm text-zinc-700 leading-relaxed max-w-2xl">
               No Parque São Lucas, nasce nossa primeira operação física e o DNA de testar até acertar o ponto exato — berço do nosso
-              <button type="button" class="dish-trigger" data-video="brisket.mp4" data-title="Peito Bovino Artesanal" data-tag="A Origem da Chapa" data-desc="Nosso primeiro hambúrguer artesanal: 100% peito bovino selecionado, sem blends.">
+              <button type="button" class="dish-trigger" data-video="brisket.mp4" data-poster="brisket-poster.webp" data-title="Peito Bovino Artesanal" data-tag="A Origem da Chapa" data-desc="Nosso primeiro hambúrguer artesanal: 100% peito bovino selecionado, sem blends.">
                 <span>▶</span> Peito Bovino Artesanal
               </button>
               e das nossas receitas autorais de alcatra.
@@ -429,14 +472,14 @@
             <h3 class="text-lg sm:text-xl font-extrabold text-brat-ink mt-1 mb-1.5">Steakhouse, taças de cristal e bicampeonato</h3>
             <p class="text-sm text-zinc-700 leading-relaxed max-w-2xl">
               Expandimos o menu com o
-              <button type="button" class="dish-trigger" data-video="rei.mp4" data-title="Rei do Churrasco" data-tag="A Assinatura" data-desc="Baby beef selado em alta temperatura com nosso melt de provolone artesanal.">
+              <button type="button" class="dish-trigger" data-video="rei.mp4" data-poster="rei-poster.webp" data-title="Rei do Churrasco" data-tag="A Assinatura" data-desc="Baby beef selado em alta temperatura com nosso melt de provolone artesanal.">
                 <span>▶</span> Rei do Churrasco
               </button>, peixes, massas,
-              <button type="button" class="dish-trigger" data-video="milkshakes.mp4" data-title="Milkshakes Naturais" data-tag="Sem Corantes Artificiais" data-desc="Oreo, Morango de Verdade, Doce de Leite, Pistacchio, Chocolate e Ovomaltine.">
+              <button type="button" class="dish-trigger" data-video="milkshakes.mp4" data-poster="milkshakes-poster.webp" data-title="Milkshakes Naturais" data-tag="Sem Corantes Artificiais" data-desc="Oreo, Morango de Verdade, Doce de Leite, Pistacchio, Chocolate e Ovomaltine.">
                 <span>▶</span> Milkshakes Naturais
               </button>
               sem corantes artificiais e coquetelaria autoral como o
-              <button type="button" class="dish-trigger" data-video="kiss.mp4" data-title="Brat Kiss &amp; Taças de Cristal" data-tag="Coquetelaria &amp; Hospitalidade" data-desc="Da água ao drink autoral, servido sempre em taça de cristal.">
+              <button type="button" class="dish-trigger" data-video="kiss.mp4" data-poster="kiss-poster.webp" data-title="Brat Kiss &amp; Taças de Cristal" data-tag="Coquetelaria &amp; Hospitalidade" data-desc="Da água ao drink autoral, servido sempre em taça de cristal.">
                 <span>▶</span> Brat Kiss
               </button>
               em taças de cristal — fechando o ano escolhidos novamente pelo público no <strong>Melhores do Ano 2025/2026</strong>.
@@ -555,7 +598,10 @@
           <div class="bg-[#ECE7DC] border border-[#DDD5C4] rounded-3xl p-7 sm:p-8 space-y-6">
             <div class="flex items-center gap-5">
               <div class="w-20 h-20 rounded-2xl bg-[#121216] border-2 border-amber-500/50 overflow-hidden shrink-0 flex items-center justify-center relative">
-                <img src="arthur.jpg" alt="Arthur Henrique Cavalcante, fundador da Brat Burger" class="w-full h-full object-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <picture class="w-full h-full block">
+                  <source srcset="arthur.webp" type="image/webp">
+                  <img src="arthur.jpg" alt="Arthur Henrique Cavalcante, fundador da Brat Burger" width="80" height="80" loading="lazy" decoding="async" class="w-full h-full object-cover" onerror="var p=this.closest('picture'); if(p){p.style.display='none'; if(p.nextElementSibling) p.nextElementSibling.style.display='flex';}">
+                </picture>
                 <span style="display:none;" class="font-serif text-2xl font-bold text-amber-400">AC</span>
               </div>
               <div>
@@ -673,7 +719,10 @@
       <!-- Rodapé de Navegação -->
       <footer class="max-w-6xl mx-auto mt-20 pt-10 border-t border-zinc-900 flex flex-col sm:flex-row items-center justify-between gap-6 text-[11px] text-zinc-500">
         <div class="flex flex-col sm:flex-row items-center gap-3 text-center sm:text-left">
-          <img src="logo-topo.png" alt="Brat Burger" class="h-7 opacity-80">
+          <picture>
+            <source srcset="logo-topo.webp" type="image/webp">
+            <img src="logo-topo.png" alt="Brat Burger" width="93" height="28" loading="lazy" decoding="async" class="h-7 w-auto opacity-80">
+          </picture>
           <span>Rua Amazonas, 1652 • São Caetano do Sul • © Brat Burger.</span>
         </div>
         <div class="flex flex-wrap justify-center gap-5 uppercase tracking-widest text-[10px] font-semibold">
@@ -754,6 +803,11 @@
           lbTitle.innerText = btn.dataset.title;
           lbTag.innerText = btn.dataset.tag;
           lbDesc.innerText = btn.dataset.desc;
+          if (btn.dataset.poster) {
+            player.setAttribute('poster', btn.dataset.poster);
+          } else {
+            player.removeAttribute('poster');
+          }
           player.src = btn.dataset.video;
           player.play().catch(() => {});
           lightbox.classList.add('open');
@@ -765,6 +819,7 @@
         lightbox.classList.remove('open');
         player.pause();
         player.removeAttribute('src');
+        player.removeAttribute('poster');
         player.load();
         document.body.style.overflow = '';
       }
