@@ -83,6 +83,19 @@
   }
   </script>
 
+  <!-- Verificação instantânea da abertura (1x por dia, evita piscar a tela ao voltar) -->
+  <script>
+    (function() {
+      try {
+        var now = new Date();
+        var hoje = now.getFullYear() + '-' + String(now.getMonth() + 1).padStart(2, '0') + '-' + String(now.getDate()).padStart(2, '0');
+        if (localStorage.getItem('brat_splash_date') === hoje) {
+          document.documentElement.classList.add('skip-splash');
+        }
+      } catch (e) {}
+    })();
+  </script>
+
   <!-- Meta Pixel (Fila síncrona + download não bloqueante pós-load) -->
   <script>
   !function(f,b,e,v,n,t,s){
@@ -131,6 +144,7 @@
     .vertical-media-frame video { width: 100%; height: 100%; object-fit: cover; object-position: center; transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1); }
     .vertical-media-frame:hover video { transform: scale(1.03); }
 
+    html.skip-splash #splash-screen { display: none !important; }
     #splash-screen { transition: opacity 0.8s ease-out; }
     #splash-cols { transition: opacity 0.4s ease-in-out; }
     .splash-col { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; }
@@ -148,22 +162,22 @@
       <div id="splash-col-1" class="splash-col w-1/3 h-full border-r border-zinc-900/50 relative">
         <div class="absolute inset-0 bg-black/30 z-10"></div>
         <video autoplay loop muted playsinline preload="metadata" poster="rei-poster.webp" class="w-full h-full object-cover opacity-80">
-          <source src="rei.mp4" type="video/mp4">
-          <source src="rei.webm" type="video/webm">
+          <source data-src="rei.mp4" type="video/mp4">
+          <source data-src="rei.webm" type="video/webm">
         </video>
       </div>
       <div id="splash-col-2" class="splash-col w-1/3 h-full border-r border-zinc-900/50 relative">
         <div class="absolute inset-0 bg-black/30 z-10"></div>
         <video autoplay loop muted playsinline preload="metadata" poster="matilda-poster.webp" class="w-full h-full object-cover opacity-80">
-          <source src="matilda.mp4" type="video/mp4">
-          <source src="matilda.webm" type="video/webm">
+          <source data-src="matilda.mp4" type="video/mp4">
+          <source data-src="matilda.webm" type="video/webm">
         </video>
       </div>
       <div id="splash-col-3" class="splash-col w-1/3 h-full relative">
         <div class="absolute inset-0 bg-black/30 z-10"></div>
         <video autoplay loop muted playsinline preload="metadata" poster="kiss-poster.webp" class="w-full h-full object-cover opacity-80">
-          <source src="kiss.mp4" type="video/mp4">
-          <source src="kiss.webm" type="video/webm">
+          <source data-src="kiss.mp4" type="video/mp4">
+          <source data-src="kiss.webm" type="video/webm">
         </video>
       </div>
     </div>
@@ -524,46 +538,65 @@
         lazyVideos.forEach((v) => videoObserver.observe(v));
       }
 
-      // 3. Splash Screen
+      // 3. Splash Screen (exibe apenas no primeiro acesso do dia)
       const splashScreen = document.getElementById('splash-screen');
       if (splashScreen) {
-        const col1 = document.getElementById('splash-col-1');
-        const col2 = document.getElementById('splash-col-2');
-        const col3 = document.getElementById('splash-col-3');
-        const colsContainer = document.getElementById('splash-cols');
-        const dot = document.getElementById('splash-dot');
+        if (document.documentElement.classList.contains('skip-splash')) {
+          splashScreen.remove();
+        } else {
+          try {
+            const now = new Date();
+            const hoje = now.getFullYear() + '-' + String(now.getMonth() + 1).padStart(2, '0') + '-' + String(now.getDate()).padStart(2, '0');
+            localStorage.setItem('brat_splash_date', hoje);
+          } catch (e) {}
 
-        document.body.style.overflow = 'hidden';
-        const safetyTimeout = setTimeout(() => { fecharSplash(); }, 8500);
+          splashScreen.querySelectorAll('video').forEach((v) => {
+            v.querySelectorAll('source[data-src]').forEach((src) => {
+              src.src = src.dataset.src;
+              src.removeAttribute('data-src');
+            });
+            v.load();
+            v.play().catch(() => {});
+          });
 
-        function fecharSplash() {
-          clearTimeout(safetyTimeout);
-          splashScreen.style.opacity = '0';
+          const col1 = document.getElementById('splash-col-1');
+          const col2 = document.getElementById('splash-col-2');
+          const col3 = document.getElementById('splash-col-3');
+          const colsContainer = document.getElementById('splash-cols');
+          const dot = document.getElementById('splash-dot');
+
+          document.body.style.overflow = 'hidden';
+          const safetyTimeout = setTimeout(() => { fecharSplash(); }, 8500);
+
+          function fecharSplash() {
+            clearTimeout(safetyTimeout);
+            splashScreen.style.opacity = '0';
+            setTimeout(() => {
+              splashScreen.querySelectorAll('video').forEach((v) => v.pause());
+              splashScreen.style.display = 'none';
+              if (!houseNav.classList.contains('open')) {
+                document.body.style.overflow = '';
+              }
+            }, 800);
+          }
+
+          if (col1) setTimeout(() => { col1.style.opacity = '1'; col1.style.transform = 'translateY(0)'; }, 300);
+          if (col2) setTimeout(() => { col2.style.opacity = '1'; col2.style.transform = 'translateY(0)'; }, 1500);
+          if (col3) setTimeout(() => { col3.style.opacity = '1'; col3.style.transform = 'translateY(0)'; }, 2700);
+
           setTimeout(() => {
-            splashScreen.querySelectorAll('video').forEach((v) => v.pause());
-            splashScreen.style.display = 'none';
-            if (!houseNav.classList.contains('open')) {
-              document.body.style.overflow = '';
-            }
-          }, 800);
+            if (colsContainer) colsContainer.style.opacity = '0';
+            setTimeout(() => {
+              if (dot) { dot.style.opacity = '1'; dot.style.transform = 'translate(-50%, -50%) scale(1)'; }
+            }, 400);
+          }, 4500);
+
+          setTimeout(() => {
+            if (dot) { dot.style.transform = 'translate(-50%, -50%) scale(150)'; dot.style.opacity = '0'; }
+          }, 5500);
+
+          setTimeout(() => { fecharSplash(); }, 5800);
         }
-
-        if (col1) setTimeout(() => { col1.style.opacity = '1'; col1.style.transform = 'translateY(0)'; }, 300);
-        if (col2) setTimeout(() => { col2.style.opacity = '1'; col2.style.transform = 'translateY(0)'; }, 1500);
-        if (col3) setTimeout(() => { col3.style.opacity = '1'; col3.style.transform = 'translateY(0)'; }, 2700);
-
-        setTimeout(() => {
-          if (colsContainer) colsContainer.style.opacity = '0';
-          setTimeout(() => {
-            if (dot) { dot.style.opacity = '1'; dot.style.transform = 'translate(-50%, -50%) scale(1)'; }
-          }, 400);
-        }, 4500);
-
-        setTimeout(() => {
-          if (dot) { dot.style.transform = 'translate(-50%, -50%) scale(150)'; dot.style.opacity = '0'; }
-        }, 5500);
-
-        setTimeout(() => { fecharSplash(); }, 5800);
       }
 
       // 4. Efeito Óptico do Salão
